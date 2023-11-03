@@ -6,17 +6,13 @@ import useFetch from '../../hooks/useFetch';
 
 const Products = () => {
     const catId = useParams().id
-    console.log(catId)
-    // const catId = parseInt(useParams().id)
-
     const [maxPrice, setMaxPrice] = useState(499)
     const [sort, setSort] = useState('')
     const [subCats, setSubCats] = useState([])
-
-    const { data, loading, error } = useFetch(
-        `/api/subcategory?title=${catId || ''}`
-      );
+    const { data, loading, error } = useFetch(`/api/subcategory?title=${catId || ''}`)
     const [subcategory] = data
+
+
     const handleChange = (e) => {
         const value = e.target.value
         const checked = e.target.checked

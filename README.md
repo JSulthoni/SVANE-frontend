@@ -3,7 +3,7 @@
 Welcome to the Bundler repository, Bundler is a full-stack e-commerce shop project.
 
 ## Project Overview
-Bundler is a full-stack e-commerce project designed for high accessibility across devices, ensuring the website maintains interface and functionality to various screen sizes.
+Bundler is a fullstack e-commerce project designed for high accessibility across devices, ensuring the website maintains interface and functionality to various screen sizes.
 
 ## Key Objectives
 * Create a React application with minimum page rendering and high responsiveness across multiple screen-size.
@@ -20,8 +20,8 @@ Bundler is a full-stack e-commerce project designed for high accessibility acros
 Bundler utilise modules and libraries of following technologies:
 
 Front-End:
-* Axios: For API request.
-* React: For the front-end user interface.
+* React: For frontend user interface.
+* React-router-dom: For handling pages.
 * Redux: For global state management.
 * Stripe: For handling payment and user address.
 
