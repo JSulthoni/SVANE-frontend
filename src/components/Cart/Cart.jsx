@@ -30,7 +30,7 @@ const Cart = ({cartRef, open}) => {
     useEffect(() => {
         const makeRequest = async () => {
             try {
-                const res = await axios.post('http://localhost:3000/payment', {
+                const res = await axios.post(import.meta.env.VITE_BACKEND_URL + '/payment', {
                     tokenId : stripeToken.id,
                     amount : {totalPrice}
                 })
