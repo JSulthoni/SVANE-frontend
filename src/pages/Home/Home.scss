@@ -1,0 +1,10 @@
+.home {
+    scroll-snap-type: y mandatory;
+
+    section {
+        height: max-content;
+        scroll-snap-align: start;
+        scroll-margin-top: 55px;
+
+    }
+}

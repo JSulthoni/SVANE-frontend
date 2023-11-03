@@ -1,0 +1,100 @@
+.footer {
+    margin: 100px 200px 20px 200px;
+
+    @media (max-width: 1280px) {
+        margin: 100px 100px 20px 100px;
+    }
+
+    @media (max-width: 540px) {
+        margin: 50px;
+        margin-bottom: 20px;
+    }
+
+    .top {
+        display: flex;
+        gap: 50px;
+
+        @media (max-width: 1024px) {
+            gap: 25px;
+        }
+        
+        @media (max-width: 540px) {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+        }
+
+        .item {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            text-align: justify;
+            font-size: var(--f14px);
+
+            h3 {
+                font-size: var(--f18px);
+                font-weight: 500;
+                margin-bottom: 1em;
+            }
+
+            span, p {
+                color: var(--color-slate600);
+            }
+
+            .logo {
+                color: var(--color-green600);
+                font-weight: 600;
+            }
+            
+            a {
+                color: var(--color-green600);
+                text-decoration: none;
+            }
+
+            .link {
+                color: var(--color-slate600);
+            }
+
+            &:nth-child(3), &:nth-child(4) {
+                @media (max-width: 540px) {
+                    grid-column: 1 / -1;
+                }
+            }
+
+        }
+    }
+
+    .bottom {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-top: 50px;
+
+        .left {
+            display: flex;
+            align-items: center;
+
+            .logo {
+                color: var(--color-green600);
+                font-weight: 600;
+                font-size: var(--f24px);
+            }
+
+            .copyright {
+                margin-left: 20px;
+                font-size: var(--f12px);
+                color: var(--color-slate400);
+
+            }
+        }
+    
+        // .right {
+            
+        // }
+
+    }
+        
+    
+
+
+}

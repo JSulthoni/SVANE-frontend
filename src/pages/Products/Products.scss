@@ -1,0 +1,102 @@
+.products {
+    padding: 30px 50px;
+    display: flex;
+    gap: 20px;
+
+    @media (max-width: 810px) {
+        padding: 30px 30px;
+    }
+
+    @media (max-width: 540px) {
+        padding: 30px 0;
+        flex-direction: column;
+    }
+  
+    .left {
+        flex: 1;
+        position: sticky;
+        z-index: 4;
+        height: 100%;
+        top: 70px;
+        font-size: var(--f16px);
+
+        @media (max-width: 540px) {
+            top: 55px;
+            background-color: rgba(255, 255, 255, 0.8);
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            grid-template-rows: 68px 100px;
+            padding: 0 30px;
+
+            div {
+                &:nth-child(1) {
+                    grid-row: 1 / 3;
+                }
+                &:nth-child(2) {
+                    grid-column: 2 / -1;
+                }
+            }
+        }
+    
+        .filterItem {
+            margin-bottom: 30px;
+
+            @media (max-width: 540px) {
+                margin-bottom: 0px;
+            }
+
+            h3 {
+            font-weight: 500;
+            margin-bottom: 20px;
+            font-size: var(--f18px);
+            }
+    
+            .inputItem {
+                margin-bottom: 10px;
+                display: flex;
+                align-items: center;
+
+                label {
+                    margin-left: 10px;
+                    text-transform: capitalize;
+                }
+
+                input {
+
+                    background-color: pink;
+
+                    &:checked {
+                        border-color: green;
+                        background-color: green;
+                    }
+                }
+
+                input[type='range'] {
+                    margin: 0 10px;
+                }
+
+                span {
+                    &:first-child {
+                        margin-left: 5px;
+                    }
+                }
+
+            }
+        }
+    }
+    
+    .right {
+        flex: 3;
+    
+        .catImg {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            margin-bottom: 50px;
+
+            @media (max-width: 540px) {
+                display: none;
+            }
+        }
+    }
+}
