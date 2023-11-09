@@ -46,6 +46,7 @@
             }
 
             h3 {
+            color: var(--color-slate950);
             font-weight: 500;
             margin-bottom: 20px;
             font-size: var(--f18px);
@@ -55,6 +56,7 @@
                 margin-bottom: 10px;
                 display: flex;
                 align-items: center;
+                color: var(--color-slate600);
 
                 label {
                     margin-left: 10px;

@@ -5,7 +5,7 @@ import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import { useParams } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { addToCart, addToWish } from '../../redux/cartReducer';
+import { ADD_TO_CART, ADD_TO_WISH } from '../../redux/contextReducer';
 
 const Product = () => {
     const dispatch = useDispatch()
@@ -38,7 +38,7 @@ const Product = () => {
                     <span>{quantity}</span>
                     <button onClick={() => setQuantity((prev) => prev + 1)}>+</button>
                 </div>
-                <button className='add' onClick={() => dispatch(addToCart({
+                <button className='add' onClick={() => dispatch(ADD_TO_CART({
                     id : data?._id,
                     title : data?.title,
                     desc : data?.description,
@@ -48,7 +48,7 @@ const Product = () => {
                     }))}>
                     <AddShoppingCartIcon />ADD TO CART
                 </button>
-                <button className='item' onClick={() => dispatch(addToWish({
+                <button className='item' onClick={() => dispatch(ADD_TO_WISH({
                 id : data?._id,
                 title : data?.title,
                 desc : data?.description,

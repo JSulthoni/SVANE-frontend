@@ -26,6 +26,7 @@
         }
     
         h2 {
+            color: var(--color-header);
             flex: 1;
             font-size: calc(2 * var(--f16px));
             text-transform: capitalize;

@@ -1,4 +1,5 @@
 .card {
+    background-color: var(--color-slate50);
     width: max-content;
     display: flex;
     flex-direction: column;
@@ -52,6 +53,7 @@
         }
     
         h3 {
+            color: var(--color-slate950);
             font-size: var(--f16px);
             font-weight: 400;
             margin: 0;
@@ -67,6 +69,7 @@
             margin: 0;
     
             h4 {
+                color: var(--color-green600);
                 font-size: var(--f18px);
                 font-weight: 500;
                 margin: 0;

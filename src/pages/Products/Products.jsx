@@ -6,7 +6,7 @@ import useFetch from '../../hooks/useFetch';
 
 const Products = () => {
     const catId = useParams().id
-    const [maxPrice, setMaxPrice] = useState(499)
+    const [maxPrice, setMaxPrice] = useState(199)
     const [sort, setSort] = useState('')
     const [subCats, setSubCats] = useState([])
     const { data, loading, error } = useFetch(`/api/subcategory?title=${catId || ''}`)
@@ -25,7 +25,7 @@ const Products = () => {
             {loading ? '' : <div className='left'>
                 <div className='filterItem'>
                     <h3>Product Categories</h3>
-                    {subcategory.subcategory.map((item) => {
+                    {subcategory?.subcategory.map((item) => {
                         return (
                     <div className='inputItem' key={item}>
                         <input className='checkbox' type='checkbox' id={item} value={item} onChange={handleChange}/>
@@ -38,7 +38,7 @@ const Products = () => {
                     <h3>Filter by price</h3>
                     <div className='inputItem'>
                         <span>0</span>
-                        <input type='range' min={0} max={499} onChange={(e) => setMaxPrice(e.target.value)}/>
+                        <input type='range' min={0} max={199} onChange={(e) => setMaxPrice(e.target.value)}/>
                         <span>{maxPrice}</span>
                     </div>
                 </div>

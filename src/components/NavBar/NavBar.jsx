@@ -1,10 +1,13 @@
 import React, {useRef, useState} from 'react';
 import { Link } from 'react-router-dom'
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { HashLink } from 'react-router-hash-link';
+import { TOGGLE_NIGHT } from '../../redux/contextReducer';
 import MenuIcon from '@mui/icons-material/Menu';
 import FavoriteBorderOutlinedIcon from '@mui/icons-material/FavoriteBorderOutlined'
 import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined'
+import BedtimeIcon from '@mui/icons-material/Bedtime';
+import LightModeIcon from '@mui/icons-material/LightMode';
 import Cart from '../Cart/Cart';
 import useClickOutside from '../../hooks/useClickOutside';
 import Favorite from '../Favorite/Favorite';
@@ -14,8 +17,10 @@ import './Navbar.scss'
 const NavBar = () => {
     const favRef = useRef(null)
     const cartRef = useRef(null)
-    const products = useSelector(((state) => state.cart.products))
-    const wishlist = useSelector(((state) => state.cart.wishlist))
+    const products = useSelector(((state) => state.context.products))
+    const wishlist = useSelector(((state) => state.context.wishlist))
+    const nightmode = useSelector(((state) => state.context.nightmode))
+    const dispatch = useDispatch()
     const [openFav, setOpenFav] = useState(false)
     const [openCart, setOpenCart] = useState(false)
     const [openMenu, setOpenMenu] = useState(false)
@@ -39,7 +44,7 @@ const NavBar = () => {
     }
 
     return (
-        <div className='navbar'>
+        <div className='navbar' style={{'background-color' : !nightmode ? 'rgba(255, 255, 255, 0.8)' : 'rgba(0, 0, 0, 0.8)'}}>
             <div className='wrapper'>
                 <div className='left'>
                     <div className='item'>
@@ -56,7 +61,7 @@ const NavBar = () => {
                     </div>
                 </div>
                 <div className='center'>
-                    <Link className='link' to='/'>BUNDLER</Link>
+                    <Link className='link' to='/'>BNDLR</Link>
                 </div>
                 <div className='right'>
                     <div className='item'>
@@ -83,9 +88,13 @@ const NavBar = () => {
                         <ShoppingCartOutlinedIcon />
                         <span>{products.length}</span>
                     </div>
+                    <div className='nightIcon' onClick={() => dispatch(TOGGLE_NIGHT())}>
+                        {nightmode ? <BedtimeIcon /> : <LightModeIcon />}
+                    </div>
                     <div className='menuIcon' onClick={handleMenu}>
                         <MenuIcon />
                     </div>
+                        
                     </div>
                 </div>
             </div>

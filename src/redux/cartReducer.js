@@ -1,3 +1,6 @@
+// This cartReducer is deprecated and is no longer used.
+// New global state management is moved to contextReducer
+
 import { createSlice } from '@reduxjs/toolkit'
 
 const initialState = {

@@ -30,14 +30,18 @@
             margin-bottom: 15px;
             left: 0;
 
-                @media (max-width: 540px) {
-                    height: 250px;
+                @media (max-width: 910px) {
+                    height: 40vh;
                 }
             }
         }
         
         .mainImage {
             flex: 5;
+
+            @media (max-width: 910px) {
+                flex: 0;
+            }
     
             img {
             width: 100%;
@@ -59,6 +63,7 @@
       gap: 24px;
 
         h3 {
+            color: var(--color-slate950);
             font-size: var(--f24px);
         }
   
@@ -69,6 +74,7 @@
         }
     
         p {
+            color: var(--color-slate950);
             font-size: var(--f18px);
             font-weight: 300;
             text-align: justify;

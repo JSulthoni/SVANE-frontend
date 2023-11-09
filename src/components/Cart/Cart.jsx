@@ -1,19 +1,20 @@
 import React, { useEffect, useState } from 'react';
 import DeleteOutlinedIcon from "@mui/icons-material/DeleteOutlined";
-import './Cart.scss'
 import { useDispatch, useSelector } from 'react-redux';
-import { removeItem, resetCart } from '../../redux/cartReducer';
+import { REMOVE_ITEM, RESET_CART } from '../../redux/contextReducer';
 // import { loadStripe } from '@stripe/stripe-js';
 // import { makeRequest } from '../../hooks/makeRequest';
 import StripeCheckout from 'react-stripe-checkout';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import favicon from '../../favicon.png'
+import './Cart.scss'
 
 
 const Cart = ({cartRef, open}) => {
     const [stripeToken, setStripeToken] = useState(null)
-    const products = useSelector((state) => state.cart.products)
+    const products = useSelector((state) => state.context.products)
+    const nightmode = useSelector((state) => state.context.nightmode)
     const dispatch = useDispatch()
     const navigate = useNavigate()
     
@@ -58,8 +59,9 @@ const Cart = ({cartRef, open}) => {
     // }
 
     return (
-        <div ref={cartRef} className={`cart ${open ? 'active' : 'inactive'}`}>
-            <h3>Products in your cart</h3>
+        <div ref={cartRef} className={`cart ${open ? 'active' : 'inactive'}`} style={{'background-color' : !nightmode ? 'rgba(255, 255, 255, 0.8)' : 'rgba(0, 0, 0, 0.8)'}}>
+            <h3>{products.length ? 'Products in your cart' : 'Your cart is empty'}</h3>
+            {!products.length ? '' : <div>
             {products.map((item) => (
                 <div className='item' key={item.id}>
                     <img src={item.image} alt=''/>
@@ -68,7 +70,7 @@ const Cart = ({cartRef, open}) => {
                         <p>{item.desc.substring(0,80) + '...'}</p>
                         <span>{item.quantity} x ${item.price}</span>
                     </div>
-                    <DeleteOutlinedIcon className='delete' onClick={() => dispatch(removeItem(item.id))}/>
+                    <DeleteOutlinedIcon className='delete' onClick={() => dispatch(REMOVE_ITEM(item.id))}/>
                 </div>
             ))}
             <div className='total'>
@@ -88,7 +90,8 @@ const Cart = ({cartRef, open}) => {
                 stripeKey = {import.meta.env.VITE_STRIPE_PUBLIC_KEY}>
                 <button>PROCEED TO CHECKOUT</button>
             </StripeCheckout>)}
-            <span className='reset' onClick={() => dispatch(resetCart())}>Empty Cart</span>
+            <span className='reset' onClick={() => dispatch(RESET_CART())}>Empty Cart</span>
+            </div>}
         </div>
     );
 }

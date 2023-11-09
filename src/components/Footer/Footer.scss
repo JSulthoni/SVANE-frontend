@@ -1,5 +1,5 @@
 .footer {
-    margin: 100px 200px 20px 200px;
+    margin: 100px 200px 0px 200px;
 
     @media (max-width: 1280px) {
         margin: 100px 100px 20px 100px;
@@ -32,6 +32,7 @@
             font-size: var(--f14px);
 
             h3 {
+                color: var(--color-slate950);
                 font-size: var(--f18px);
                 font-weight: 500;
                 margin-bottom: 1em;
@@ -66,35 +67,23 @@
 
     .bottom {
         display: flex;
-        align-items: center;
-        justify-content: space-between;
+        align-items: baseline;
+        justify-content: flex-start;
         margin-top: 50px;
+        padding-bottom: 20px;
 
-        .left {
-            display: flex;
-            align-items: center;
-
-            .logo {
-                color: var(--color-green600);
-                font-weight: 600;
-                font-size: var(--f24px);
-            }
-
-            .copyright {
-                margin-left: 20px;
-                font-size: var(--f12px);
-                color: var(--color-slate400);
-
-            }
+        .logo {
+            color: var(--color-green600);
+            font-weight: 600;
+            font-size: var(--f24px);
         }
-    
-        // .right {
-            
-        // }
 
+        .copyright {
+            margin-left: 20px;
+            font-size: var(--f12px);
+            color: var(--color-slate400);
+
+        }
     }
         
-    
-
-
 }

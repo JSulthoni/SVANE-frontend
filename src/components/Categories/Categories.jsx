@@ -57,13 +57,6 @@ const Categories = () => {
                         <HashLink smooth className='link' to='/#featured'>Featured</HashLink>
                     </button>
                 </div>
-                <div className='cell'>
-                    <img src="https://images.pexels.com/photos/5474307/pexels-photo-5474307.jpeg?auto=compress&cs=tinysrgb&w=1600" alt="" className='image1'/>
-                    <img src="https://images.pexels.com/photos/5474313/pexels-photo-5474313.jpeg?auto=compress&cs=tinysrgb&w=1600" alt="" className={randomClassName()}/>
-                    <button>
-                        <Link to="/products/unisex" className="link">Glasses</Link>
-                    </button>
-                </div>
             </div>
         </div>
     );

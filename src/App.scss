@@ -5,12 +5,14 @@
     --color-slate400: #94a3b8;
     --color-slate600: #475569;
     --color-slate800: #1e293b;
+    --color-slate900: #070a13;
     --color-slate950: #020617;
     --color-green50: #f0fdf4;
     --color-green200: #bbf7d0;
     --color-green400: #4ade80;
     --color-green600: #16a34a;
     --color-green800: #166534;
+    --color-header: #020617;
 
     --f10px : 10px;
     --f11px : 11px;
@@ -34,13 +36,31 @@
     box-sizing: border-box;
     margin: 0;
     padding: 0;
+    transition: 200ms ease;
 }
 
 .app {
+    background-color: var(--color-white);
     .link {
         color: inherit;
         text-decoration: none;
     }
+}
+
+.night {
+    --color-white: #020617;
+    --color-slate50: #070a13;
+    --color-slate200: #f8fafc;
+    --color-slate400: #f8fafc;
+    --color-slate600: #e2e8f0;
+    --color-slate800: #f8fafc;
+    --color-slate950: #f8fafc;
+    --color-green50: #020617;
+    --color-green200: #bbf7d0;
+    --color-green400: #4ade80;
+    --color-green600: #16a34a;
+    --color-green800: #166534;
+    --color-header: #16a34a;
 }
 
 html {

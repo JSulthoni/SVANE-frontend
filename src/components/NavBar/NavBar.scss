@@ -5,7 +5,7 @@
     width: 100vw;
     height: max-content;
     padding: 0;
-    background-color: rgba(255, 255, 255, 0.8);
+    color: var(--color-slate950);
     -webkit-box-shadow: 0px 0px 7px -5px rgba(0, 0, 0, 0.5);
     box-shadow: 0px 0px 7px -5px rgba(0, 0, 0, 0.5);
 
@@ -119,7 +119,7 @@
 
             }
 
-            .cartIcon, .favIcon {
+            .cartIcon, .favIcon, .nightIcon, .menuIcon {
                 position: relative;
 
                 span {
@@ -128,7 +128,7 @@
                     height: 20px;
                     border-radius: 50%;
                     background-color: var(--color-green600);
-                    color: var(--color-white);
+                    color: #fff;
                     position: absolute;
                     right: -10px;
                     top: -10px;
@@ -146,7 +146,6 @@
             }
 
             .menuIcon {
-                position: relative;
                 z-index: 1001;
 
                 @media (min-width: 910px) {
