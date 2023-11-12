@@ -3,7 +3,6 @@ import { createSlice } from '@reduxjs/toolkit'
 const initialState = {
     products: [],
     wishlist: [],
-    nightmode: false
 }
 
 export const contextSlice = createSlice({
@@ -16,7 +15,7 @@ export const contextSlice = createSlice({
         if (item) {
             item.quantity += action.payload.quantity
         } else {
-            state.products.push(action.payload)
+            state.products = [...state.products, action.payload]
         }
     },
     REMOVE_ITEM: (state, action) => {
@@ -30,7 +29,7 @@ export const contextSlice = createSlice({
         if (item) {
             item.quantity += action.payload.quantity
         } else {
-            state.wishlist.push(action.payload)
+            state.wishlist = [...state.wishlist, action.payload]
         }
     },
     REMOVE_WISH: (state, action) => {
@@ -38,14 +37,11 @@ export const contextSlice = createSlice({
     },
     RESET_WISH: (state) => {
         state.wishlist = []
-    },
-    TOGGLE_NIGHT: (state) => {
-        state.nightmode = !state.nightmode
     }
   }
 })
 
 
-export const { ADD_TO_CART, REMOVE_ITEM, RESET_CART, ADD_TO_WISH, REMOVE_WISH, RESET_WISH, TOGGLE_NIGHT } = contextSlice.actions
+export const { ADD_TO_CART, REMOVE_ITEM, RESET_CART, ADD_TO_WISH, REMOVE_WISH, RESET_WISH } = contextSlice.actions
 
 export default contextSlice.reducer

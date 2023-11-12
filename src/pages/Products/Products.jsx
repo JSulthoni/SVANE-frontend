@@ -3,6 +3,8 @@ import { useParams } from 'react-router-dom';
 import List from '../../components/List/List';
 import './Products.scss'
 import useFetch from '../../hooks/useFetch';
+import { useSelector } from 'react-redux';
+
 
 const Products = () => {
     const catId = useParams().id
@@ -11,7 +13,7 @@ const Products = () => {
     const [subCats, setSubCats] = useState([])
     const { data, loading, error } = useFetch(`/api/subcategory?title=${catId || ''}`)
     const [subcategory] = data
-
+    const nightmode = useSelector((state) => state.navigation.nightmode)
 
     const handleChange = (e) => {
         const value = e.target.value
@@ -19,10 +21,9 @@ const Products = () => {
         setSubCats(checked ? [...subCats, value] : subCats.filter((item) => item !== value))
     }
 
-
     return (
         <div className='products'>
-            {loading ? '' : <div className='left'>
+            {loading ? '' : <div className='left' style={{'background-color' : !nightmode ? 'rgba(255, 255, 255, 0.8)' : 'rgba(0, 0, 0, 0.8)'}}>
                 <div className='filterItem'>
                     <h3>Product Categories</h3>
                     {subcategory?.subcategory.map((item) => {

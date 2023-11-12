@@ -4,6 +4,7 @@
     z-index: 5;
     width: 100vw;
     height: max-content;
+    overflow: visible;
     padding: 0;
     color: var(--color-slate950);
     -webkit-box-shadow: 0px 0px 7px -5px rgba(0, 0, 0, 0.5);
@@ -11,12 +12,10 @@
 
     .wrapper {
         padding: 10px 30px 8px 30px;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
+        display: grid;
+        grid-template-columns: 1fr 2fr 1fr;
 
         @media (max-width: 910px) {
-            display: grid;
             grid-template-columns: 1fr 4fr;
         }
 
@@ -33,6 +32,7 @@
         .left {
             display: flex;
             align-items: center;
+            place-self: center start;
             gap: 1.5em;
 
             @media (max-width: 1024px) {
@@ -52,11 +52,7 @@
 
 
         .center {
-            transform: translateX(30px);
-            @media (max-width: 910px) {
-                transform: translateX(0px);
-            }
-
+            place-self: center;
             .link {
                 color: var(--color-green600);
                 font-weight: 600;
@@ -77,6 +73,7 @@
         .right {
             display: flex;
             align-items: center;
+            place-self: center end;
             gap: 1.5em;
             width: max-content;
 

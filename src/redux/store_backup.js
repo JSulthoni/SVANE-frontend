@@ -1,6 +1,6 @@
 import contextReducer from "./contextReducer";
 import navigationReducer from "./navigationReducer";
-import { combineReducers, configureStore } from "@reduxjs/toolkit";
+import { configureStore } from "@reduxjs/toolkit";
 import {
     persistStore,
     persistReducer,
@@ -13,27 +13,18 @@ import {
 } from "redux-persist";
 import storage from "redux-persist/lib/storage";
 
-const contextConfig = {
-    key: "context",
+const persistConfig = {
+    key: "root",
     version: 1,
     storage,
 };
 
-const navigationConfig = {
-    key: "navigation",
-    version: 1,
-    storage,
-};
-
-const conReducer = persistReducer(contextConfig, contextReducer);
-const navReducer = persistReducer(navigationConfig, navigationReducer)
-// Combining 2 reducer
-const allReducer = combineReducers({
-    context : conReducer, 
-    navigation : navReducer})
+const persistedReducer = persistReducer(persistConfig, contextReducer);
 
 export const store = configureStore({
-    reducer: allReducer,
+    reducer: {
+        context: persistedReducer,
+    },
     middleware: (getDefaultMiddleware) =>
         getDefaultMiddleware({
         serializableCheck: {

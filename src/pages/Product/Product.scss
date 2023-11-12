@@ -2,6 +2,8 @@
     padding: 20px 30px;
     display: flex;
     gap: 50px;
+    height: max-content;
+    min-height: 100vh;
 
     @media (max-width: 540px) {
         flex-direction: column;
@@ -38,6 +40,7 @@
         
         .mainImage {
             flex: 5;
+            height: max-content;
 
             @media (max-width: 910px) {
                 flex: 0;
@@ -45,7 +48,6 @@
     
             img {
             width: 100%;
-            max-height: 800px;
             object-fit: cover;
             }
 
@@ -84,8 +86,10 @@
             display: flex;
             align-items: center;
             gap: 10px;
+            font-size: var(--f18px);
 
             span {
+                color: var(--color-slate950);
                 width: 30px;
                 text-align: center;
             }
@@ -98,6 +102,7 @@
             justify-content: center;
             cursor: pointer;
             border: none;
+            font-size: inherit;
                 
                 &:active {
                     background-color: var(--color-green200);

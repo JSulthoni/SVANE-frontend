@@ -10,9 +10,9 @@ const Contacts = () => {
     return (
         <div className='contacts' id='contacts'>
             <div className='wrapper'>
-                <span>BE IN TOUCH WITH BUNDLER</span>
+                <span>BE IN TOUCH WITH BNDLR</span>
                 <form className='mail'>
-                    <input className='mailinput' type='text' placeholder='place your email...' />
+                    <input className='mail-input' type='text' placeholder='place your email...' />
                     <button>JOIN US</button>
                 </form>
                 <div className='icons'>

@@ -14,7 +14,7 @@ import './Cart.scss'
 const Cart = ({cartRef, open}) => {
     const [stripeToken, setStripeToken] = useState(null)
     const products = useSelector((state) => state.context.products)
-    const nightmode = useSelector((state) => state.context.nightmode)
+    const nightmode = useSelector((state) => state.navigation.nightmode)
     const dispatch = useDispatch()
     const navigate = useNavigate()
     
@@ -64,7 +64,7 @@ const Cart = ({cartRef, open}) => {
             {!products.length ? '' : <div>
             {products.map((item) => (
                 <div className='item' key={item.id}>
-                    <img src={item.image} alt=''/>
+                    <img src={`${item.image}?auto=compress&cs=tinysrgb&w=360&dpr=1`} alt=''/>
                     <div className='details'>
                         <h4>{item.title}</h4>
                         <p>{item.desc.substring(0,80) + '...'}</p>

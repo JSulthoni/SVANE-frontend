@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, { useState } from 'react';
 import useFetch from '../../hooks/useFetch';
 import './Product.scss'
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
@@ -12,8 +12,7 @@ const Product = () => {
     const id = useParams().id
     const [mainImg, setMainImg] = useState('image1')
     const [quantity, setQuantity] = useState(1)
-    const {data, loading, error} = useFetch(`/api/products/${id}?populate=*`)
-
+    const {data, loading} = useFetch(`/api/products/find/${id}?populate=*`)
 
     return (
         <div className='product'>
@@ -22,8 +21,8 @@ const Product = () => {
             <>
                 <div className='left'>
                 <div className='images'>
-                    <img src={data?.image1 || 'https://placehold.co/400'} alt='' onClick={() => setMainImg('image1')}/>
-                    <img src={data?.image2 || 'https://placehold.co/400'} alt='' onClick={() => setMainImg('image2')}/>
+                    <img src={`${data?.image1}?auto=compress&cs=tinysrgb&w=1600&dpr=1` || 'https://placehold.co/400'} alt='' onClick={() => setMainImg('image1')}/>
+                    <img src={`${data?.image2}?auto=compress&cs=tinysrgb&w=1600&dpr=1` || 'https://placehold.co/400'} alt='' onClick={() => setMainImg('image2')}/>
                 </div>
                 <div className='mainImage'>
                     <img src={data?.[mainImg] || 'https://placehold.co/400'} alt=''/>
@@ -54,7 +53,7 @@ const Product = () => {
                 desc : data?.description,
                 price : data?.price,
                 image : data?.image1,
-                quant : 1
+                quantity : parseInt(1)
                 }))}>
                     <FavoriteBorderIcon /> ADD TO WISHLIST
                 </button>

@@ -1,13 +1,8 @@
-import React, { useRef } from 'react';
+import React, {useRef, useState} from 'react';
 import { Link } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux';
 import { HashLink } from 'react-router-hash-link';
-import { 
-    TOGGLE_NIGHT, 
-    TOGGLE_WISHLIST, 
-    TOGGLE_CART, 
-    TOGGLE_MENU, 
-    TOGGLE_SEARCH } from '../../redux/navigationReducer';
+import { TOGGLE_NIGHT } from '../../redux/contextReducer';
 import MenuIcon from '@mui/icons-material/Menu';
 import FavoriteBorderOutlinedIcon from '@mui/icons-material/FavoriteBorderOutlined'
 import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined'
@@ -23,41 +18,33 @@ import './Navbar.scss'
 import Search from '../Search/Search';
 
 const NavBar = () => {
-    const searchRef = useRef(null)
-    const wishRef = useRef(null)
+    const favRef = useRef(null)
     const cartRef = useRef(null)
     const products = useSelector(((state) => state.context.products))
     const wishlist = useSelector(((state) => state.context.wishlist))
-    const nightmode = useSelector(((state) => state.navigation.nightmode))
-    const openSearch = useSelector(((state) => state.navigation.search))
-    const openWishlist = useSelector(((state) => state.navigation.wishlist))
-    const openCart = useSelector(((state) => state.navigation.cart))
-    const openMenu = useSelector(((state) => state.navigation.menu))
+    const nightmode = useSelector(((state) => state.context.nightmode))
     const dispatch = useDispatch()
+    const [openSearch, setOpenSearch] = useState(false)
+    const [openFav, setOpenFav] = useState(false)
+    const [openCart, setOpenCart] = useState(false)
+    const [openMenu, setOpenMenu] = useState(false)
 
-    useClickOutside(wishRef, () => {
-        if (openWishlist) {
-            dispatch(TOGGLE_WISHLIST({payload : !openWishlist}))
-        }
-    })
-
-    useClickOutside(searchRef, () => {
-        if (openSearch) {
-            dispatch(TOGGLE_SEARCH({payload : !openSearch}))
+    useClickOutside(favRef, () => {
+        if (openFav) {
+            setOpenFav(false)
         }
     })
 
     useClickOutside(cartRef, () => {
         if (openCart) {
-            dispatch(TOGGLE_CART({payload : !openCart}))
+            setOpenCart(false)
         }
     })
 
     const handleMenu = () => {
-        dispatch(TOGGLE_SEARCH({payload : false}))
-        dispatch(TOGGLE_CART({payload : false}))
-        dispatch(TOGGLE_WISHLIST({payload : false}))
-        dispatch(TOGGLE_MENU({payload : !openMenu}))
+        setOpenCart(false)
+        setOpenFav(false)
+        setOpenMenu(!openMenu)
     }
 
     return (
@@ -92,24 +79,20 @@ const NavBar = () => {
                     </div>
                     <div className='icons'>
                     <div className='searchIcon' onClick={() => {
-                        dispatch(TOGGLE_WISHLIST({payload : false}))
-                        dispatch(TOGGLE_CART({payload : false}))
-                        dispatch(TOGGLE_SEARCH({payload : !openSearch}))
+                        setOpenSearch(!openSearch)
                     }}>
                         {openSearch ? <SearchOffOutlinedIcon /> : <SearchOutlinedIcon />}
                     </div>
                     <div className='favIcon' onClick={() => {
-                        dispatch(TOGGLE_CART({payload : false}))
-                        dispatch(TOGGLE_SEARCH({payload : false}))
-                        dispatch(TOGGLE_WISHLIST({payload : !openWishlist}))
+                        setOpenCart(false)
+                        setOpenFav(!openFav)
                     }}>
                         <FavoriteBorderOutlinedIcon />
                         <span>{wishlist.length}</span>
                     </div>
                     <div className='cartIcon' onClick={() => {
-                        dispatch(TOGGLE_WISHLIST({payload : false}))
-                        dispatch(TOGGLE_SEARCH({payload : false}))
-                        dispatch(TOGGLE_CART({payload : !openCart}))
+                        setOpenFav(false)
+                        setOpenCart(!openCart)
                     }}>
                         <ShoppingCartOutlinedIcon />
                         <span>{products.length}</span>
@@ -124,10 +107,10 @@ const NavBar = () => {
                     </div>
                 </div>
             </div>
-                <Search open={openSearch} searchRef={searchRef}/>
-                <Favorite wishRef={wishRef} open={openWishlist}/>
+                <Search />
+                <Favorite favRef={favRef} open={openFav}/>
                 <Cart cartRef={cartRef} open={openCart}/>
-                <Menu open={openMenu} handleMenu={handleMenu}/>
+                <Menu open={openMenu} handleClick={handleMenu}/>
         </div>
     );
 }

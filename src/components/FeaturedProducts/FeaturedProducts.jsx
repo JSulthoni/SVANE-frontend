@@ -4,9 +4,8 @@ import Card from '../Card/Card';
 import useFetch from '../../hooks/useFetch';
 
 const FeaturedProducts = ({ type }) => {
-    // fix query and connection strings
-    const {data, loading, error} = useFetch(`/api/products?category=&subcategory=&sort=&price=`)
-    // `/products?populate=*&[filter][type][$in]=${type}`
+
+    const {data, loading, error} = useFetch(`/api/products?type=${type}&limit=5`)
 
     return (
         <div className='featuredProducts'>
@@ -18,7 +17,7 @@ const FeaturedProducts = ({ type }) => {
                 </div>
             {loading ? 'loading' : 
             <div className='bottom'>
-                {data.filter((item) => item.type.includes(type)).slice(0 , 5).map((item) => <Card item={item} key={item._id}/>)}
+                {data.map((item) => <Card item={item} key={item._id}/>)}
             </div> 
             }
         </div>

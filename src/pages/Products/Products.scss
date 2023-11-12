@@ -2,6 +2,8 @@
     padding: 30px 50px;
     display: flex;
     gap: 20px;
+    height: max-content;
+    min-height: 100vh;
 
     @media (max-width: 810px) {
         padding: 30px 30px;
@@ -16,13 +18,12 @@
         flex: 1;
         position: sticky;
         z-index: 4;
-        height: 100%;
+        height: max-content;
         top: 70px;
         font-size: var(--f16px);
 
         @media (max-width: 540px) {
             top: 55px;
-            background-color: rgba(255, 255, 255, 0.8);
             display: grid;
             grid-template-columns: 1fr 2fr;
             grid-template-rows: 68px 100px;

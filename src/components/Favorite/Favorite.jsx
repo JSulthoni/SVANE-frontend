@@ -5,18 +5,18 @@ import './Favorite.scss'
 import { useDispatch, useSelector } from 'react-redux';
 import { ADD_TO_CART, REMOVE_WISH, RESET_WISH } from '../../redux/contextReducer';
 
-const Favorite = ({favRef, open}) => {
+const Favorite = ({wishRef, open}) => {
     const wishlist = useSelector((state) => state.context.wishlist)
-    const nightmode = useSelector((state) => state.context.nightmode)
+    const nightmode = useSelector((state) => state.navigation.nightmode)
     const dispatch = useDispatch()
 
     return (
-        <div ref={favRef} className={`wish ${open ? 'active' : 'inactive'}`} style={{'background-color' : !nightmode ? 'rgba(255, 255, 255, 0.8)' : 'rgba(0, 0, 0, 0.8)'}}>
+        <div ref={wishRef} className={`wish ${open ? 'active' : 'inactive'}`} style={{'background-color' : !nightmode ? 'rgba(255, 255, 255, 0.8)' : 'rgba(0, 0, 0, 0.8)'}}>
             <h3>{wishlist.length ? 'Products in your wishlist' : 'Your wishlist is empty'}</h3>
             {!wishlist.length ? '' : <div>
             {wishlist?.map((item) => (
                 <div className='item' key={item.id}>
-                    <img src={item.image} alt=''/>
+                    <img src={`${item.image}?auto=compress&cs=tinysrgb&w=360&dpr=1`} alt=''/>
                     <div className='details'>
                         <h4>{item.title}</h4>
                         <p>{item.desc.substring(0,80) + '...'}</p>

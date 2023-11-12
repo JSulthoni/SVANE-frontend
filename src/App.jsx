@@ -15,7 +15,7 @@ import './App.scss'
 
 // Page Layout
 const Layout = () => {
-  const mode = useSelector((state) => state.context.nightmode)
+  const mode = useSelector((state) => state.navigation.nightmode)
 
   return (
     <div className={`app ${mode ? 'night' : ''}`}>
