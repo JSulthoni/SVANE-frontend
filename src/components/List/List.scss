@@ -1,6 +1,12 @@
 .list {
-    display: flex;
-    justify-content: space-around;
-    flex-wrap: wrap;
+    display: grid;
+    grid-auto-flow: dense;
     column-gap: 20px;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
+    grid-auto-rows: auto;
+    container-type: inline-size;
+
+    @media (max-width: 510px) {
+        place-items: center;
+    }
 }

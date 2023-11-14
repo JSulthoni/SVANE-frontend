@@ -11,6 +11,10 @@
             aspect-ratio: 9 / 13.5;
             overflow: hidden;
             position: relative;
+
+            @media (max-width: 810px) {
+                width: 30vw;
+            }
     
             @media (max-width: 540px) {
                 width: 90vw;

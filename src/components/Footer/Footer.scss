@@ -1,13 +1,15 @@
 .footer {
-    margin: 100px 200px 0px 200px;
-
+    margin: 100px 200px;
+    margin-bottom: 0;
+    
     @media (max-width: 1280px) {
-        margin: 100px 100px 20px 100px;
+        margin: 100px 100px;
+        margin-bottom: 0;
     }
 
     @media (max-width: 540px) {
-        margin: 50px;
-        margin-bottom: 20px;
+        margin: 50px 50px;
+        margin-bottom: 0px;
     }
 
     .top {

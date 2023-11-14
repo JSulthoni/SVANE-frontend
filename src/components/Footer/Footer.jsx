@@ -1,7 +1,7 @@
 import React from 'react';
-import './Footer.scss';
 import { Link } from 'react-router-dom';
 import { HashLink } from 'react-router-hash-link';
+import './Footer.scss';
 
 const Footer = () => {
     return (
@@ -29,7 +29,7 @@ const Footer = () => {
                 </div>
                 <div className='item'>
                 <h3>Contacts</h3>
-                    <p>Project <span className='logo'>BNDLR</span> is created and developed by <a href='https://github.com/JSulthoni'>Javier Nauvel Sulthoni</a>. Reach out with email by <a href='mailto:sulthonijavier@gmail.com' target='_blank'>clicking here</a> or visit <a href='https://github.com/JSulthoni'>his website!</a></p>
+                    <p>Project <span className='logo'>BNDLR</span> is created and developed by <a href='https://github.com/JSulthoni'>Javier Nauvel Sulthoni</a>. Reach out with email by <a href='mailto:sulthonijavier@gmail.com' target='_blank'>clicking here</a> or visit <a href='https://github.com/JSulthoni/BUNDLER-frontend'>the sourcecode</a>.</p>
                 </div>
             </div>
             <div className='bottom'>
@@ -37,7 +37,7 @@ const Footer = () => {
                     <span className='copyright'>2023 Sulthoni Development. All Rights Reserved</span>
             </div>
         </div>
-    );
-}
+    )
+};
 
 export default Footer;

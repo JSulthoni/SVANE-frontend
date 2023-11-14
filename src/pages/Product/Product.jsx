@@ -1,18 +1,18 @@
 import React, { useState } from 'react';
-import useFetch from '../../hooks/useFetch';
-import './Product.scss'
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import { useParams } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { ADD_TO_CART, ADD_TO_WISH } from '../../redux/contextReducer';
+import useFetch from '../../hooks/useFetch';
+import './Product.scss';
 
 const Product = () => {
-    const dispatch = useDispatch()
-    const id = useParams().id
-    const [mainImg, setMainImg] = useState('image1')
-    const [quantity, setQuantity] = useState(1)
-    const {data, loading} = useFetch(`/api/products/find/${id}?populate=*`)
+    const dispatch = useDispatch();
+    const id = useParams().id;
+    const [mainImg, setMainImg] = useState('image1');
+    const [quantity, setQuantity] = useState(1);
+    const {data, loading} = useFetch(`/api/products/find/${id}?populate=*`);
 
     return (
         <div className='product'>
@@ -72,7 +72,7 @@ const Product = () => {
             </>
             )}
         </div>
-    );
-}
+    )
+};
 
 export default Product;

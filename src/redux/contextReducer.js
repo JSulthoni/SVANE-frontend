@@ -1,9 +1,9 @@
-import { createSlice } from '@reduxjs/toolkit'
+import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
     products: [],
     wishlist: [],
-}
+};
 
 export const contextSlice = createSlice({
   name: 'context',
@@ -39,9 +39,9 @@ export const contextSlice = createSlice({
         state.wishlist = []
     }
   }
-})
+});
 
 
-export const { ADD_TO_CART, REMOVE_ITEM, RESET_CART, ADD_TO_WISH, REMOVE_WISH, RESET_WISH } = contextSlice.actions
+export const { ADD_TO_CART, REMOVE_ITEM, RESET_CART, ADD_TO_WISH, REMOVE_WISH, RESET_WISH } = contextSlice.actions;
 
-export default contextSlice.reducer
+export default contextSlice.reducer;

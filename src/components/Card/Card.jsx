@@ -1,6 +1,6 @@
 import React from 'react';
-import './Card.scss'
-import { Link } from 'react-router-dom'
+import './Card.scss';
+import { Link } from 'react-router-dom';
 
 const Card = ({item}) => {
     return (
@@ -18,7 +18,7 @@ const Card = ({item}) => {
                 </div>
             </div>
         </Link>
-    );
-}
+    )
+};
 
 export default Card;

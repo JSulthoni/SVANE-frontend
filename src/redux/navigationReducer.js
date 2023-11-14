@@ -1,4 +1,4 @@
-import { createSlice } from '@reduxjs/toolkit'
+import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
     search: false,
@@ -6,7 +6,7 @@ const initialState = {
     cart: false,
     menu: false,
     nightmode: false
-}
+};
 
 export const navigationSlice = createSlice({
   name: 'navigation',
@@ -32,9 +32,9 @@ export const navigationSlice = createSlice({
         state.nightmode = !state.nightmode
     }
   }
-})
+});
 
 
-export const { TOGGLE_CART, TOGGLE_MENU, TOGGLE_NIGHT, TOGGLE_SEARCH, TOGGLE_WISHLIST } = navigationSlice.actions
+export const { TOGGLE_CART, TOGGLE_MENU, TOGGLE_NIGHT, TOGGLE_SEARCH, TOGGLE_WISHLIST } = navigationSlice.actions;
 
-export default navigationSlice.reducer
+export default navigationSlice.reducer;

@@ -26,8 +26,8 @@ const navigationConfig = {
 };
 
 const conReducer = persistReducer(contextConfig, contextReducer);
-const navReducer = persistReducer(navigationConfig, navigationReducer)
-// Combining 2 reducer
+const navReducer = persistReducer(navigationConfig, navigationReducer);
+// Combining 2 reducers with combineReducers()
 const allReducer = combineReducers({
     context : conReducer, 
     navigation : navReducer})

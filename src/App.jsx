@@ -11,7 +11,7 @@ import Success from "./pages/Success/Success";
 import NavBar from "./components/NavBar/NavBar";
 import Footer from "./components/Footer/Footer";
 import { useSelector } from "react-redux";
-import './App.scss'
+import './App.scss';
 
 // Page Layout
 const Layout = () => {
@@ -24,7 +24,7 @@ const Layout = () => {
         <Footer />
     </div>
   )
-}
+};
 
 
 // Web Pages
@@ -51,7 +51,7 @@ const router = createBrowserRouter([
       },
     ]
   }
-])
+]);
 
 
 

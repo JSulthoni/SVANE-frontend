@@ -1,19 +1,20 @@
 import React from 'react';
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 import DeleteOutlinedIcon from "@mui/icons-material/DeleteOutlined";
-import './Favorite.scss'
 import { useDispatch, useSelector } from 'react-redux';
 import { ADD_TO_CART, REMOVE_WISH, RESET_WISH } from '../../redux/contextReducer';
+import './Favorite.scss';
 
 const Favorite = ({wishRef, open}) => {
-    const wishlist = useSelector((state) => state.context.wishlist)
-    const nightmode = useSelector((state) => state.navigation.nightmode)
-    const dispatch = useDispatch()
+    const wishlist = useSelector((state) => state.context.wishlist);
+    const nightmode = useSelector((state) => state.navigation.nightmode);
+    const dispatch = useDispatch();
 
     return (
         <div ref={wishRef} className={`wish ${open ? 'active' : 'inactive'}`} style={{'background-color' : !nightmode ? 'rgba(255, 255, 255, 0.8)' : 'rgba(0, 0, 0, 0.8)'}}>
             <h3>{wishlist.length ? 'Products in your wishlist' : 'Your wishlist is empty'}</h3>
-            {!wishlist.length ? '' : <div>
+            {!wishlist.length ? '' : 
+            <div className='wish-list'>
             {wishlist?.map((item) => (
                 <div className='item' key={item.id}>
                     <img src={`${item.image}?auto=compress&cs=tinysrgb&w=360&dpr=1`} alt=''/>
@@ -34,10 +35,10 @@ const Favorite = ({wishRef, open}) => {
                     <DeleteOutlinedIcon className='delete' onClick={() => dispatch(REMOVE_WISH(item.id))}/>
                 </div>
             ))}
-            <span className='reset' onClick={() => dispatch(RESET_WISH())}>Empty List</span>
             </div>}
+            <span className='reset' onClick={() => dispatch(RESET_WISH())}>Empty List</span>
         </div>
-    );
-}
+    )
+};
 
 export default Favorite;

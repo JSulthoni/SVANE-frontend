@@ -1,11 +1,11 @@
 import React from 'react';
-import './FeaturedProducts.scss'
 import Card from '../Card/Card';
 import useFetch from '../../hooks/useFetch';
+import './FeaturedProducts.scss'
 
 const FeaturedProducts = ({ type }) => {
 
-    const {data, loading, error} = useFetch(`/api/products?type=${type}&limit=5`)
+    const {data, loading} = useFetch(`/api/products?type=${type}&limit=5`);
 
     return (
         <div className='featuredProducts'>
@@ -21,7 +21,7 @@ const FeaturedProducts = ({ type }) => {
             </div> 
             }
         </div>
-    );
-}
+    )
+};
 
 export default FeaturedProducts;

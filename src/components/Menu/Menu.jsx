@@ -1,12 +1,12 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { HashLink } from 'react-router-hash-link';
-import './Menu.scss'
+import './Menu.scss';
 
 
 const Menu = ({open, handleMenu}) => {
 
-    const nightmode = useSelector(((state) => state.navigation.nightmode))
+    const nightmode = useSelector(((state) => state.navigation.nightmode));
 
     return (
         <div className={`menu ${open ? 'active' : 'inactive'}`} style={{'background-color' : !nightmode ? 'rgba(255, 255, 255, 0.8)' : 'rgba(0, 0, 0, 0.8)'}}>
@@ -25,7 +25,7 @@ const Menu = ({open, handleMenu}) => {
                 </li>
             </ul>
         </div>
-    );
-}
+    )
+};
 
 export default Menu;

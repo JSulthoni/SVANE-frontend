@@ -4,20 +4,20 @@ import ClearOutlinedIcon from '@mui/icons-material/ClearOutlined';
 import useFetch from '../../hooks/useFetch';
 import { Link } from 'react-router-dom';
 import { TOGGLE_SEARCH } from '../../redux/navigationReducer';
-import './Search.scss'
+import './Search.scss';
 
 
 const Search = ({searchRef, open}) => {
-    const nightmode = useSelector((state) => state.navigation.nightmode)
-    const [search, setSearch] = useState(undefined)
-    const { data, loading } = useFetch(`/api/products?search=${search}`)
-    const dispatch = useDispatch()
+    const nightmode = useSelector((state) => state.navigation.nightmode);
+    const [search, setSearch] = useState(undefined);
+    const { data, loading } = useFetch(`/api/products?search=${search}`);
+    const dispatch = useDispatch();
 
     const handleItem = () => {
         if (open) {
             dispatch(TOGGLE_SEARCH({payload : false}))
         }
-    }
+    };
 
     return (
         <div ref={searchRef} className={`search ${open ? 'active' : 'inactive'}`} style={{'background-color' : !nightmode ? 'rgba(255, 255, 255, 0.8)' : 'rgba(0, 0, 0, 0.8)'}}>
@@ -26,14 +26,13 @@ const Search = ({searchRef, open}) => {
                 style={{'background-color' : !nightmode ? 'rgba(255, 255, 255, 0.8)' : 'rgba(0, 0, 0, 0.8)'}}
                 value={search} 
                 type='text' 
-                placeholder='find product/bundle' 
+                placeholder='Find your fashion item here...' 
                 onChange={(e) => setSearch(e.target.value)}
                 />
-                {search && 
+                { search && 
                     <div className='clearIcon' onClick={() => setSearch('')}>
                         <ClearOutlinedIcon />
-                    </div>
-                }
+                    </div> }
             </div>
             { !loading && search &&
             <div className='search-res'>
@@ -54,7 +53,7 @@ const Search = ({searchRef, open}) => {
                 })}
             </div> }
         </div>
-    );
-}
+    )
+};
 
 export default Search;

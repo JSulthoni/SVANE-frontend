@@ -40,27 +40,23 @@
     }
   
     .bottom {
-        width: 90vw;
+        width: 90dvw;
         margin: 0 auto;
-        display: flex;
-        justify-content: space-between;
+        display: grid;
+        grid-auto-flow: column;
+        place-items: center center;
+        align-items: center;
         gap: 30px;
         overflow-x: scroll;
+        overscroll-behavior-x: contain;
+        scroll-margin: 1em;
         scroll-snap-type: x mandatory;
-        scroll-padding: 1em;
         scrollbar-width: none;  /* Firefox */
-
-        @media (max-width: 540px) {
-            width: 95vw;
-            justify-content: flex-start;
-            margin-left: 2.5vw;
-            margin-right: 2.5vw;
-        }
         
         &::-webkit-scrollbar {
             display: none;
         }
-        
+              
         > * {
             scroll-snap-align: end;
         }

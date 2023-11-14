@@ -1,7 +1,7 @@
 import React from 'react';
-import './Categories.scss'
 import { Link } from 'react-router-dom';
 import { HashLink } from 'react-router-hash-link';
+import './Categories.scss';
 
 const Categories = () => {
 
@@ -17,7 +17,7 @@ const Categories = () => {
         } else {
             return 'Xrev'
         }
-    }
+    };
 
     return (
         <div className='categories' id='categories'>
@@ -59,7 +59,7 @@ const Categories = () => {
                 </div>
             </div>
         </div>
-    );
-}
+    )
+};
 
 export default Categories;

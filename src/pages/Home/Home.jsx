@@ -3,7 +3,7 @@ import Slider from '../../components/Slider/Slider';
 import FeaturedProducts from '../../components/FeaturedProducts/FeaturedProducts';
 import Categories from '../../components/Categories/Categories';
 import Contacts from '../../components/Contacts/Contacts';
-import './Home.scss'
+import './Home.scss';
 
 const Home = () => {
     return (
@@ -22,7 +22,7 @@ const Home = () => {
                 <Contacts />
             </section>
         </div>
-    );
-}
+    )
+};
 
 export default Home;

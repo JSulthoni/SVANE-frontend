@@ -13,7 +13,7 @@
     color: var(--color-slate950);
 
     @media (max-width : 540px) {
-        width: 100vw;
+        width: 100dvw;
     }
 
     &.active {
@@ -63,7 +63,7 @@
         flex-direction: column;
         align-items: stretch;
         gap: 20px;
-        max-height: 90vh;
+        max-height: 85dvh;
         overflow-y: scroll;
         overscroll-behavior: contain;
         

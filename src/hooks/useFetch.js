@@ -1,10 +1,10 @@
-import { useEffect, useState } from "react"
-import { makeRequest } from "./makeRequest"
+import { useEffect, useState } from "react";
+import { makeRequest } from "../utils/makeRequest";
 
 const useFetch = (url) => {
-    const [data, setData] = useState([])
-    const [loading, setLoading] = useState(true)
-    const [error, setError] = useState(false)
+    const [data, setData] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(false);
 
 
     useEffect(() => {
@@ -22,6 +22,6 @@ const useFetch = (url) => {
         fetchData()
     }, [url])
     return {data, loading, error}
-}
+};
 
 export default useFetch;

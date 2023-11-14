@@ -1,10 +1,12 @@
 import React, { useState } from "react";
 import EastOutlinedIcon from "@mui/icons-material/EastOutlined";
 import WestOutlinedIcon from "@mui/icons-material/WestOutlined";
+import { useSelector } from "react-redux";
 import "./Slider.scss";
 
 const Slider = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
+  const nightmode = useSelector((state) => state.navigation.nightmode)
 
   const data = [
     'https://images.pexels.com/photos/3062594/pexels-photo-3062594.jpeg?auto=compress&cs=tinysrgb&w=1600&dpr=1',
@@ -31,10 +33,10 @@ const Slider = () => {
         <img src={data[4]} alt="slider4" />
       </div>
       <div className="icons">
-        <div className="icon" onClick={prevSlide}>
+        <div className="icon" onClick={prevSlide} style={{'background-color' : !nightmode ? 'rgba(255, 255, 255, 0.8)' : 'rgba(0, 0, 0, 0.8)'}}>
           <WestOutlinedIcon />
         </div>
-        <div className="icon" onClick={nextSlide}>
+        <div className="icon" onClick={nextSlide} style={{'background-color' : !nightmode ? 'rgba(255, 255, 255, 0.8)' : 'rgba(0, 0, 0, 0.8)'}}>
           <EastOutlinedIcon />
         </div>
       </div>

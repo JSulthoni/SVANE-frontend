@@ -2,8 +2,8 @@ import { useEffect } from "react";
 
 const useClickOutside = (ref, handler) => {
     useEffect(() => {
-        let lastClickTime = 0
-        const DOUBLE_CLICK_DELAY = 300
+        let lastClickTime = 0;
+        const DOUBLE_CLICK_DELAY = 300;
 
         const listener = (event) => {
             const el = ref.current
@@ -14,17 +14,17 @@ const useClickOutside = (ref, handler) => {
                 }
                 lastClickTime = currentTime
             }
-        }
+        };
 
-        document.addEventListener('mousedown', listener)
-        document.addEventListener('touchend', listener)
+        document.addEventListener('mousedown', listener);
+        document.addEventListener('touchend', listener);
 
         return () => {
-            document.removeEventListener('mousedown', listener)
-            document.removeEventListener('touchend', listener)
+            document.removeEventListener('mousedown', listener);
+            document.removeEventListener('touchend', listener);
         }
     }, [ref, handler])
-}
+};
 
 export default useClickOutside;
 

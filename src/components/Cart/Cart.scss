@@ -6,6 +6,10 @@
     -webkit-box-shadow: 0px 0px 7px -5px rgba(0, 0, 0, 0.5);
     box-shadow: 0px 0px 7px -5px rgba(0, 0, 0, 0.5);
 
+    @media (max-width: 510px) {
+        width: 100dvw;
+    }
+
     &.active {
         opacity: 1;
         visibility: visible;
@@ -24,6 +28,21 @@
         margin-bottom: 30px;
         font-weight: 400;
         font-size: var(--f24px);
+    }
+
+    .cart-list {
+        max-height: 90vh;
+        overflow-y: scroll;
+        -ms-overflow-style: none;  /* IE and Edge */
+        scrollbar-width: none;  /* Firefox */
+    
+        &::-webkit-scrollbar {
+            display: none;
+        }
+
+        @media (max-height: 510px) {
+            max-height: 70vh;
+        }
     }
     
     .item {
@@ -94,6 +113,28 @@
         font-weight: 500;
         font-size: var(--f14px);
         margin: 1.25em 0 1.25em 0;
+    }
+
+    .error {
+        color: var(--color-slate950);
+        font-size: var(--f14px);
+        width: 100%;
+        background-color: var(--color-white);
+
+        &.active {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+            transition: 250ms ease;
+        }
+    
+        &.inactive {
+            position: absolute;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-20px);
+            transition: 250ms ease;
+        }
     }
   
     .reset{

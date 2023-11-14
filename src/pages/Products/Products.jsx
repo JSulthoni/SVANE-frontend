@@ -1,25 +1,25 @@
 import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import List from '../../components/List/List';
-import './Products.scss'
 import useFetch from '../../hooks/useFetch';
 import { useSelector } from 'react-redux';
+import './Products.scss';
 
 
 const Products = () => {
-    const catId = useParams().id
-    const [maxPrice, setMaxPrice] = useState(199)
-    const [sort, setSort] = useState('')
-    const [subCats, setSubCats] = useState([])
-    const { data, loading, error } = useFetch(`/api/subcategory?title=${catId || ''}`)
-    const [subcategory] = data
-    const nightmode = useSelector((state) => state.navigation.nightmode)
+    const catId = useParams().id;
+    const [maxPrice, setMaxPrice] = useState(199);
+    const [sort, setSort] = useState('');
+    const [subCats, setSubCats] = useState([]);
+    const { data, loading, error } = useFetch(`/api/subcategory?title=${catId || ''}`);
+    const [subcategory] = data;
+    const nightmode = useSelector((state) => state.navigation.nightmode);
 
     const handleChange = (e) => {
         const value = e.target.value
         const checked = e.target.checked
         setSubCats(checked ? [...subCats, value] : subCats.filter((item) => item !== value))
-    }
+    };
 
     return (
         <div className='products'>
@@ -76,7 +76,7 @@ const Products = () => {
                 <List catId={catId} maxPrice={maxPrice} sort={sort} subCats={subCats}/>
             </div>
         </div>
-    );
-}
+    )
+};
 
 export default Products;

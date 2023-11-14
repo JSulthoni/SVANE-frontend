@@ -19,39 +19,39 @@ import Cart from '../Cart/Cart';
 import useClickOutside from '../../hooks/useClickOutside';
 import Favorite from '../Favorite/Favorite';
 import Menu from '../Menu/Menu';
-import './Navbar.scss'
 import Search from '../Search/Search';
+import './Navbar.scss';
 
 const NavBar = () => {
-    const searchRef = useRef(null)
-    const wishRef = useRef(null)
-    const cartRef = useRef(null)
-    const products = useSelector(((state) => state.context.products))
-    const wishlist = useSelector(((state) => state.context.wishlist))
-    const nightmode = useSelector(((state) => state.navigation.nightmode))
-    const openSearch = useSelector(((state) => state.navigation.search))
-    const openWishlist = useSelector(((state) => state.navigation.wishlist))
-    const openCart = useSelector(((state) => state.navigation.cart))
-    const openMenu = useSelector(((state) => state.navigation.menu))
-    const dispatch = useDispatch()
+    const searchRef = useRef(null);
+    const wishRef = useRef(null);
+    const cartRef = useRef(null);
+    const products = useSelector(((state) => state.context.products));
+    const wishlist = useSelector(((state) => state.context.wishlist));
+    const nightmode = useSelector(((state) => state.navigation.nightmode));
+    const openSearch = useSelector(((state) => state.navigation.search));
+    const openWishlist = useSelector(((state) => state.navigation.wishlist));
+    const openCart = useSelector(((state) => state.navigation.cart));
+    const openMenu = useSelector(((state) => state.navigation.menu));
+    const dispatch = useDispatch();
 
     useClickOutside(wishRef, () => {
         if (openWishlist) {
             dispatch(TOGGLE_WISHLIST({payload : !openWishlist}))
         }
-    })
+    });
 
     useClickOutside(searchRef, () => {
         if (openSearch) {
             dispatch(TOGGLE_SEARCH({payload : !openSearch}))
         }
-    })
+    });
 
     useClickOutside(cartRef, () => {
         if (openCart) {
             dispatch(TOGGLE_CART({payload : !openCart}))
         }
-    })
+    });
 
     const handleMenu = () => {
         dispatch(TOGGLE_SEARCH({payload : false}))
@@ -129,7 +129,7 @@ const NavBar = () => {
                 <Cart cartRef={cartRef} open={openCart}/>
                 <Menu open={openMenu} handleMenu={handleMenu}/>
         </div>
-    );
-}
+    )
+};
 
 export default NavBar;
