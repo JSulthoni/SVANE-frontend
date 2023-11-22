@@ -33,9 +33,9 @@ const Product = () => {
                 <span className='price'>${data?.price}</span>
                 <p>{data?.description}</p>
                 <div className='quantity'>
-                    <button onClick={() => setQuantity((prev) => prev === 1 ? 1 : prev - 1)}>-</button>
+                    <button aria-label='decrease amount' onClick={() => setQuantity((prev) => prev === 1 ? 1 : prev - 1)}>-</button>
                     <span>{quantity}</span>
-                    <button onClick={() => setQuantity((prev) => prev + 1)}>+</button>
+                    <button aria-label='increase amount' onClick={() => setQuantity((prev) => prev + 1)}>+</button>
                 </div>
                 <button className='add' onClick={() => dispatch(ADD_TO_CART({
                     id : data?._id,

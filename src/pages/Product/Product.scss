@@ -1,3 +1,5 @@
+@import '../../styles/responsive.scss';
+
 .product {
     padding: 20px 30px;
     display: flex;
@@ -5,7 +7,7 @@
     height: max-content;
     min-height: 100vh;
 
-    @media (max-width: 540px) {
+    @include xs {
         flex-direction: column;
         gap: 10px
     }
@@ -18,7 +20,7 @@
         .images {
             flex: 1;
 
-            @media (max-width: 540px) {
+            @include xs {
                 display: flex;
                 gap: 10px;
             }
@@ -32,7 +34,7 @@
             margin-bottom: 15px;
             left: 0;
 
-                @media (max-width: 910px) {
+                @include sm {
                     height: 40vh;
                 }
             }
@@ -42,7 +44,7 @@
             flex: 5;
             height: max-content;
 
-            @media (max-width: 910px) {
+            @include sm {
                 flex: 0;
             }
     
@@ -51,7 +53,7 @@
             object-fit: cover;
             }
 
-            @media (max-width: 540px) {
+            @include xs {
                 display: none;
             }
         }

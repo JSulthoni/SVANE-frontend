@@ -1,4 +1,7 @@
+@import './responsive.scss';
+
 :root {
+    // Text color
     --color-white: #fff;
     --color-slate50: #f8fafc;
     --color-slate200: #e2e8f0;
@@ -14,6 +17,8 @@
     --color-green800: #166534;
     --color-header: #010519;
 
+
+    // Font size
     --f10px : 10px;
     --f11px : 11px;
     --f12px : 12px;
@@ -29,6 +34,9 @@
     --f22px : 22px;
     --f23px : 23px;
     --f24px : 24px;
+
+    // Box shadow
+    --box-shadow-value: 0px 0px 7px -5px rgba(0, 0, 0, 0.5);
 }
 
 
@@ -36,7 +44,7 @@
     box-sizing: border-box;
     margin: 0;
     padding: 0;
-    overflow-x: hidden;
+    // overflow-x: hidden;
     transition: all 200ms ease;
 }
 
@@ -62,6 +70,8 @@
     --color-green600: #16a34a;
     --color-green800: #166534;
     --color-header: #16a34a;
+
+    --box-shadow-value: 0px 0px 7px -5px rgba(255, 255, 255, 0.5);
 }
 
 html {
@@ -86,7 +96,7 @@ html {
     user-select: none; /* Non-prefixed version, currently supported by Chrome, Edge, Opera and Firefox */
 }
 
-@media (max-width : 1920px) {
+@include xxl {
     :root {
         --f10px : 8px;
         --f11px : 9px;
@@ -106,7 +116,7 @@ html {
     }
 }
 
-@media (max-width : 1440px) {
+@include xl {
     :root {
         --f10px : 7px;
         --f11px : 8px;
@@ -126,7 +136,7 @@ html {
     }
 }
 
-@media (max-width : 1280px) {
+@include lg {
     :root {
         --f10px : 6px;
         --f11px : 7px;

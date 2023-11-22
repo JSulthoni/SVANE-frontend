@@ -1,7 +1,9 @@
+@import '../../styles/responsive.scss';
+
 .featuredProducts {
     margin: 100px auto;
 
-    @media (max-width: 540px) {
+    @include xs {
         position: relative;
     }
 
@@ -13,12 +15,12 @@
         margin: 0 200px;
         margin-bottom: 50px;
 
-        @media (max-width: 1280px) {
+        @include lg {
             margin: 0 100px;
             margin-bottom: 50px;
         }
 
-        @media (max-width: 540px) {
+        @include xs {
             flex-direction: column;
             align-items: flex-start;
             margin: 0 50px;

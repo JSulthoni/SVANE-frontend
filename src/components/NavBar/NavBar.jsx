@@ -85,9 +85,6 @@ const NavBar = () => {
                         <HashLink smooth className='link' to='/#'>Homepage</HashLink>
                     </div>
                     <div className='item'>
-                        <HashLink smooth className='link' to='/#footer'>About</HashLink>
-                    </div>
-                    <div className='item'>
                         <HashLink smooth className='link' to='/#contacts'>Contact</HashLink>
                     </div>
                     <div className='icons'>

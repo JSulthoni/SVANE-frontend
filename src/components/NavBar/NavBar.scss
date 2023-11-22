@@ -1,4 +1,7 @@
+@import '../../styles/responsive.scss';
+
 .navbar {
+    -webkit-position: sticky;
     position: sticky;
     inset: 0 0 auto;
     z-index: 5;
@@ -6,8 +9,8 @@
     overflow: visible;
     padding: 0;
     color: var(--color-slate950);
-    -webkit-box-shadow: 0px 0px 7px -5px rgba(0, 0, 0, 0.5);
-    box-shadow: 0px 0px 7px -5px rgba(0, 0, 0, 0.5);
+    -webkit-box-shadow: var(--box-shadow-value);
+    box-shadow: var(--box-shadow-value);
 
     .wrapper {
         width: 100%;
@@ -16,11 +19,11 @@
         grid-template-columns: repeat(auto-fit, minmax(min(30vw), 1fr));
     
 
-        @media (max-width: 910px) {
+        @include sm {
             grid-template-columns: 1fr 4fr;
         }
         
-        @media (max-width: 510px) {
+        @include xs {
             grid-template-columns: 1fr 2fr;
             padding: 10px;
             padding-bottom: 8px;
@@ -39,16 +42,16 @@
             place-self: center start;
             gap: 1.5em;
 
-            @media (max-width: 1024px) {
+            @include md {
                 gap: 1em;
             }
 
-            @media (max-width: 910px) {
+            @include sm {
                 display: none;
             }
 
             .link {
-                @media (max-width: 540px) {
+                @include xs {
                     display: none;
                 }
             }
@@ -65,11 +68,11 @@
                 letter-spacing: 0.125em;
                 margin: 0 1em;
 
-                @media (max-width: 910px) {
+                @include sm {
                     margin: 0 auto;
                 }
 
-                @media (max-width: 375px) {
+                @include xs {
                     margin-left: 20px;
                 }
             }
@@ -82,12 +85,12 @@
             gap: 1.5em;
             width: max-content;
 
-            @media (max-width: 1024px) {
+            @include md {
                 gap: 1em;
             }
 
             .link {
-                @media (max-width: 910px) {
+                @include sm {
                     display: none;
                 }
             }
@@ -99,7 +102,7 @@
                 color: var(--color-slate400);
                 cursor: pointer;
 
-                @media (max-width: 1024px) {
+                @include md {
                     gap: 1em;
                 } 
 
@@ -122,7 +125,7 @@
                     justify-content: center;
                     align-items: center;
 
-                    @media (max-width: 1024px) {
+                    @include md {
                         right: -5px;
                     } 
                 }
@@ -131,7 +134,7 @@
             .menuIcon {
                 z-index: 1001;
 
-                @media (min-width: 910px) {
+                @media screen and (min-width: 810px) {
                     display: none;
                 }
             }

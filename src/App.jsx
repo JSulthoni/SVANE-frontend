@@ -11,9 +11,9 @@ import Success from "./pages/Success/Success";
 import NavBar from "./components/NavBar/NavBar";
 import Footer from "./components/Footer/Footer";
 import { useSelector } from "react-redux";
-import './App.scss';
+import './styles/global.scss';
 
-// Page Layout
+// Page layout
 const Layout = () => {
   const mode = useSelector((state) => state.navigation.nightmode)
 
@@ -27,7 +27,7 @@ const Layout = () => {
 };
 
 
-// Web Pages
+// Page routes
 const router = createBrowserRouter([
   {
     path : '/',

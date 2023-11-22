@@ -6,16 +6,16 @@ Welcome to the BNDLR frontend repository, BNDLR is a fullstack MERN e-commerce s
 BNDLR is a React application of e-commerce designed for ease-of-use and high responsiveness across devices, ensuring website's interface and functionality to various screen sizes.
 
 ## Key Objectives
-* Create a React application with minimum page rendering and high responsiveness across multiple screen-size.
-* Provide a simple user interface which still retains basic e-commerce functionality.
-* Address the simple yet feature-rich website.
+* Create a Fullstack web application from scratch by using M.E.R.N Stack, HTML, Javascript, and CSS (SASS).
+* Provide an e-commerce platform with simple UI and high responsiveness across multiple screen-size.
+* Solve the problem of having the application state resets if browser is closed.
 
 ## Features
 * Simplicity of design for ease of use.
 * Users can access favorite items and track their cart without leaving the current page.
-* Day and night mode.
+* Day and night mode without flickering effect.
 * Uses global transition function to create smooth transition from screensize changes and state handling.
-* UI layout and fontsize changes based on screensize.
+* UI layout and fontsize will change to accomodate screensize.
 
 ## Technologies
 Bundler utilise modules and libraries of following technologies:

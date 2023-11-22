@@ -1,10 +1,12 @@
+@import '../../styles/responsive.scss';
+
 .categories {
     min-height: max-content;
     display: grid;
     place-items: center center;
     margin: 100px auto;
 
-    @media (max-width: 540px) {
+    @include xs {
         height: 85dvh;
         margin: 10px auto;
     }
@@ -18,7 +20,12 @@
         position: relative;
         gap: 10px;
 
-        @media (max-width: 540px) {
+        @include md {
+            grid-auto-flow: column;
+            grid-template-columns: repeat(3, 1fr);
+        }
+
+        @include xs {
             grid-auto-flow: row;
             grid-template-columns: 1fr;
             grid-auto-rows: 18dvh;
@@ -55,11 +62,18 @@
                 font-weight: 500;
                 font-size: var(--f14px);
             }
+
             // TRENDING
             &:nth-child(1) {
                 grid-column: 2 / 3;
                 grid-row: 1 / 1;
-                @media (max-width: 540px) {
+
+                @include md {
+                    grid-column: auto / span 1;
+                    grid-row: auto / span 1;
+                }
+
+                @include xs {
                     grid-column: auto / span 1;
                     grid-row: auto / span 1;
                 }
@@ -68,7 +82,13 @@
             &:nth-child(2) {
                 grid-column: 1 / 2;
                 grid-row: 1 / 3;
-                @media (max-width: 540px) {
+
+                @include md {
+                    grid-column: 1 / span 1;
+                    grid-row: auto;
+                }
+
+                @include xs {
                     grid-column: auto / span 1;
                     grid-row: auto / span 1;
                 }
@@ -77,16 +97,28 @@
             &:nth-child(3) {
                 grid-column: 3 / -1;
                 grid-row: 1 / 2;
-                @media (max-width: 540px) {
+
+                @include md {
+                    grid-column: 2 / span 1;
+                    grid-row: auto;
+                }
+
+                @include xs {
                     grid-column: auto / span 1;
-                    grid-row: auto / span 1;
+                    grid-row: auto;
                 }
             }
             // UNISEX
             &:nth-child(4) {
                 grid-column: 2 / 4;
                 grid-row: 2 / 3;
-                @media (max-width: 540px) {
+
+                @include md {
+                    grid-column: 3 / span 1;
+                    grid-row: auto;
+                }
+
+                @include xs {
                     grid-column: auto / span 1;
                     grid-row: auto / span 1;
                 }
@@ -95,7 +127,13 @@
             &:nth-child(5) {
                 grid-column: 4 / 5;
                 grid-row: 2 / 3;
-                @media (max-width: 540px) {
+
+                @include md {
+                    grid-column: auto / span 2;
+                    grid-row: 2 / span 1;
+                }
+
+                @include xs {
                     grid-column: auto / span 1;
                     grid-row: auto / span 1;
                 }
@@ -142,21 +180,5 @@
                 }
             }
         }
-
-    
-
-        // &:nth-child(4) {
-            
-        // }
-
-        // &:nth-child(5) {
-            
-        // }
-  
-        
-
-
-
-        
     }
 }

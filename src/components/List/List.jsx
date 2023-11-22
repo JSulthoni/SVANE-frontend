@@ -5,11 +5,19 @@ import './List.scss';
 
 const List = ({catId, maxPrice, sort, subCats}) => {
     
-    const { data, loading } = useFetch(`/api/products?category=${catId}&subcategory=${subCats}&sort=${sort}&price=${maxPrice}`)
+    const { data, loading, error } = useFetch(`/api/products?category=${catId}&subcategory=${subCats}&sort=${sort}&price=${maxPrice}`)
 
     return (
         <div className='list'>
-            {loading ? '' : data.map((item) => (<Card item={item} key={item._id} />))}
+            {error? 
+                <div className='top'>
+                    <p>Failed to load component. We are sorry for the inconvenience.</p>
+                </div> : 
+            loading ? 
+                <div className='top'>
+                    <p>Loading products</p>
+                </div> : 
+            data.map((item) => (<Card item={item} key={item._id} />))}
         </div>
     )
 };
