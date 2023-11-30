@@ -7,6 +7,7 @@
     padding: 20px;
     -webkit-box-shadow: var(--box-shadow-value);
     box-shadow: var(--box-shadow-value);
+    overflow-x: hidden;
 
     @include xs {
         width: 100dvw;
@@ -73,7 +74,7 @@
             }
     
             p {
-            color: var(--color-slate600);
+            color: var(--slate600);
             font-size: var(--f14px);
             max-width: 200px;
             text-wrap: wrap;
@@ -81,7 +82,7 @@
     
             span {
             justify-self: flex-end;
-            color: var(--color-green600);
+            color: var(--green600);
             font-weight: 500;
             }
         }
@@ -110,18 +111,18 @@
         justify-content: center;
         cursor: pointer;
         border: none;
-        background-color: var(--color-green600);
-        color: var(--color-white);
+        background-color: var(--green600);
+        color: #fff;
         font-weight: 500;
         font-size: var(--f14px);
         margin: 1.25em 0 1.25em 0;
     }
 
     .error {
-        color: var(--color-slate950);
+        color: var(--slate950);
         font-size: var(--f14px);
         width: 100%;
-        background-color: var(--color-white);
+        background-color: var(--white);
 
         &.active {
             opacity: 1;
@@ -142,7 +143,7 @@
     .reset{
         margin: 0 auto;
         width: max-content;
-        color: var(--color-slate400);
+        color: var(--slate400);
         font-size: var(--f14px);
         cursor: pointer;
     }

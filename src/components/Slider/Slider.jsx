@@ -9,10 +9,10 @@ const Slider = () => {
   const nightmode = useSelector((state) => state.navigation.nightmode)
 
   const data = [
-    'https://images.pexels.com/photos/3062594/pexels-photo-3062594.jpeg?auto=compress&cs=tinysrgb&w=1600&dpr=1',
     'https://images.pexels.com/photos/18786754/pexels-photo-18786754.jpeg?auto=compress&cs=tinysrgb&w=1600&dpr=1',
-    'https://images.pexels.com/photos/3206121/pexels-photo-3206121.jpeg?auto=compress&cs=tinysrgb&w=1600&dpr=1',
-    "https://images.pexels.com/photos/18822206/pexels-photo-18822206.jpeg?auto=compress&cs=tinysrgb&w=1600&dpr=1",
+    'https://images.pexels.com/photos/3062594/pexels-photo-3062594.jpeg?auto=compress&cs=tinysrgb&w=1600&dpr=1',
+    'https://images.pexels.com/photos/2263952/pexels-photo-2263952.jpeg?auto=compress&cs=tinysrgb&w=1600&dpr=1',
+    "https://images.pexels.com/photos/1310501/pexels-photo-1310501.jpeg?auto=compress&cs=tinysrgb&w=1600&dpr=1",
     'https://images.pexels.com/photos/944761/pexels-photo-944761.jpeg?auto=compress&cs=tinysrgb&w=1600&dpr=1'
   ];
 
@@ -33,10 +33,10 @@ const Slider = () => {
         <img src={data[4]} alt="slider4" />
       </div>
       <div className="icons">
-        <div className="icon" onClick={prevSlide} style={{'background-color' : !nightmode ? 'rgba(255, 255, 255, 0.8)' : 'rgba(0, 0, 0, 0.8)'}}>
+        <div className="icon" onClick={prevSlide} style={{'backgroundColor' : !nightmode ? 'rgba(255, 255, 255, 0.8)' : 'rgba(0, 0, 0, 0.8)'}}>
           <WestOutlinedIcon />
         </div>
-        <div className="icon" onClick={nextSlide} style={{'background-color' : !nightmode ? 'rgba(255, 255, 255, 0.8)' : 'rgba(0, 0, 0, 0.8)'}}>
+        <div className="icon" onClick={nextSlide} style={{'backgroundColor' : !nightmode ? 'rgba(255, 255, 255, 0.8)' : 'rgba(0, 0, 0, 0.8)'}}>
           <EastOutlinedIcon />
         </div>
       </div>

@@ -3,15 +3,30 @@ import Card from '../Card/Card';
 import useFetch from '../../hooks/useFetch';
 import './List.scss';
 
-const List = ({catId, maxPrice, sort, subCats}) => {
+const List = ({catId, maxPrice, sort, search, subCats}) => {
     
-    const { data, loading, error } = useFetch(`/api/products?category=${catId}&subcategory=${subCats}&sort=${sort}&price=${maxPrice}`)
-
+    
+    // Construct the API endpoint based on the presence of catId and subCats
+    const endpoint = catId && subCats
+        ? `/api/products?category=${catId}&subcategory=${subCats}&sort=${sort}&price=${maxPrice}`
+        : `/api/products?search=${search}&sort=${sort}&price=${maxPrice}`;
+    const { data, loading, error } = useFetch(endpoint)
+    
+    
     return (
         <div className='list'>
+        {error && (
+            <div className='top'>
+                Error loading results. 
+                <span onClick={() => window.location.reload()}>
+                    Refresh
+                </span>
+                &nbsp;the page or try again later.
+            </div>
+        )}
             {error? 
                 <div className='top'>
-                    <p>Failed to load component. We are sorry for the inconvenience.</p>
+                    <p>Failed to load products. We are sorry for the inconvenience.</p>
                 </div> : 
             loading ? 
                 <div className='top'>

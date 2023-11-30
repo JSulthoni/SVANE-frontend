@@ -1,21 +1,17 @@
 @import '../../styles/responsive.scss';
 
 .contacts {
-    background-color: var(--color-green600);
-    color: var(--color-white);
+    background-color: var(--green600);
+    color: var(--white);
     padding: 16px;
     display: flex;
     justify-content: center;
   
     .wrapper {
-        width: 1000px;
         display: flex;
         align-items: center;
         justify-content: space-between;
-
-        @include md {
-            width: 800px;
-        }
+        gap: 50px;
 
         @include xs {
             flex-direction: column;
@@ -23,10 +19,9 @@
             gap: 10px;
         }
     
-        .mail-input {
+        input {
             padding: 0.5em 12px;
             border: none;
-            color: var(--color-slate600);
             font-size: var(--f16px);
 
             &:focus {
@@ -38,9 +33,13 @@
             font-family: 'Rubik', sans-serif;
             padding: 0.5em 1em;
             font-weight: 500;
-            background: var(--color-slate200);
+            background: var(--slate200);
             border: none;
             font-size: var(--f16px);
+
+            &:not(:disabled) {
+                color: inherit;
+            }
         }
     
         .icons {

@@ -2,13 +2,13 @@
 
 .navbar {
     -webkit-position: sticky;
+    top: 0;
     position: sticky;
     inset: 0 0 auto;
     z-index: 5;
     height: max-content;
-    overflow: visible;
     padding: 0;
-    color: var(--color-slate950);
+    color: var(--slate950);
     -webkit-box-shadow: var(--box-shadow-value);
     box-shadow: var(--box-shadow-value);
 
@@ -62,7 +62,7 @@
             place-self: center;
 
             .link {
-                color: var(--color-green600);
+                color: var(--green600);
                 font-weight: 600;
                 font-size: calc(2.5 * var(--f16px));
                 letter-spacing: 0.125em;
@@ -70,10 +70,6 @@
 
                 @include sm {
                     margin: 0 auto;
-                }
-
-                @include xs {
-                    margin-left: 20px;
                 }
             }
         }
@@ -99,7 +95,7 @@
                 display: flex;
                 flex-direction: row;
                 gap: 1.5em;
-                color: var(--color-slate400);
+                color: var(--slate400);
                 cursor: pointer;
 
                 @include md {
@@ -116,7 +112,7 @@
                     width: 15px;
                     height: 15px;
                     border-radius: 50%;
-                    background-color: var(--color-green600);
+                    background-color: var(--green600);
                     color: #fff;
                     position: absolute;
                     right: -10px;

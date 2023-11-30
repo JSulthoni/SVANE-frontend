@@ -10,8 +10,8 @@ const Contacts = () => {
             <div className='wrapper'>
                 <span>BE IN TOUCH WITH <b>BNDLR</b></span>
                 <form className='mail'>
-                    <input className='mail-input' type='text' placeholder='place your email...' />
-                    <button>JOIN US</button>
+                    <input type='text' placeholder='example@email.com' />
+                    <button>SUBSCRIBE</button>
                 </form>
                 <div className='icons'>
                     <InstagramIcon />

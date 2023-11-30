@@ -36,28 +36,33 @@
             font-size: var(--f14px);
 
             h3 {
-                color: var(--color-slate950);
+                color: var(--slate950);
                 font-size: var(--f18px);
                 font-weight: 500;
                 margin-bottom: 1em;
             }
 
             span, p {
-                color: var(--color-slate600);
+                color: var(--slate600);
             }
 
             .logo {
-                color: var(--color-green600);
+                color: var(--green600);
                 font-weight: 600;
+
             }
-            
+
             a {
-                color: var(--color-green600);
+                color: var(--green400);
                 text-decoration: none;
+
+                &:hover {
+                    color: var(--green600);
+                }
             }
 
             .link {
-                color: var(--color-slate600);
+                color: var(--slate600);
             }
 
             &:nth-child(3), &:nth-child(4) {
@@ -77,7 +82,7 @@
         padding-bottom: 20px;
 
         .logo {
-            color: var(--color-green600);
+            color: var(--green600);
             font-weight: 600;
             font-size: var(--f24px);
         }
@@ -85,7 +90,7 @@
         .copyright {
             margin-left: 20px;
             font-size: var(--f12px);
-            color: var(--color-slate400);
+            color: var(--slate400);
 
         }
     }

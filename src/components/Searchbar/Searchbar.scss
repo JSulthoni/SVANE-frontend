@@ -1,8 +1,7 @@
 @import '../../styles/responsive.scss';
 
-.search {
+.searchbar {
     position: absolute;
-    margin: 0 auto;
     right: 0;
     z-index: 999;
     padding: 20px;
@@ -12,7 +11,8 @@
     place-items: center;
     gap: 20px;
     min-width: 300px;
-    color: var(--color-slate950);
+    color: var(--slate950);
+    overflow-x: hidden;
 
     @include xs {
         width: 100dvw;
@@ -32,35 +32,40 @@
         transition: 250ms ease;
     }
 
-    .search-bar {
+    .searchbar-bar {
         width: 100%;
-        display: flex;
-        flex-direction: row;
-        align-items: center;
         padding-right: 8px;
-        -webkit-box-shadow: 0px 0px 7px -5px rgba(0, 0, 0, 0.5);
-        box-shadow: 0px 0px 7px -5px rgba(0, 0, 0, 0.5);
+        -webkit-box-shadow: var(--box-shadow-value);
+        box-shadow: var(--box-shadow-value);
 
-        input {
-            line-height: 2em;
-            color: inherit;
-            border: none;
+        form {
             width: 100%;
-            padding: 5px 10px;
-            
-            &:focus {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+
+            input {
+                line-height: 2em;
                 color: inherit;
-                outline: none;
+                border: none;
+                width: 100%;
+                padding: 5px 10px;
+                
+                &:focus {
+                    color: inherit;
+                    outline: none;
+                }
+            }
+    
+            .clearIcon {
+                color: var(--slate400);
+                cursor: pointer;
             }
         }
-
-        .clearIcon {
-            color: var(--color-slate400);
-            cursor: pointer;
-        }
+        
     }
 
-    .search-res {
+    .searchbar-res {
         display: flex;
         flex-direction: column;
         align-items: stretch;
@@ -70,15 +75,15 @@
         overscroll-behavior: contain;
         
 
-        .search-item {
+        .searchbar-item {
             display: flex;
             align-items: center;
             justify-content: stretch;
             text-decoration: none;
             color: inherit;
             cursor: pointer;
-            -webkit-box-shadow: 0px 0px 7px -5px rgba(0, 0, 0, 0.5);
-            box-shadow: 0px 0px 7px -5px rgba(0, 0, 0, 0.5);
+            -webkit-box-shadow: var(--box-shadow-value);
+            box-shadow: var(--box-shadow-value);
 
             img {
                 width: 30%;

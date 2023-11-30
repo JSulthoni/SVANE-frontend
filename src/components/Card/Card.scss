@@ -1,7 +1,7 @@
 @import '../../styles/responsive.scss';
 
 .card {
-    background-color: var(--color-slate50);
+    background-color: var(--slate50);
     width: max-content;
     display: flex;
     flex-direction: column;
@@ -49,7 +49,7 @@
                 position: absolute;
                 top: 5px;
                 left: 5px;
-                background-color: var(--color-slate200);
+                background-color: var(--slate200);
                 opacity: 0.8;
                 padding: 3px 5px;
                 z-index: 3;
@@ -59,7 +59,7 @@
         }
     
         h3 {
-            color: var(--color-slate950);
+            color: var(--slate950);
             font-size: var(--f16px);
             font-weight: 400;
             margin: 0;
@@ -75,13 +75,13 @@
             margin: 0;
     
             h4 {
-                color: var(--color-green600);
+                color: var(--green600);
                 font-size: var(--f18px);
                 font-weight: 500;
                 margin: 0;
         
                 &:first-child {
-                    color: var(--color-slate400);
+                    color: var(--slate400);
                     text-decoration: line-through;
                     margin: 0;
                 }

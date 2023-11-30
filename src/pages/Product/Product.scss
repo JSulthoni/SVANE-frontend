@@ -4,8 +4,8 @@
     padding: 20px 30px;
     display: flex;
     gap: 50px;
-    height: max-content;
     min-height: 100vh;
+    min-height: 100dvh;
 
     @include xs {
         flex-direction: column;
@@ -67,18 +67,18 @@
       gap: 24px;
 
         h3 {
-            color: var(--color-slate950);
+            color: var(--slate950);
             font-size: var(--f24px);
         }
   
         .price {
             font-size: calc(2 * var(--f16px));
-            color: var(--color-green600);
+            color: var(--green600);
             font-weight: 500;
         }
     
         p {
-            color: var(--color-slate950);
+            color: var(--slate950);
             font-size: var(--f18px);
             font-weight: 300;
             text-align: justify;
@@ -91,7 +91,7 @@
             font-size: var(--f18px);
 
             span {
-                color: var(--color-slate950);
+                color: var(--slate950);
                 width: 30px;
                 text-align: center;
             }
@@ -107,7 +107,7 @@
             font-size: inherit;
                 
                 &:active {
-                    background-color: var(--color-green200);
+                    background-color: var(--green200);
                 }
             }
         }
@@ -115,7 +115,7 @@
         .add {
             width: 250px;
             padding: 10px;
-            background-color: var(--color-green600);
+            background-color: var(--green600);
             color: white;
             display: flex;
             align-items: center;
@@ -131,13 +131,13 @@
             width: 250px;
             padding: 10px;
             background-color: transparent;
-            color: var(--color-green600);
+            color: var(--green600);
             display: flex;
             align-items: center;
             justify-content: center;
             gap: 20px;
             cursor: pointer;
-            border: 1px solid var(--color-green600);
+            border: 1px solid var(--green600);
             font-weight: 500;
             font-size: var(--f16px);
         }
@@ -146,7 +146,7 @@
             display: flex;
             flex-direction: column;
             gap: 0.8em;
-            color: var(--color-slate600);
+            color: var(--slate600);
             margin-top: 30px;
     
             hr {

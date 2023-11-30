@@ -11,7 +11,7 @@ const Favorite = ({wishRef, open}) => {
     const dispatch = useDispatch();
 
     return (
-        <div ref={wishRef} className={`wish ${open ? 'active' : 'inactive'}`} style={{'background-color' : !nightmode ? 'rgba(255, 255, 255, 0.8)' : 'rgba(0, 0, 0, 0.8)'}}>
+        <div ref={wishRef} className={`wish ${open ? 'active' : 'inactive'}`} style={{'backgroundColor' : !nightmode ? 'rgba(255, 255, 255, 0.8)' : 'rgba(0, 0, 0, 0.8)'}}>
             <h3>{wishlist.length ? 'Products in your wishlist' : 'Your wishlist is empty'}</h3>
             {!wishlist.length ? '' : 
             <div className='wish-list'>

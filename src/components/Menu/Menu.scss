@@ -1,8 +1,9 @@
+@import '../../styles/responsive.scss';
+
 .menu {
     position: absolute;
     inset: 0;
-    width: 100dvw;
-    height: 110dvh;
+    height: 100dvh;
     z-index: 1000;
     padding: 20px;
     display: flex;

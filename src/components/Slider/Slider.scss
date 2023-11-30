@@ -1,6 +1,8 @@
+@import '../../styles/responsive.scss';
+
 .slider {
+	height: 100vh;
     height: 100dvh;
-    width: 100dvw;
     position: relative;
     overflow: hidden;
   
@@ -36,7 +38,7 @@
 			justify-content: center;
 			cursor: pointer;
 			border: none;
-			color: var(--color-slate950);
+			color: var(--slate950);
       	}
     }
 }

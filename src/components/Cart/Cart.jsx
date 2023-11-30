@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import DeleteOutlinedIcon from "@mui/icons-material/DeleteOutlined";
 import { useDispatch, useSelector } from 'react-redux';
 import { REMOVE_ITEM, RESET_CART } from '../../redux/contextReducer';
-import { useNavigate } from 'react-router-dom';
 import './Cart.scss';
 import { TOGGLE_CART } from '../../redux/navigationReducer';
 
@@ -11,7 +10,6 @@ const Cart = ({cartRef, open}) => {
     const products = useSelector((state) => state.context.products);
     const nightmode = useSelector((state) => state.navigation.nightmode);
     const dispatch = useDispatch();
-    const navigate = useNavigate();
     const [showError, setShowError] = useState(false)
 
     // Handling payment error
@@ -52,22 +50,22 @@ const Cart = ({cartRef, open}) => {
     };
 
     return (
-        <div ref={cartRef} className={`cart ${open ? 'active' : 'inactive'}`} style={{'background-color' : !nightmode ? 'rgba(255, 255, 255, 0.8)' : 'rgba(0, 0, 0, 0.8)'}}>
+        <div ref={cartRef} className={`cart ${open ? 'active' : 'inactive'}`} style={{'backgroundColor' : !nightmode ? 'rgba(255, 255, 255, 0.8)' : 'rgba(0, 0, 0, 0.8)'}}>
             <h3>{products.length ? 'Products in your cart' : 'Your cart is empty'}</h3>
             {!products.length ? '' : 
             <div>
                 <div className='cart-list'>
-            {products.map((item) => (
-                <div className='item' key={item.id}>
-                    <img src={`${item.image}?auto=compress&cs=tinysrgb&w=360&dpr=1`} alt=''/>
-                    <div className='details'>
-                        <h4>{item.title}</h4>
-                        <p>{item.desc.substring(0,80) + '...'}</p>
-                        <span>{item.quantity} x ${item.price}</span>
-                    </div>
-                    <DeleteOutlinedIcon className='delete' onClick={() => dispatch(REMOVE_ITEM(item.id))}/>
-                </div>
-            ))}</div>
+                    {products.map((item) => (
+                        <div className='item' key={item.id}>
+                            <img src={`${item.image}?auto=compress&cs=tinysrgb&w=360&dpr=1`} alt=''/>
+                            <div className='details'>
+                                <h4>{item.title}</h4>
+                                <p>{item.desc.substring(0,80) + '...'}</p>
+                                <span>{item.quantity} x ${item.price}</span>
+                            </div>
+                            <DeleteOutlinedIcon className='delete' onClick={() => dispatch(REMOVE_ITEM(item.id))}/>
+                        </div>
+                    ))}</div>
             <div className='total'>
                 <span>SUBTOTAL</span>
                 <span>${totalPrice()}</span>

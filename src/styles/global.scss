@@ -2,20 +2,20 @@
 
 :root {
     // Text color
-    --color-white: #fff;
-    --color-slate50: #f8fafc;
-    --color-slate200: #e2e8f0;
-    --color-slate400: #94a3b8;
-    --color-slate600: #475569;
-    --color-slate800: #1e293b;
-    --color-slate900: #070a13;
-    --color-slate950: #010519;
-    --color-green50: #f0fdf4;
-    --color-green200: #bbf7d0;
-    --color-green400: #4ade80;
-    --color-green600: #16a34a;
-    --color-green800: #166534;
-    --color-header: #010519;
+    --white: #fff;
+    --slate50: #f8fafc;
+    --slate200: #e2e8f0;
+    --slate400: #94a3b8;
+    --slate600: #475569;
+    --slate800: #1e293b;
+    --slate900: #070a13;
+    --slate950: #010519;
+    --green50: #f0fdf4;
+    --green200: #bbf7d0;
+    --green400: #4ade80;
+    --green600: #16a34a;
+    --green800: #166534;
+    --header: #010519;
 
 
     // Font size
@@ -39,7 +39,6 @@
     --box-shadow-value: 0px 0px 7px -5px rgba(0, 0, 0, 0.5);
 }
 
-
 *, *::before, *::after {
     box-sizing: border-box;
     margin: 0;
@@ -48,36 +47,37 @@
     transition: all 200ms ease;
 }
 
+.night {
+    --white: #010519;
+    --slate50: #070a13;
+    --slate200: #f8fafc;
+    --slate400: #f8fafc;
+    --slate600: #e2e8f0;
+    --slate800: #f8fafc;
+    --slate950: #f8fafc;
+    --green50: #010519;
+    --green200: #bbf7d0;
+    --green400: #4ade80;
+    --green600: #16a34a;
+    --green800: #166534;
+    --header: #16a34a;
+
+    --box-shadow-value: 0px 0px 7px -5px rgba(255, 255, 255, 0.5);
+}
+
 .app {
-    background-color: var(--color-white);
+    background-color: var(--white);
+
     .link {
         color: inherit;
         text-decoration: none;
     }
 }
 
-.night {
-    --color-white: #010519;
-    --color-slate50: #070a13;
-    --color-slate200: #f8fafc;
-    --color-slate400: #f8fafc;
-    --color-slate600: #e2e8f0;
-    --color-slate800: #f8fafc;
-    --color-slate950: #f8fafc;
-    --color-green50: #010519;
-    --color-green200: #bbf7d0;
-    --color-green400: #4ade80;
-    --color-green600: #16a34a;
-    --color-green800: #166534;
-    --color-header: #16a34a;
-
-    --box-shadow-value: 0px 0px 7px -5px rgba(255, 255, 255, 0.5);
-}
-
 html {
     font-family: 'Bai Jamjuree', sans-serif;
     font-weight: 400;
-    color: var(--color-slate950);
+    color: var(--slate950);
     scroll-behavior: smooth;
 
     // Remove scrollbar

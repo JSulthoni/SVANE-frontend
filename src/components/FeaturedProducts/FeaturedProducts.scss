@@ -1,7 +1,7 @@
 @import '../../styles/responsive.scss';
 
 .featuredProducts {
-    margin: 100px auto;
+    margin: 200px auto;
 
     @include xs {
         position: relative;
@@ -28,7 +28,7 @@
         }
     
         h2 {
-            color: var(--color-header);
+            color: var(--header);
             flex: 1;
             font-size: calc(2 * var(--f16px));
             text-transform: capitalize;
@@ -36,7 +36,7 @@
     
         p {
             flex: 4;
-            color: var(--color-slate600);
+            color: var(--slate600);
             font-size: var(--f16px);
         }
     }

@@ -19,7 +19,7 @@ import Cart from '../Cart/Cart';
 import useClickOutside from '../../hooks/useClickOutside';
 import Favorite from '../Favorite/Favorite';
 import Menu from '../Menu/Menu';
-import Search from '../Search/Search';
+import Searchbar from '../Searchbar/Searchbar';
 import './Navbar.scss';
 
 const NavBar = () => {
@@ -61,11 +61,15 @@ const NavBar = () => {
     }
 
     return (
-        <div className='navbar' style={{'background-color' : !nightmode ? 'rgba(255, 255, 255, 0.8)' : 'rgba(0, 0, 0, 0.8)'}}>
+        <div className='navbar' style={{'backgroundColor' : !nightmode ? 'rgba(255, 255, 255, 0.8)' : 'rgba(0, 0, 0, 0.8)'}}>
             <div className='wrapper'>
                 <div className='left'>
                     <div className='item'>
-                        <HashLink smooth className='link' to='/#categories'>Categories</HashLink>
+                        <HashLink 
+                            scroll={(el) => el.scrollIntoView({ block: 'end' })}
+                            smooth 
+                            className='link' 
+                            to='/#categories'>Categories</HashLink>
                     </div>
                     <div className='item'>
                         <Link className='link' to='/products/men'>Men</Link>
@@ -86,6 +90,9 @@ const NavBar = () => {
                     </div>
                     <div className='item'>
                         <HashLink smooth className='link' to='/#contacts'>Contact</HashLink>
+                    </div>
+                    <div className='item'>
+                        <Link className='link' to='/search'>Discover</Link>
                     </div>
                     <div className='icons'>
                     <div className='searchIcon' onClick={() => {
@@ -121,7 +128,7 @@ const NavBar = () => {
                     </div>
                 </div>
             </div>
-                <Search open={openSearch} searchRef={searchRef}/>
+                <Searchbar open={openSearch} searchRef={searchRef}/>
                 <Favorite wishRef={wishRef} open={openWishlist}/>
                 <Cart cartRef={cartRef} open={openCart}/>
                 <Menu open={openMenu} handleMenu={handleMenu}/>

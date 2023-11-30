@@ -7,12 +7,20 @@ import './Products.scss';
 
 
 const Products = () => {
+
+    // Getting id from url
     const catId = useParams().id;
+
+    // State for search parameters
     const [maxPrice, setMaxPrice] = useState(199);
     const [sort, setSort] = useState('');
     const [subCats, setSubCats] = useState([]);
+
+    // Fetching data from api
     const { data, loading, error } = useFetch(`/api/subcategory?title=${catId || ''}`);
     const [subcategory] = data;
+
+    // Getting mode from redux
     const nightmode = useSelector((state) => state.navigation.nightmode);
 
     const handleChange = (e) => {
@@ -23,33 +31,34 @@ const Products = () => {
 
     return (
         <div className='products'>
-            {loading ? '' : <div className='left' style={{'background-color' : !nightmode ? 'rgba(255, 255, 255, 0.8)' : 'rgba(0, 0, 0, 0.8)'}}>
-                <div className='filterItem'>
+            {loading ? '' :
+            <div className='left' style={{'background-color' : !nightmode ? 'rgba(255, 255, 255, 0.8)' : 'rgba(0, 0, 0, 0.8)'}}>
+                <div className='products-filter'>
                     <h3>Product Categories</h3>
                     {subcategory?.subcategory.map((item) => {
                         return (
-                    <div className='inputItem' key={item}>
+                    <div className='products-input' key={item}>
                         <input className='checkbox' type='checkbox' id={item} value={item} onChange={handleChange}/>
                         <label htmlFor={item}>{item === 'tshirt' ? 't-shirt' : item}</label>
                     </div>
                         )
                     })}
                 </div>
-                <div className='filterItem'>
+                <div className='products-filter'>
                     <h3>Filter by price</h3>
-                    <div className='inputItem'>
+                    <div className='products-input'>
                         <span>0</span>
                         <input type='range' min={0} max={199} onChange={(e) => setMaxPrice(e.target.value)}/>
                         <span>{maxPrice}</span>
                     </div>
                 </div>
-                <div className='filterItem'>
+                <div className='products-filter'>
                     <h3>Sort by</h3>
-                    <div className='inputItem'>
+                    <div className='products-input'>
                         <input type='radio' id='asc' value='asc' name='price' onChange={(e) => setSort('asc')}/>
                         <label htmlFor='asc'>Price (Lowest first)</label> 
                     </div>
-                    <div className='inputItem'>
+                    <div className='products-input'>
                         <input type='radio' id='desc' value='desc' name='price' onChange={(e) => setSort('desc')}/>
                         <label htmlFor='desc'>Price (Highest first)</label> 
                     </div>
@@ -58,18 +67,18 @@ const Products = () => {
             <div className='right'>
                     { catId === 'men' ? 
                     <img
-                        className="catImg"
+                        className="cat-image"
                         src="https://images.pexels.com/photos/5102907/pexels-photo-5102907.jpeg?auto=compress&cs=tinysrgb&w=1600"
                         alt=""
                     /> : 
                     catId === 'women' ? 
                     <img
-                        className="catImg"
+                        className="cat-image"
                         src="https://images.pexels.com/photos/5119207/pexels-photo-5119207.jpeg?auto=compress&cs=tinysrgb&w=1600"
                         alt=""
                     /> : 
                     <img
-                        className="catImg"
+                        className="cat-image"
                         src="https://images.pexels.com/photos/5120190/pexels-photo-5120190.jpeg?auto=compress&cs=tinysrgb&w=1600"
                         alt=""
                     /> }

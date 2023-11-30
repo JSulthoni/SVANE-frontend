@@ -4,6 +4,7 @@ import { HashLink } from 'react-router-hash-link';
 import './Footer.scss';
 
 const Footer = () => {
+
     return (
         <div className='footer' id='footer'>
             <div className='top'>
@@ -12,8 +13,8 @@ const Footer = () => {
                     <Link className='link' to='/products/women'>Women</Link>
                     <Link className='link' to='/products/men'>Men</Link>
                     <Link className='link' to='/products/unisex'>Unisex</Link>
-                    <HashLink smooth className='link' to='/#trending'>Trending</HashLink>
-                    <HashLink smooth className='link' to='/#featured'>Featured</HashLink>
+                    <HashLink smooth className='link' to='/search?search=trending#top'>Trending</HashLink>
+                    <HashLink smooth className='link' to='/search?search=featured#top'>Featured</HashLink>
                 </div>
                 <div className='item'>
                     <h3>Links</h3>
@@ -34,7 +35,7 @@ const Footer = () => {
             </div>
             <div className='bottom'>
                     <span className='logo'>BNDLR</span>
-                    <span className='copyright'>2023 Sulthoni Development. All Rights Reserved</span>
+                    <span className='copyright'> © 2023 Sulthoni Development. All Rights Reserved</span>
             </div>
         </div>
     )

@@ -7,6 +7,7 @@
     padding: 20px;
     -webkit-box-shadow: var(--box-shadow-value);
     box-shadow: var(--box-shadow-value);
+    overflow-x: hidden;
 
     @include xs {
         width: 100dvw;
@@ -76,7 +77,7 @@
             }
     
             p {
-            color: var(--color-slate600);
+            color: var(--slate600);
             margin-bottom: 1em;
             font-size: var(--f14px);
             text-wrap: wrap;
@@ -88,8 +89,8 @@
             padding: 10px;
             cursor: pointer;
             border: none;
-            background-color: var(--color-green600);
-            color: var(--color-white);
+            background-color: var(--green600);
+            color: var(--white);
             margin-left: auto;
 
             .add {
@@ -110,7 +111,7 @@
     .reset{
         margin: 0 auto;
         width: max-content;
-        color: var(--color-slate400);
+        color: var(--slate400);
         font-size: var(--f14px);
         cursor: pointer;
     }

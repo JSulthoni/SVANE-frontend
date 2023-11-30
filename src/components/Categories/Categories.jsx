@@ -1,11 +1,12 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import { HashLink } from 'react-router-hash-link';
+import { Link, useNavigate } from 'react-router-dom';
 import './Categories.scss';
 
 const Categories = () => {
+    const navigate = useNavigate();
 
-    function randomClassName() {
+    // This function gives each of category cell random translate in each page reload
+    const randomClassName = () => {
         const randomNum = Math.floor(Math.random() * 4 + 1)
 
         if (randomNum < 1) {
@@ -19,14 +20,25 @@ const Categories = () => {
         }
     };
 
+    // This function routes user to trending/featured in search page
+    const handleCategory = (type) => {
+        
+        if (typeof type !== 'string') {
+            return;
+        }
+
+        navigate(`/search?search=${type}`)
+    }
+
     return (
         <div className='categories' id='categories'>
+            <h2>Discover our categories</h2>
             <div className='grid'>
                 <div className='cell'>
                     <img src="https://images.pexels.com/photos/18516747/pexels-photo-18516747/free-photo-of-blonde-woman-posing-in-black-outfit.jpeg?auto=compress&cs=tinysrgb&w=1600" alt="" className='image1'/>
                     <img src="https://images.pexels.com/photos/18516753/pexels-photo-18516753/free-photo-of-blonde-woman-posing-in-black-outfit.jpeg?auto=compress&cs=tinysrgb&w=1600" alt="" className={randomClassName()}/>
-                    <button>
-                        <HashLink smooth className='link' to='/#trending'>Trending</HashLink>
+                    <button onClick={() => handleCategory('trending')}>
+                        Trending
                     </button>
                 </div>
                 <div className='cell'>
@@ -53,8 +65,8 @@ const Categories = () => {
                 <div className='cell'>
                     <img src="https://images.pexels.com/photos/6974969/pexels-photo-6974969.jpeg?auto=compress&cs=tinysrgb&w=1600" alt="" className='image1'/>
                     <img src="https://images.pexels.com/photos/6974967/pexels-photo-6974967.jpeg?auto=compress&cs=tinysrgb&w=1600" alt="" className={randomClassName()}/>
-                    <button>
-                        <HashLink smooth className='link' to='/#featured'>Featured</HashLink>
+                    <button onClick={() => handleCategory('featured')}>
+                        Featured
                     </button>
                 </div>
             </div>

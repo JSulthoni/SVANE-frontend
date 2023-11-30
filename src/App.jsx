@@ -12,6 +12,8 @@ import NavBar from "./components/NavBar/NavBar";
 import Footer from "./components/Footer/Footer";
 import { useSelector } from "react-redux";
 import './styles/global.scss';
+import Search from "./pages/Search/Search";
+import NotFound from "./pages/NotFound/NotFound";
 
 // Page layout
 const Layout = () => {
@@ -46,8 +48,16 @@ const router = createBrowserRouter([
         element : <Products />
       },
       {
+        path : '/search',
+        element : <Search />
+      },
+      {
         path : '/success',
         element : <Success />
+      },
+      {
+        path : '*',
+        element : <NotFound /> // Fallback page for any non existing route
       },
     ]
   }
