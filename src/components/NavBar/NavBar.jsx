@@ -66,7 +66,7 @@ const NavBar = () => {
                 <div className='left'>
                     <div className='item'>
                         <HashLink 
-                            scroll={(el) => el.scrollIntoView({ block: 'end' })}
+                            scroll={(el) => el.scrollIntoView({ block: 'start' })}
                             smooth 
                             className='link' 
                             to='/#categories'>Categories</HashLink>

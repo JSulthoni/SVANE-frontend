@@ -32,7 +32,7 @@ const Categories = () => {
 
     return (
         <div className='categories' id='categories'>
-            <h2>Discover our categories</h2>
+            <h2>Our categories</h2>
             <div className='grid'>
                 <div className='cell'>
                     <img src="https://images.pexels.com/photos/18516747/pexels-photo-18516747/free-photo-of-blonde-woman-posing-in-black-outfit.jpeg?auto=compress&cs=tinysrgb&w=1600" alt="" className='image1'/>

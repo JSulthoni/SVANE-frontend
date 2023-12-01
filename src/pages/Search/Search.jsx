@@ -52,6 +52,11 @@ const Search = () => {
     const getImage = (arr) => {
         return Math.floor(Math.random() * arr.length)
     };
+
+    // Scroll window to top of page on first mount
+    useEffect(() => {
+        window.scrollTo(0, 0)
+    }, [])
     
     return (
         <div className='search'>

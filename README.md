@@ -1,9 +1,9 @@
 # BNDLR
 
-Welcome to the BNDLR frontend repository, BNDLR is a fullstack MERN e-commerce shop project.
+Welcome to the BNDLR frontend repository, BNDLR is a fullstack MERN e-commerce shop project 🚀✨.
 
 ## Project Overview
-BNDLR is a Fullstack M.E.R.N application of e-commerce designed for ease-of-use and high responsiveness across devices, ensuring website's interface and functionality to various screen sizes.
+BNDLR is a M.E.R.N application of e-commerce designed for ease-of-use and high responsiveness, ensuring website's UI and functionality to various screen sizes.
 
 ## Key Objectives
 * Create a web application from scratch by using M.E.R.N Stack, HTML, Javascript, and CSS (SASS).

@@ -61,6 +61,10 @@
         .center {
             place-self: center;
 
+            @include md {
+                place-self: initial;
+            }
+
             .link {
                 color: var(--green600);
                 font-weight: 600;

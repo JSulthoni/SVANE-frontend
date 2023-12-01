@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import List from '../../components/List/List';
 import useFetch from '../../hooks/useFetch';
@@ -20,14 +20,20 @@ const Products = () => {
     const { data, loading, error } = useFetch(`/api/subcategory?title=${catId || ''}`);
     const [subcategory] = data;
 
-    // Getting mode from redux
+    // Getting nightmode from redux
     const nightmode = useSelector((state) => state.navigation.nightmode);
 
-    const handleChange = (e) => {
-        const value = e.target.value
-        const checked = e.target.checked
+    // Handle checkbox input
+    const handleCheckbox = (event) => {
+        const value = event.target.value
+        const checked = event.target.checked
         setSubCats(checked ? [...subCats, value] : subCats.filter((item) => item !== value))
     };
+
+    // Scroll window to top of page on first mount
+    useEffect(() => {
+        window.scrollTo(0, 0)
+    }, [])
 
     return (
         <div className='products'>
@@ -38,7 +44,7 @@ const Products = () => {
                     {subcategory?.subcategory.map((item) => {
                         return (
                     <div className='products-input' key={item}>
-                        <input className='checkbox' type='checkbox' id={item} value={item} onChange={handleChange}/>
+                        <input className='checkbox' type='checkbox' id={item} value={item} onChange={handleCheckbox}/>
                         <label htmlFor={item}>{item === 'tshirt' ? 't-shirt' : item}</label>
                     </div>
                         )
@@ -48,7 +54,7 @@ const Products = () => {
                     <h3>Filter by price</h3>
                     <div className='products-input'>
                         <span>0</span>
-                        <input type='range' min={0} max={199} onChange={(e) => setMaxPrice(e.target.value)}/>
+                        <input type='range' min={0} max={199} onChange={(event) => setMaxPrice(event.target.value)}/>
                         <span>{maxPrice}</span>
                     </div>
                 </div>
