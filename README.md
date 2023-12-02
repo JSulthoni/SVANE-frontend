@@ -1,38 +1,37 @@
 # BNDLR
 
-Welcome to the BNDLR frontend repository, BNDLR is a fullstack MERN e-commerce shop project 🚀✨.
+Welcome to the BNDLR frontend repository, BNDLR is a fullstack MERN online shop project 🚀✨.
 
 ## Project Overview
-BNDLR is a M.E.R.N application of e-commerce designed for ease-of-use and high responsiveness, ensuring website's UI and functionality to various screen sizes.
+BNDLR is a M.E.R.N online shop application designed for ease-of-use and high responsiveness, ensuring website's UI and functionality to various screen sizes.
 
 ## Key Objectives
 * Create a web application from scratch by using M.E.R.N Stack, HTML, Javascript, and CSS (SASS).
-* Provide an e-commerce platform with simple UI and high responsiveness across multiple screen-size.
-* Solve the problem of having the application state resets if browser is closed.
+* Provide a shop platform with simple UI and high responsiveness across multiple screen-size.
+* Solve the problem of resetting states on each session by utilizing local storage.
 
 ## Features
 * Simplicity of design and ease of use.
 * Search bar and dedicated search page to browse the products.
-* Credentialess website, using redux persis store to maintains user state.
+* Credentialess website, using local storage to maintain user's state.
 * Day and night mode without flickering effect.
 * Uses global transition function to create smooth transition from screensize changes and state handling.
 * UI layout and fontsize will change to accomodate screensize.
 
 ## Technologies
-Bundler utilise modules and libraries of following technologies:
+BNDLR utilise modules and libraries of following technologies:
 
 Front-End:
 * React: For frontend user interface.
-* React-router-dom: For handling pages.
-* Redux: For global state management and access to persist store feature.
-* Stripe: For handling payment and user address.
+* React-router-dom: For routing and handling pages.
+* Redux: For global state management and persist store feature.
+* Stripe: For handling payment and user address of each checkout session.
 
 Back-End:
 * ExpressJS: For building RESTful API and HTTP request.
-* Mongoose: For database schema and query.
-* MongoDB: For database.
+* Mongoose: For database schema and query building.
+* MongoDB: For database service.
 * Node.js: For server-side scripting.
-* Stripe: For checkout test.
 
 [Backend code can be found here](https://github.com/JSulthoni/BUNDLER-backend)
 
