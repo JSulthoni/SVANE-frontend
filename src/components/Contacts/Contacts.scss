@@ -36,10 +36,8 @@
             background: var(--slate200);
             border: none;
             font-size: var(--f16px);
+            color: var(--header);
 
-            &:not(:disabled) {
-                color: inherit;
-            }
         }
     
         .icons {

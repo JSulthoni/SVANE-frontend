@@ -4,6 +4,7 @@
     margin: 130px auto;
     margin-bottom: 0;
     position: relative;
+    overflow: hidden;
 
     @include xs {
         position: relative;
@@ -110,7 +111,7 @@
         height: 50dvh;
 		display: flex;
 		transition: all 1000ms ease;
-  
+        
       	img {
 			width: 100dvw;
 			object-fit: cover;
