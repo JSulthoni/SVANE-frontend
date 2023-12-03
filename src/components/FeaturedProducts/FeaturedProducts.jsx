@@ -23,7 +23,7 @@ const FeaturedProducts = ({ type }) => {
         <div className='featuredProducts'>
             {error ? 
                 <div className='top'>
-                    <p>Failed to load component. We are sorry for the inconvenience.</p>
+                    <p>Failed to load products. We are sorry for the inconvenience.</p>
                 </div> : 
             loading ? 
                 <div className='top'>

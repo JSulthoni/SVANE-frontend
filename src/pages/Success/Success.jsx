@@ -20,7 +20,7 @@ const Success = () => {
             <p>Your order with ID:</p>
             <h4>{session_id}</h4>
             <p>is being prepared.</p>
-            <p>We are grateful for you choosing <span>BNDLR</span></p>
+            <p>We are grateful for you choosing <span>SVANE</span></p>
         </div>
     )
 };

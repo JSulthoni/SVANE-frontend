@@ -15,6 +15,11 @@ import './styles/global.scss';
 import Search from "./pages/Search/Search";
 import NotFound from "./pages/NotFound/NotFound";
 
+if (import.meta.env.NODE_ENV === 'production') {
+  console.log('Welcome to SVANE')
+}
+
+
 // Page layout
 const Layout = () => {
   const mode = useSelector((state) => state.navigation.nightmode)

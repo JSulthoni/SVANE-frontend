@@ -49,15 +49,14 @@
             .logo {
                 color: var(--green600);
                 font-weight: 600;
-
             }
 
             a {
-                color: var(--green400);
+                color: var(--green600);
                 text-decoration: none;
 
                 &:hover {
-                    color: var(--green600);
+                    color: var(--green400);
                 }
             }
 

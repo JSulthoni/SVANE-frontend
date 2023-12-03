@@ -72,7 +72,7 @@ const Cart = ({cartRef, open}) => {
             </div>
             <button onClick={handlePayment}>PROCEED TO CHECKOUT</button>
             <div className={`error ${showError ? 'active' : 'inactive'}`}>
-                <p>We could not process your order right now</p>
+                <p>We could not process your order.</p>
                 <p>Sorry for the inconvenience.</p>
             </div>
             <span className='reset' onClick={() => dispatch(RESET_CART())}>Empty Cart</span>

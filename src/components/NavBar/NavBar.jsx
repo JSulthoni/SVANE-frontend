@@ -82,7 +82,7 @@ const NavBar = () => {
                     </div>
                 </div>
                 <div className='center'>
-                    <Link className='link' to='/'>BNDLR</Link>
+                    <Link className='link' to='/'>SVANE</Link>
                 </div>
                 <div className='right'>
                     <div className='item'>

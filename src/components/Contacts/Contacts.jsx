@@ -9,7 +9,7 @@ const Contacts = () => {
     return (
         <div className='contacts' id='contacts'>
             <div className='wrapper'>
-                <span>BE IN TOUCH WITH <b>BNDLR</b></span>
+                <span>FALL IN LOVE WITH <b>SVANE</b></span>
                 <form action='javascript:void(0)' className='mail'>
                     <input type='text' placeholder='example@email.com' />
                     <button>SUBSCRIBE</button>
