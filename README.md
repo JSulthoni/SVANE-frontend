@@ -1,9 +1,9 @@
-# BNDLR
+# SVANE
 
-Welcome to the BNDLR frontend repository, BNDLR is a fullstack MERN online shop project 🚀✨.
+Welcome to the SVANE frontend repository, SVANE is a fullstack MERN online shop project 🚀✨.
 
 ## Project Overview
-BNDLR is a M.E.R.N online shop application designed for ease-of-use and high responsiveness, ensuring website's UI and functionality to various screen sizes.
+SVANE is a M.E.R.N online shop application designed for ease-of-use and high responsiveness, ensuring website's UI and functionality to various screen sizes.
 
 ## Key Objectives
 * Create a web application from scratch by using M.E.R.N Stack, HTML, Javascript, and CSS (SASS).
@@ -19,7 +19,7 @@ BNDLR is a M.E.R.N online shop application designed for ease-of-use and high res
 * UI layout and fontsize will change to accomodate screensize.
 
 ## Technologies
-BNDLR utilise modules and libraries of following technologies:
+SVANE utilise modules and libraries of following technologies:
 
 Front-End:
 * React: For frontend user interface.

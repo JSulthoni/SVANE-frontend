@@ -6,10 +6,16 @@ import './List.scss';
 const List = ({catId, maxPrice, sort, search, subCats}) => {
     
     
-    // Construct the API endpoint based on the presence of catId and subCats
-    const endpoint = catId && subCats
-        ? `/api/products?category=${catId}&subcategory=${subCats}&sort=${sort}&price=${maxPrice}`
-        : `/api/products?search=${search}&sort=${sort}&price=${maxPrice}`;
+    // Construct the API endpoint based on the presence of catId and subCats or search
+    let endpoint;
+        if (catId && subCats) {
+            endpoint = `/api/products?category=${catId}&subcategory=${subCats}&sort=${sort}&price=${maxPrice}`;
+        } else if (search) {
+            endpoint = `/api/products?search=${search}&sort=${sort}&price=${maxPrice}`;
+        } else {
+            endpoint = '/api/products'
+        }
+
     const { data, loading, error } = useFetch(endpoint)
     
     
