@@ -20,7 +20,7 @@ import useClickOutside from '../../hooks/useClickOutside';
 import Favorite from '../Favorite/Favorite';
 import Menu from '../Menu/Menu';
 import Searchbar from '../Searchbar/Searchbar';
-import './Navbar.scss';
+import './NavBar.scss';
 
 const NavBar = () => {
     const searchRef = useRef(null);
