@@ -21,7 +21,7 @@
             margin-bottom: 50px;
         }
 
-        @include xs {
+        @include sm {
             flex-direction: column;
             align-items: flex-start;
             margin: 0 50px;
@@ -40,6 +40,10 @@
             flex: 4;
             color: var(--slate600);
             font-size: var(--f16px);
+
+            @include xs {
+                display: none;
+            }
         }
     }
   
@@ -48,9 +52,11 @@
         margin: 0 auto;
         display: grid;
         grid-auto-flow: column;
-        place-items: center center;
-        align-items: center;
+        grid-auto-columns: minmax(min(100%, 280px), 1fr);
+        grid-auto-rows: auto;
         gap: 10px;
+
+        // Scroll behavior
         overflow-x: scroll;
         overscroll-behavior-x: contain;
         scroll-margin: 1em;
@@ -65,12 +71,29 @@
             scroll-snap-align: end;
         }
 
+        @include xs {
+            width: 100%;
+            grid-template-columns: 1fr 1fr;
+            grid-auto-flow: row;
+            gap: 10px;
+            overflow-x: hidden;
+            overscroll-behavior-x: initial;
+            scroll-margin: 0;
+            scroll-snap-type: initial;
+            scrollbar-width: none;  /* Firefox */
+
+            &> *:last-child {
+                grid-column: auto / span 2;
+
+            }
+        }
+
         
         
     }
     button {
         position: absolute;
-        bottom: -10px;
+        bottom: -4em;
         right: 5dvw;
         width: 12em;
         padding: 5px;

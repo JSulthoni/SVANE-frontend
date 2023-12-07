@@ -43,8 +43,7 @@
     box-sizing: border-box;
     margin: 0;
     padding: 0;
-    // overflow-x: hidden;
-    transition: all 200ms ease;
+    transition: all 250ms ease;
 }
 
 .night {
@@ -94,6 +93,22 @@ html {
     -moz-user-select: none; /* Old versions of Firefox */
     -ms-user-select: none; /* Internet Explorer/Edge */
     user-select: none; /* Non-prefixed version, currently supported by Chrome, Edge, Opera and Firefox */
+}
+
+.active {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+    margin-bottom: 10px;
+}
+
+.inactive {
+    overflow-y: hidden;
+    height: 0;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-20px);
+    margin-bottom: 0px;
 }
 
 @include xxl {

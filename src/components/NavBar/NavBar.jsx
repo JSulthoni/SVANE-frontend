@@ -13,6 +13,7 @@ import FavoriteBorderOutlinedIcon from '@mui/icons-material/FavoriteBorderOutlin
 import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined'
 import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined';
 import SearchOffOutlinedIcon from '@mui/icons-material/SearchOffOutlined';
+import AccountBoxSharpIcon from '@mui/icons-material/AccountBoxSharp';
 import BedtimeIcon from '@mui/icons-material/Bedtime';
 import LightModeIcon from '@mui/icons-material/LightMode';
 import Cart from '../Cart/Cart';
@@ -21,6 +22,8 @@ import Favorite from '../Favorite/Favorite';
 import Menu from '../Menu/Menu';
 import Searchbar from '../Searchbar/Searchbar';
 import './NavBar.scss';
+import SignIn from '../SignIn/SignIn';
+import makeMode from '../../utils/makeMode';
 
 const NavBar = () => {
     const searchRef = useRef(null);
@@ -28,12 +31,13 @@ const NavBar = () => {
     const cartRef = useRef(null);
     const products = useSelector(((state) => state.context.products));
     const wishlist = useSelector(((state) => state.context.wishlist));
-    const nightmode = useSelector(((state) => state.navigation.nightmode));
     const openSearch = useSelector(((state) => state.navigation.search));
+    const nightmode = useSelector(((state) => state.navigation.nightmode));
     const openWishlist = useSelector(((state) => state.navigation.wishlist));
     const openCart = useSelector(((state) => state.navigation.cart));
     const openMenu = useSelector(((state) => state.navigation.menu));
     const dispatch = useDispatch();
+    const getMode = makeMode();
 
     useClickOutside(wishRef, () => {
         if (openWishlist) {
@@ -61,7 +65,7 @@ const NavBar = () => {
     }
 
     return (
-        <div className='navbar' style={{'backgroundColor' : !nightmode ? 'rgba(255, 255, 255, 0.8)' : 'rgba(0, 0, 0, 0.8)'}}>
+        <div className='navbar' style={getMode}>
             <div className='wrapper'>
                 <div className='left'>
                     <div className='item'>
@@ -95,36 +99,38 @@ const NavBar = () => {
                         <Link className='link' to='/search'>Discover</Link>
                     </div>
                     <div className='icons'>
-                    <div className='searchIcon' onClick={() => {
-                        dispatch(TOGGLE_WISHLIST({payload : false}))
-                        dispatch(TOGGLE_CART({payload : false}))
-                        dispatch(TOGGLE_SEARCH({payload : !openSearch}))
-                    }}>
-                        {openSearch ? <SearchOffOutlinedIcon /> : <SearchOutlinedIcon />}
-                    </div>
-                    <div className='favIcon' onClick={() => {
-                        dispatch(TOGGLE_CART({payload : false}))
-                        dispatch(TOGGLE_SEARCH({payload : false}))
-                        dispatch(TOGGLE_WISHLIST({payload : !openWishlist}))
-                    }}>
-                        <FavoriteBorderOutlinedIcon />
-                        <span>{wishlist.length}</span>
-                    </div>
-                    <div className='cartIcon' onClick={() => {
-                        dispatch(TOGGLE_WISHLIST({payload : false}))
-                        dispatch(TOGGLE_SEARCH({payload : false}))
-                        dispatch(TOGGLE_CART({payload : !openCart}))
-                    }}>
-                        <ShoppingCartOutlinedIcon />
-                        <span>{products.length}</span>
-                    </div>
-                    <div className='nightIcon' onClick={() => dispatch(TOGGLE_NIGHT())}>
-                        {nightmode ? <BedtimeIcon /> : <LightModeIcon />}
-                    </div>
-                    <div className='menuIcon' onClick={handleMenu}>
-                        <MenuIcon />
-                    </div>
-                        
+                        <div className='icon' onClick={() => {
+                            dispatch(TOGGLE_WISHLIST({payload : false}))
+                            dispatch(TOGGLE_CART({payload : false}))
+                            dispatch(TOGGLE_SEARCH({payload : !openSearch}))
+                        }}>
+                            {openSearch ? <SearchOffOutlinedIcon /> : <SearchOutlinedIcon />}
+                        </div>
+                        <div className='icon' onClick={() => {
+                            dispatch(TOGGLE_CART({payload : false}))
+                            dispatch(TOGGLE_SEARCH({payload : false}))
+                            dispatch(TOGGLE_WISHLIST({payload : !openWishlist}))
+                        }}>
+                            <FavoriteBorderOutlinedIcon />
+                            <span>{wishlist.length}</span>
+                        </div>
+                        <div className='icon' onClick={() => {
+                            dispatch(TOGGLE_WISHLIST({payload : false}))
+                            dispatch(TOGGLE_SEARCH({payload : false}))
+                            dispatch(TOGGLE_CART({payload : !openCart}))
+                        }}>
+                            <ShoppingCartOutlinedIcon />
+                            <span>{products.length}</span>
+                        </div>
+                        <div className='icon icon-login'>
+                            <p>Sign In</p><AccountBoxSharpIcon />
+                        </div>
+                        <div className='icon' onClick={() => dispatch(TOGGLE_NIGHT())}>
+                            {nightmode ? <BedtimeIcon /> : <LightModeIcon />}
+                        </div>
+                        <div className='icon-menu' onClick={handleMenu}>
+                            <MenuIcon />
+                        </div>
                     </div>
                 </div>
             </div>
@@ -132,6 +138,7 @@ const NavBar = () => {
                 <Favorite wishRef={wishRef} open={openWishlist}/>
                 <Cart cartRef={cartRef} open={openCart}/>
                 <Menu open={openMenu} handleMenu={handleMenu}/>
+                <SignIn />
         </div>
     )
 };

@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
-import { useSelector } from 'react-redux';
-import './Search.scss'
 import List from '../../components/List/List';
+import makeMode from '../../utils/makeMode';
+import './Search.scss'
 
 const headerImage = [
     "https://images.pexels.com/photos/2672979/pexels-photo-2672979.jpeg?auto=compress&cs=tinysrgb&w=1600&dpr=1",
@@ -42,7 +42,7 @@ const Search = () => {
     const isButtonDisabled = typeof searchQuery !== 'string' || searchQuery.trim() === '';
 
     // Getting mode from redux
-    const nightmode = useSelector((state) => state.navigation.nightmode);
+    const getMode = makeMode();
 
     // Getting random image from headerImage array
     // Using useEffect to run the getImage only when the component mounts
@@ -60,12 +60,12 @@ const Search = () => {
     
     return (
         <div className='search'>
-            <div className='left' style={{'backgroundColor' : !nightmode ? 'rgba(255, 255, 255, 0.8)' : 'rgba(0, 0, 0, 0.8)'}}>
+            <div className='left' style={getMode}>
                 <div className='search-filter'>
                         <h3>Search product name</h3>
                     <form autoComplete='off' onSubmit={handleSubmit} className='search-input search-bar'>
                         <input 
-                            style={{'backgroundColor' : !nightmode ? 'rgba(255, 255, 255, 0.8)' : 'rgba(0, 0, 0, 0.8)'}}
+                            style={getMode}
                             name='searchbar'
                             id='searchbar'
                             type='text' 

@@ -106,11 +106,27 @@
                     gap: 1em;
                 } 
 
-                &> * {
+                .icon {
                     position: relative;
                     overflow-x: visible;
+                    display: flex;
+                    place-items: center;
                 }
                 
+                .icon-login {
+                    gap: 10px;
+                    color: var(--green600);
+                    font-size: var(--f18px);
+                }
+
+                .icon-menu {
+                    z-index: 1001;
+    
+                    @media screen and (min-width: 810px) {
+                        display: none;
+                    }
+                }
+
                 span {
                     font-size: var(--f12px);
                     width: 15px;
@@ -128,14 +144,6 @@
                     @include md {
                         right: -5px;
                     } 
-                }
-            }
-
-            .menuIcon {
-                z-index: 1001;
-
-                @media screen and (min-width: 810px) {
-                    display: none;
                 }
             }
         }

@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 import List from '../../components/List/List';
 import useFetch from '../../hooks/useFetch';
-import { useSelector } from 'react-redux';
+import makeMode from '../../utils/makeMode';
 import './Products.scss';
 
 
 const Products = () => {
+    const getMode = makeMode();
 
     // Getting id from url
     const catId = useParams().id;
@@ -38,7 +40,7 @@ const Products = () => {
     return (
         <div className='products'>
             {loading ? '' :
-            <div className='left' style={{'background-color' : !nightmode ? 'rgba(255, 255, 255, 0.8)' : 'rgba(0, 0, 0, 0.8)'}}>
+            <div className='left' style={getMode}>
                 <div className='products-filter'>
                     <h3>Product Categories</h3>
                     {subcategory?.subcategory.map((item) => {

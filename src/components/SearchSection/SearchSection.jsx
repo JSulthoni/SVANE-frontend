@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import KeyboardArrowLeftIcon from '@mui/icons-material/KeyboardArrowLeft';
 import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
+import makeMode from '../../utils/makeMode';
 import './SearchSection.scss';
 
 const images = [
@@ -16,7 +17,8 @@ const images = [
 const SearchSection = () => {
     const [searchQuery, setSearchQuery] = useState(undefined);
     const [currentSlide, setCurrentSlide] = useState(0);
-    const nightmode = useSelector((state) => state.navigation.nightmode);
+    const nightmode = useSelector((state) => state.navigation.nightmode)
+    const getMode = makeMode();
     const navigate = useNavigate();
 
     // Navigate user to search page after submittin input
@@ -49,7 +51,7 @@ const SearchSection = () => {
                     <form autoComplete='off' onSubmit={handleSubmit}>
                         <label htmlFor='search'>Your fashion dream:</label>
                         <input 
-                            style={{'backgroundColor' : !nightmode ? 'rgba(255, 255, 255, 0.8)' : 'rgba(0, 0, 0, 0.8)'}}
+                            style={getMode}
                             id='search'
                             name='search'
                             type='text' 
@@ -59,7 +61,7 @@ const SearchSection = () => {
                             />
                     </form>
                 </div>
-                <div className='search-container' style={{transform:`translateX(-${currentSlide * 100}vw)`}}>
+                <div className='search-slider' style={{transform:`translateX(-${currentSlide * 100}vw)`}}>
                     <img src={images[0]} alt='slider0' />
                     <img src={images[1]} alt='slider1' />
                     <img src={images[2]} alt='slider2' />

@@ -23,7 +23,7 @@
             margin-bottom: 50px;
         }
 
-        @include xs {
+        @include sm {
             flex-direction: column;
             align-items: flex-start;
             margin: 0 50px;
@@ -35,12 +35,17 @@
             flex: 1;
             font-size: calc(2 * var(--f16px));
             text-transform: capitalize;
+
         }
     
         p {
             flex: 4;
             color: var(--slate600);
             font-size: var(--f16px);
+
+            @include xs {
+                display: none;
+            }
         }
     }
 
@@ -105,10 +110,10 @@
         
     }
 
-    .search-container {
-        margin-top: 10dvh;
+    .search-slider {
+        margin-top: 150px;
 		width: 500dvw;
-        height: 50dvh;
+        height: 55dvh;
 		display: flex;
 		transition: all 1000ms ease;
         

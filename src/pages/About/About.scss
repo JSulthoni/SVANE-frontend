@@ -1,0 +1,8 @@
+.container {
+    display: grid;
+    grid-auto-flow: row;
+    place-items: 'center start';
+    inset: 0;
+    margin: auto;
+    height: fit-content;
+}

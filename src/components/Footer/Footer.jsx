@@ -1,36 +1,82 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { HashLink } from 'react-router-hash-link';
 import './Footer.scss';
 
 const Footer = () => {
+    const [openState, setOpenState] = useState({
+        categories: window.innerWidth >= 810,
+        link: window.innerWidth >= 810
+    });
+    
+    // Handle toggle will only work if window.innerWidth <= 810
+    const handleToogle = (type) => {
+        if (window.innerWidth >= 810) {
+            setOpenState((prev) => ({ ...prev, [type]: true }));
+        } else {
+            setOpenState((prev) => ({ ...prev, [type]: !prev[type] }));
+            const otherType = type === 'categories' ? 'link' : 'categories';
+            setOpenState((prev) => ({ ...prev, [otherType]: false }));
+        }
+    };
+    
+    // useEffect to set the openList on window resize
+    useEffect(() => {
+        console.log(window.innerWidth)
+        const handleResize = () => {
+            if (window.innerWidth >= 810) {
+                setOpenState({
+                    categories: true,
+                    link: true,
+                  });
+            } else if (window.innerWidth <= 810) {
+                setOpenState({
+                    categories: false,
+                    link: false,
+                  });
+            }
+        };
+        handleResize();
+    
+        window.addEventListener('resize', handleResize);
+
+        return () => {
+            window.removeEventListener('resize', handleResize);
+        };
+    }, []);
 
     return (
         <div className='footer' id='footer'>
             <div className='top'>
-                <div className='item'>
-                    <h3>Categories</h3>
-                    <Link className='link' to='/products/women'>Women</Link>
-                    <Link className='link' to='/products/men'>Men</Link>
-                    <Link className='link' to='/products/unisex'>Unisex</Link>
-                    <HashLink smooth className='link' to='/search?search=trending#top'>Trending</HashLink>
-                    <HashLink smooth className='link' to='/search?search=featured#top'>Featured</HashLink>
+                <div className='footer-item'>
+                    <h3 onClick={() => handleToogle('categories')}>Categories</h3>
+                    <div className={`footer-list ${openState.categories ? 'active' : 'inactive'}`}>
+                        <Link className='link' to='/products/women'>Women</Link>
+                        <Link className='link' to='/products/men'>Men</Link>
+                        <Link className='link' to='/products/unisex'>Unisex</Link>
+                        <HashLink smooth className='link' to='/search?search=trending#top'>Trending</HashLink>
+                        <HashLink smooth className='link' to='/search?search=featured#top'>Featured</HashLink>
+                    </div>
+                    <div className='footer-divider'></div>
                 </div>
-                <div className='item'>
-                    <h3>Links</h3>
-                    <span><HashLink smooth className='link' to='/#categories'>Categories</HashLink></span>
-                    <span>Pages</span>
-                    <span>Stores</span>
-                    <span>Compare</span>
-                    <span><HashLink smooth className='link' to='/#contacts'>Contact</HashLink></span>
+                <div className='footer-item'>
+                    <h3 onClick={() => handleToogle('link')}>Link</h3>
+                    <div className={`footer-list ${openState.link ? 'active' : 'inactive'}`}>
+                        <HashLink smooth className='link' to='/#categories'>Categories</HashLink>
+                        <Link className='link' to='/about'>About</Link>
+                        <a className='link' href='https://github.com/JSulthoni'>Profile</a>
+                        <a className='link' href='https://github.com/JSulthoni/SVANE-frontend'>Source Code</a>
+                        <HashLink smooth className='link' to='/#contacts'>Contact</HashLink>
+                    </div>
+                    <div className='footer-divider'></div>
                 </div>
-                <div className='item'>
+                <div className='footer-item'>
                     <h3>About</h3>
                     <p>At <span className='logo'>SVANE</span>, we've reimagined the way you shop online. We understand the thrill of discovering fantastic products from around the world and the convenience of having them delivered to your doorstep. That's why we've designed a platform that connects you to every major fashion store across the globe from different places and buy them all in one go.</p>
                 </div>
-                <div className='item'>
+                <div className='footer-item'>
                 <h3>Contacts</h3>
-                    <p>Project <span className='logo'>SVANE</span> is created and developed by <a href='https://github.com/JSulthoni'>Javier Nauvel Sulthoni</a>. Reach out with email by <a href='mailto:sulthonijavier@gmail.com' target='_blank'>clicking here</a> or visit <a href='https://github.com/JSulthoni/BUNDLER-frontend'>the sourcecode</a>.</p>
+                    <p>Project <span className='logo'>SVANE</span> is created and developed by <a href='https://github.com/JSulthoni'>Javier Nauvel Sulthoni</a>. Reach out with email by <a href='mailto:sulthonijavier@gmail.com' target='_blank'>clicking here</a> or visit <a href='https://github.com/JSulthoni/SVANE-frontend'>the sourcecode</a>.</p>
                 </div>
             </div>
             <div className='bottom'>

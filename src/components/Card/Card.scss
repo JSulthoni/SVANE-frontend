@@ -1,26 +1,18 @@
 @import '../../styles/responsive.scss';
 
 .card {
+    position: relative;
     background-color: var(--slate50);
-    width: max-content;
+    width: 100%;
     display: flex;
     flex-direction: column;
     gap: 10px;
-    margin-bottom: 30px;
 
         .image {
-            width: 280px;
+            width: 100%;
             aspect-ratio: 9 / 13.5;
             overflow: hidden;
             position: relative;
-
-            @include sm {
-                width: 30vw;
-            }
-    
-            @include xs {
-                width: 90vw;
-            }
 
             img {
                 width: 100%;
@@ -57,34 +49,45 @@
                 font-size: var(--f12px);
             }
         }
-    
-        h3 {
-            color: var(--slate950);
-            font-size: var(--f16px);
-            font-weight: 400;
-            margin: 0;
-        }
-    
-        .prices {
-            display: flex;
-            flex-direction: row;
-            justify-content: flex-start;
-            align-items: center;
-            gap: 10px;
-            padding: 0;
-            margin: 0;
-    
-            h4 {
-                color: var(--green600);
-                font-size: var(--f18px);
-                font-weight: 500;
+        
+        .info {
+            width: 100%;
+            
+            @include xs {
+                position: absolute;
+                bottom: 0;
+                padding: 5px;
+            }
+
+            h3 {
+                color: var(--slate950);
+                font-size: var(--f16px);
+                font-weight: 400;
+                margin: 0;
+                margin-bottom: 10px;
+            }
+            
+            .prices {
+                display: flex;
+                flex-direction: row;
+                justify-content: flex-start;
+                align-items: center;
+                gap: 10px;
+                padding: 0;
                 margin: 0;
         
-                &:first-child {
-                    color: var(--slate400);
-                    text-decoration: line-through;
+                h4 {
+                    color: var(--green600);
+                    font-size: var(--f18px);
+                    font-weight: 500;
                     margin: 0;
+            
+                    &:first-child {
+                        color: var(--slate400);
+                        text-decoration: line-through;
+                        margin: 0;
+                    }
                 }
             }
-        }
-  }
+    }
+}

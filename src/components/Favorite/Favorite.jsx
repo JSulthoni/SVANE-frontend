@@ -3,15 +3,16 @@ import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 import DeleteOutlinedIcon from "@mui/icons-material/DeleteOutlined";
 import { useDispatch, useSelector } from 'react-redux';
 import { ADD_TO_CART, REMOVE_WISH, RESET_WISH } from '../../redux/contextReducer';
+import makeMode from '../../utils/makeMode';
 import './Favorite.scss';
 
 const Favorite = ({wishRef, open}) => {
     const wishlist = useSelector((state) => state.context.wishlist);
-    const nightmode = useSelector((state) => state.navigation.nightmode);
     const dispatch = useDispatch();
+    const getMode = makeMode()
 
     return (
-        <div ref={wishRef} className={`wish ${open ? 'active' : 'inactive'}`} style={{'backgroundColor' : !nightmode ? 'rgba(255, 255, 255, 0.8)' : 'rgba(0, 0, 0, 0.8)'}}>
+        <div ref={wishRef} className={`wish ${open ? 'active' : 'inactive'}`} style={getMode}>
             <h3>{wishlist.length ? 'Products in your wishlist' : 'Your wishlist is empty'}</h3>
             {!wishlist.length ? '' : 
             <div className='wish-list'>

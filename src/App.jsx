@@ -14,6 +14,7 @@ import { useSelector } from "react-redux";
 import './styles/global.scss';
 import Search from "./pages/Search/Search";
 import NotFound from "./pages/NotFound/NotFound";
+import About from "./pages/About/About";
 
 if (import.meta.env.NODE_ENV === 'production') {
   console.log('Welcome to SVANE')
@@ -51,6 +52,10 @@ const router = createBrowserRouter([
       {
         path : '/products/:id',
         element : <Products />
+      },
+      {
+        path : '/about/',
+        element : <About />
       },
       {
         path : '/search',

@@ -1,16 +1,15 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
 import { HashLink } from 'react-router-hash-link';
 import { Link } from 'react-router-dom';
+import makeMode from '../../utils/makeMode';
 import './Menu.scss';
 
 
 const Menu = ({open, handleMenu}) => {
-
-    const nightmode = useSelector(((state) => state.navigation.nightmode));
+    const getMode = makeMode();
 
     return (
-        <div className={`menu ${open ? 'active' : 'inactive'}`} style={{'backgroundColor' : !nightmode ? 'rgba(255, 255, 255, 0.8)' : 'rgba(0, 0, 0, 0.8)'}}>
+        <div className={`menu ${open ? 'active' : 'inactive'}`} style={getMode}>
             <h2>SVANNE</h2>
             <ul>
                 <li onClick={() => handleMenu()}>

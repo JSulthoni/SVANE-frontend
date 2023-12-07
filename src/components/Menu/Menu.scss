@@ -25,10 +25,17 @@
         transition: 250ms ease;
     }
 
+    h2 {
+        margin-bottom: 3em;
+        padding: 10px;
+        color: var(--green600);
+        font-size: calc(2.5 * var(--f16px));
+    }
+
     ul {
         display: flex;
         flex-direction: column;
-        gap: 10vh;
+        gap: 2em;
         list-style-type: none;
 
         li {

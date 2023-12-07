@@ -1,0 +1,79 @@
+@import '../../styles/responsive.scss';
+
+.sign {
+    position: absolute;
+    inset: 0;
+    height: 100dvh;
+    z-index: 1000;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    &.active {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+        transition: 250ms ease;
+    }
+
+    &.inactive {
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(-20px);
+        transition: 250ms ease;
+    }
+
+    h2 {
+        margin-bottom: 1em;
+        padding: 10px;
+        color: var(--green600);
+        font-size: calc(2.5 * var(--f16px));
+    }
+
+    .sign-form {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        font-size: var(--f8px);
+        font-family: inherit;
+
+        input {
+            line-height: 2em;
+            color: inherit;
+            border: none;
+            width: 100%;
+            padding: 5px 10px;
+            text-align: center;
+            
+            &:focus {
+                color: inherit;
+                outline: none;
+            }
+        }
+
+        button {
+            background-color: var(--green600);
+            color: white;
+            padding: 10px;
+            padding-inline: 2em;
+            gap: 3em;
+            cursor: pointer;
+            border: none;
+            font-weight: 500;
+            font-size: var(--f18px);
+            
+            &:active {
+                background-color: var(--green200);
+            }
+
+            &:disabled {
+                background-color: var(--slate400);
+                cursor: initial;
+            }
+        }
+    }
+  
+    
+}

@@ -36,6 +36,7 @@ const Slider = () => {
 			<img src={images[4]} alt='slider4' />
 		</div>
 		<div className='slider-title' style={{'backgroundColor' : !nightmode ? 'rgba(255, 255, 255, 0.6)' : 'rgba(0, 0, 0, 0.6)'}}>
+			<h1>SVANE</h1>
 			<h1>First love to last sight</h1>
 		</div>
 		<div className='slider-buttons'>

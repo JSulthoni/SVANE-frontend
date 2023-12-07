@@ -2,14 +2,15 @@ import React, { useState } from 'react';
 import DeleteOutlinedIcon from "@mui/icons-material/DeleteOutlined";
 import { useDispatch, useSelector } from 'react-redux';
 import { REMOVE_ITEM, RESET_CART } from '../../redux/contextReducer';
-import './Cart.scss';
 import { TOGGLE_CART } from '../../redux/navigationReducer';
+import makeMode from '../../utils/makeMode';
+import './Cart.scss';
 
 
 const Cart = ({cartRef, open}) => {
     const products = useSelector((state) => state.context.products);
-    const nightmode = useSelector((state) => state.navigation.nightmode);
     const dispatch = useDispatch();
+    const getMode = makeMode();
     const [showError, setShowError] = useState(false)
 
     // Handling payment error
@@ -50,7 +51,7 @@ const Cart = ({cartRef, open}) => {
     };
 
     return (
-        <div ref={cartRef} className={`cart ${open ? 'active' : 'inactive'}`} style={{'backgroundColor' : !nightmode ? 'rgba(255, 255, 255, 0.8)' : 'rgba(0, 0, 0, 0.8)'}}>
+        <div ref={cartRef} className={`cart ${open ? 'active' : 'inactive'}`} style={getMode}>
             <h3>{products.length ? 'Products in your cart' : 'Your cart is empty'}</h3>
             {!products.length ? '' : 
             <div>

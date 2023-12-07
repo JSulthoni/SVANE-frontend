@@ -31,6 +31,14 @@
 			font-family: inherit;
 			color: var(--slate950);
 			font-size: calc(2.5 * var(--f24px));
+			
+			&:nth-child(1) {
+				color: var(--green600);
+			}
+
+			@include sm {
+				font-size: calc(2.5 * var(--f18px));
+			}
 		}
 	}
 
