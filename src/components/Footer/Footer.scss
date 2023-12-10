@@ -10,7 +10,7 @@
         margin-bottom: 0;
     }
 
-    @include xs {
+    @include sm {
         margin: 50px 50px;
         margin-bottom: 0px;
     }
@@ -46,11 +46,25 @@
                 }
             }
 
-            h3 {
+            .footer-title {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
                 color: var(--slate950);
-                font-size: var(--f18px);
-                font-weight: 500;
                 margin-bottom: 1em;
+
+                h3 {
+                    font-size: var(--f18px);
+                    font-weight: 500;
+                    vertical-align: center;
+                }
+
+                > *:nth-child(2) {
+                        display: none;
+                    @include sm {
+                        display: initial;
+                    }
+                }
             }
 
             .footer-list {

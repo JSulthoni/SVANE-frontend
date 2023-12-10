@@ -24,10 +24,23 @@
         grid-auto-flow: row;
         place-items: initial;
     }
+}
 
-    .top {
-        p, span {
-            color: var(--slate950);
-        }
+.no-list {
+    display: block;
+}
+
+.top {
+    margin-bottom: 50px;
+
+    h2 {
+        color: var(--header);
+        font-size: var(--f24px);
+        text-transform: capitalize;
+    }
+
+    p, span {
+        color: var(--slate950);
+        font-size: var(--f16px);
     }
 }

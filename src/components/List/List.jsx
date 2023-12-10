@@ -2,9 +2,9 @@ import React from 'react';
 import Card from '../Card/Card';
 import useFetch from '../../hooks/useFetch';
 import './List.scss';
+import FallbackDisplay from '../FallbackDisplay/FallbackDisplay';
 
 const List = ({catId, maxPrice, sort, search, subCats}) => {
-    
     
     // Construct the API endpoint based on the presence of catId and subCats or search
     let endpoint;
@@ -16,19 +16,11 @@ const List = ({catId, maxPrice, sort, search, subCats}) => {
             endpoint = '/api/products'
         }
 
-    const { data, loading, error } = useFetch(endpoint)
-    
-
-    const displayData = () => {
-        if (data.length >= 0) {
-            return data.map((item) => (<Card item={item} key={item._id} />))
-        } else {
-            return
-        }
-    }
+    const { data, loading, error } = useFetch(endpoint);
+    const isData = Boolean(data.length);
     
     return (
-        <div className='list'>
+        <div className={isData ? 'list' : ''}>
             { 
             error ? 
                 <div className='top'>
@@ -42,8 +34,12 @@ const List = ({catId, maxPrice, sort, search, subCats}) => {
             loading ? 
                 <div className='top'>
                     <p>Loading products</p>
-                </div> : 
-            data.map((item) => (<Card item={item} key={item._id} />))
+                </div> 
+            : 
+            isData ? 
+                data.map((item) => (<Card item={item} key={item._id} />)) 
+            :
+            <FallbackDisplay search={search} />
             }
         </div>
     )

@@ -52,6 +52,7 @@
         
         .info {
             width: 100%;
+            background-color: var(--background-color8);
             
             @include xs {
                 position: absolute;

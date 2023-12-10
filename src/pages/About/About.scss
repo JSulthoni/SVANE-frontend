@@ -1,8 +1,71 @@
-.container {
-    display: grid;
-    grid-auto-flow: row;
-    place-items: 'center start';
-    inset: 0;
-    margin: auto;
-    height: fit-content;
+@import '../../styles/responsive.scss';
+
+.about {
+    min-height: 100vh;
+    min-height: 100dvh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    text-align: justify;
+    font-size: var(--f18px);
+    position: relative;
+    border-bottom: 1px solid var(--green600);
+    padding: 0 50px;
+
+    @include sm {
+        min-width: 90dvw;
+    }
+
+    .about-title {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        color: var(--slate950);
+        margin-bottom: 1em;
+
+        img {
+            width: 100px;
+        }
+        
+    }
+
+    p, span {
+        color: var(--slate600);
+        max-width: 100ch;
+        line-height: 2em;
+    }
+
+    .logo {
+        color: var(--green600);
+        font-weight: 500;
+        font-size: var(--f18px);
+    }
+
+    .about-button {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        gap: 20px;
+        text-decoration: none;
+
+        button {
+            width: 180px;
+            padding: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            border: none;
+            background-color: var(--green600);
+            margin: 1.25em 0;
+            a {
+                color: #fff;
+                font-weight: 500;
+                font-size: var(--f14px);
+                text-decoration: none;
+            }
+        }
+    }
 }

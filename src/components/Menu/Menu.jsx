@@ -1,15 +1,13 @@
 import React from 'react';
 import { HashLink } from 'react-router-hash-link';
 import { Link } from 'react-router-dom';
-import makeMode from '../../utils/makeMode';
 import './Menu.scss';
 
 
 const Menu = ({open, handleMenu}) => {
-    const getMode = makeMode();
 
     return (
-        <div className={`menu ${open ? 'active' : 'inactive'}`} style={getMode}>
+        <div className={`menu ${open ? 'active' : 'inactive'}`}>
             <h2>SVANNE</h2>
             <ul>
                 <li onClick={() => handleMenu()}>

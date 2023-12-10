@@ -4,12 +4,13 @@
     position: absolute;
     inset: 0;
     height: 100dvh;
-    z-index: 1000;
+    z-index: 2;
     padding: 20px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    background-color: var(--background-color8);
 
     &.active {
         opacity: 1;
@@ -32,12 +33,92 @@
         font-size: calc(2.5 * var(--f16px));
     }
 
+    .sign-profile {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        min-width: 300px;
+        gap: 50px;
+        padding: 20px;
+        -webkit-box-shadow: var(--box-shadow-value);
+        box-shadow: var(--box-shadow-value);
+        color: var(--slate950);
+        background-color: var(--background-color8);
+
+        h3 {
+            color: var(--green600);
+            font-size: calc(2.5 * var(--f16px));
+        }
+
+        h4 {
+            color: inherit;
+            font-size: calc(2 * var(--f16px));
+        }
+
+        .sign-header, .sign-info {
+            display: flex;
+            flex-direction: column;
+            align-items: stretch;
+            gap: 20px;
+            text-align: center;
+
+            p {
+                color: var(--green600);
+                font-size: var(--f24px);
+            }
+        }
+
+        .sign-info {
+            text-align: start;
+            font-size: var(--f18px);
+
+            > div {
+                background-color: var(--background-color6);
+                -webkit-box-shadow: var(--box-shadow-value);
+                box-shadow: var(--box-shadow-value);
+                padding: 1em;
+                cursor: pointer;
+            }
+
+            .sign-amount {
+                font-weight: 600;
+                margin-left: 2em;
+                color: var(--header);
+            }
+        }
+
+        button {
+            width: fit-content;
+            padding: 10px;
+            background-color: transparent;
+            border: 1px solid var(--green600);
+            color: var(--green600);
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            padding-inline: 2em;
+            gap: 3em;
+            cursor: pointer;
+            font-weight: 500;
+            font-size: var(--f16px);
+        }
+        
+    }
+
     .sign-form {
         display: flex;
         flex-direction: column;
+        align-items: center;
+        min-width: 300px;
         gap: 20px;
         font-size: var(--f8px);
         font-family: inherit;
+        padding: 20px;
+        -webkit-box-shadow: var(--box-shadow-value);
+        box-shadow: var(--box-shadow-value);
+        color: var(--slate950);
+        background-color: var(--background-color8);
+
 
         input {
             line-height: 2em;
@@ -45,7 +126,10 @@
             border: none;
             width: 100%;
             padding: 5px 10px;
+            font-size: inherit;
             text-align: center;
+            background-color: var(--background-color8);
+            border: 1px solid var(--green600);
             
             &:focus {
                 color: inherit;
@@ -54,24 +138,33 @@
         }
 
         button {
-            background-color: var(--green600);
-            color: white;
+            width: 100%;
             padding: 10px;
+            background-color: var(--green600);
+            border: none;
+            color: var(--slate950);
+            display: flex;
+            align-items: center;
+            justify-content: center;
             padding-inline: 2em;
             gap: 3em;
             cursor: pointer;
-            border: none;
             font-weight: 500;
-            font-size: var(--f18px);
+            font-size: var(--f16px);
             
             &:active {
                 background-color: var(--green200);
             }
 
             &:disabled {
-                background-color: var(--slate400);
+                background-color: var(--background-color8);
                 cursor: initial;
             }
+        }
+
+        .sign-error {
+            color: var(--red600);
+            font-size: var(--f18px);
         }
     }
   

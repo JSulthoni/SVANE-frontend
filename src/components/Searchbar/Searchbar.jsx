@@ -3,13 +3,11 @@ import { useDispatch, useSelector } from 'react-redux';
 import ClearOutlinedIcon from '@mui/icons-material/ClearOutlined';
 import useFetch from '../../hooks/useFetch';
 import { Link, useNavigate } from 'react-router-dom';
-import { TOGGLE_SEARCH } from '../../redux/navigationReducer';
-import makeMode from '../../utils/makeMode';
+import { TOGGLE_SEARCH } from '../../redux/navigationSlice';
 import './Searchbar.scss';
 
 
 const Searchbar = ({searchRef, open}) => {
-    const getMode =  makeMode();
     const [searchQuery, setSearchQuery] = useState(undefined);
     const navigate = useNavigate();
 
@@ -38,14 +36,13 @@ const Searchbar = ({searchRef, open}) => {
     };
 
     return (
-        <div ref={searchRef} className={`searchbar ${open ? 'active' : 'inactive'}`} style={getMode}>
+        <div ref={searchRef} className={`searchbar ${open ? 'active' : 'inactive'}`}>
             <div className='searchbar-bar'>
                 <form autoComplete='off' onSubmit={handleSubmit}>
                     <input
-                    style={getMode}
                     value={searchQuery}
-                    id='search'
-                    name='search'
+                    id='searchbar'
+                    name='searchbar'
                     type='text' 
                     placeholder='e.g: Hoodie' 
                     onChange={(e) => setSearchQuery(e.target.value)}

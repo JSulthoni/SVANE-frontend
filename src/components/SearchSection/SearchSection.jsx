@@ -1,9 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useSelector } from 'react-redux';
 import KeyboardArrowLeftIcon from '@mui/icons-material/KeyboardArrowLeft';
 import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
-import makeMode from '../../utils/makeMode';
 import './SearchSection.scss';
 
 const images = [
@@ -17,8 +15,6 @@ const images = [
 const SearchSection = () => {
     const [searchQuery, setSearchQuery] = useState(undefined);
     const [currentSlide, setCurrentSlide] = useState(0);
-    const nightmode = useSelector((state) => state.navigation.nightmode)
-    const getMode = makeMode();
     const navigate = useNavigate();
 
     // Navigate user to search page after submittin input
@@ -51,7 +47,6 @@ const SearchSection = () => {
                     <form autoComplete='off' onSubmit={handleSubmit}>
                         <label htmlFor='search'>Your fashion dream:</label>
                         <input 
-                            style={getMode}
                             id='search'
                             name='search'
                             type='text' 
@@ -69,10 +64,10 @@ const SearchSection = () => {
                     <img src={images[4]} alt='slider4' />
                 </div>
                 <div className='search-buttons'>
-                    <div aria-label='prev-image' className='search-button' onClick={prevSlide} style={{'backgroundColor' : !nightmode ? 'rgba(255, 255, 255, 0.6)' : 'rgba(0, 0, 0, 0.6)'}}>
+                    <div aria-label='prev-image' className='search-button' onClick={prevSlide}>
                         <KeyboardArrowLeftIcon />
                     </div>
-                    <div aria-label='next-image' className='search-button' onClick={nextSlide} style={{'backgroundColor' : !nightmode ? 'rgba(255, 255, 255, 0.6)' : 'rgba(0, 0, 0, 0.6)'}}>
+                    <div aria-label='next-image' className='search-button' onClick={nextSlide}>
                         <KeyboardArrowRightIcon />
                     </div>
                 </div>

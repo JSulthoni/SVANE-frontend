@@ -11,7 +11,7 @@ const Contacts = () => {
             <div className='wrapper'>
                 <span>FALL IN LOVE WITH <b>SVANE</b></span>
                 <form action='javascript:void(0)' className='mail'>
-                    <input type='text' placeholder='example@email.com' />
+                    <input type='email' placeholder='example@email.com' />
                     <button>SUBSCRIBE</button>
                 </form>
                 <div className='icons'>

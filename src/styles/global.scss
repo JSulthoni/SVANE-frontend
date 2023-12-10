@@ -15,6 +15,7 @@
     --green400: #4ade80;
     --green600: #16a34a;
     --green800: #166534;
+    --red600: #dc2626;
     --header: #010519;
 
 
@@ -37,6 +38,10 @@
 
     // Box shadow
     --box-shadow-value: 0px 0px 7px -5px rgba(0, 0, 0, 0.5);
+
+    // Background color
+    --background-color6: rgba(255, 255, 255, 0.6);
+    --background-color8: rgba(255, 255, 255, 0.8);
 }
 
 *, *::before, *::after {
@@ -62,6 +67,9 @@
     --header: #16a34a;
 
     --box-shadow-value: 0px 0px 7px -5px rgba(255, 255, 255, 0.5);
+
+    --background-color6: rgba(0, 0, 0, 0.6);
+    --background-color8: rgba(0, 0, 0, 0.8);
 }
 
 .app {

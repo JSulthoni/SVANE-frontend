@@ -1,4 +1,4 @@
-import * as React from "react";
+import React, { useEffect } from "react";
 import {
   createBrowserRouter,
   RouterProvider,
@@ -10,28 +10,40 @@ import Product from "./pages/Product/Product";
 import Success from "./pages/Success/Success";
 import NavBar from "./components/NavBar/NavBar";
 import Footer from "./components/Footer/Footer";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { SIGNIN_SUCCESS, SIGNOUT } from "./redux/authenticationSlice";
 import './styles/global.scss';
 import Search from "./pages/Search/Search";
 import NotFound from "./pages/NotFound/NotFound";
 import About from "./pages/About/About";
 
 if (import.meta.env.NODE_ENV === 'production') {
-  console.log('Welcome to SVANE')
+console.log('Welcome to SVANE')
 }
 
 
 // Page layout
 const Layout = () => {
-  const mode = useSelector((state) => state.navigation.nightmode)
+const mode = useSelector((state) => state.navigation.nightmode);
+const user = JSON.parse(localStorage.getItem('user'));
+const dispatch = useDispatch();
 
-  return (
-    <div className={`app ${mode ? 'night' : ''}`}>
-        <NavBar />
-        <Outlet />
-        <Footer />
-    </div>
-  )
+useEffect(() => {
+	if (user) {
+		console.log(user)
+		dispatch(SIGNIN_SUCCESS(user))
+	} else {
+		dispatch(SIGNOUT())
+	}
+}, [user, dispatch]);
+
+return (
+	<div className={`app ${mode ? 'night' : ''}`}>
+		<NavBar />
+		<Outlet />
+		<Footer />
+	</div>
+)
 };
 
 

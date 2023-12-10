@@ -6,6 +6,7 @@
     gap: 20px;
     min-height: 100vh;
     min-height: 100dvh;
+    border-bottom: 1px solid var(--header);
 
     @include sm {
         padding: 30px 30px;
@@ -25,6 +26,7 @@
         top: 70px;
         padding: 20px;
         font-size: var(--f16px);
+        background-color: var(--background-color8);
 
         @include xs {
             top: 55px;

@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import List from '../../components/List/List';
-import makeMode from '../../utils/makeMode';
 import './Search.scss'
 
 const headerImage = [
@@ -41,9 +40,6 @@ const Search = () => {
     // Disable the button if searchQuery is empty
     const isButtonDisabled = typeof searchQuery !== 'string' || searchQuery.trim() === '';
 
-    // Getting mode from redux
-    const getMode = makeMode();
-
     // Getting random image from headerImage array
     // Using useEffect to run the getImage only when the component mounts
     useEffect(() => {
@@ -57,17 +53,16 @@ const Search = () => {
     useEffect(() => {
         window.scrollTo(0, 0)
     }, [])
-    
+
     return (
         <div className='search'>
-            <div className='left' style={getMode}>
+            <div className='left'>
                 <div className='search-filter'>
                         <h3>Search product name</h3>
                     <form autoComplete='off' onSubmit={handleSubmit} className='search-input search-bar'>
                         <input 
-                            style={getMode}
-                            name='searchbar'
-                            id='searchbar'
+                            name='search'
+                            id='search'
                             type='text' 
                             value={searchQuery}
                             placeholder='e.g: Featured'  
@@ -102,7 +97,9 @@ const Search = () => {
                         src={headerImage[randomImageIndex]}
                         alt="search-page-image"
                     />
-                    <List search={queryParams || 'trending'} maxPrice={maxPrice} sort={sort} />
+                    {
+                    <List search={queryParams || 'trending'} maxPrice={maxPrice} sort={sort}/>
+                    }
             </div>
         </div>
     );

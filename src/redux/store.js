@@ -1,5 +1,6 @@
-import contextReducer from "./contextReducer";
-import navigationReducer from "./navigationReducer";
+import contextReducer from "./contextSlice";
+import navigationReducer from "./navigationSlice";
+import authenticationReducer from "./authenticationSlice";
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import {
     persistStore,
@@ -25,12 +26,22 @@ const navigationConfig = {
     storage,
 };
 
+const authConfig = {
+    key: "authentication",
+    version: 1,
+    storage,
+}
+
 const conReducer = persistReducer(contextConfig, contextReducer);
 const navReducer = persistReducer(navigationConfig, navigationReducer);
-// Combining 2 reducers with combineReducers()
+const authReducer = persistReducer(authConfig, authenticationReducer)
+
+// Combining 3 reducers with combineReducers()
 const allReducer = combineReducers({
     context : conReducer, 
-    navigation : navReducer})
+    navigation : navReducer,
+    authentication : authReducer
+})
 
 export const store = configureStore({
     reducer: allReducer,
@@ -42,4 +53,4 @@ export const store = configureStore({
         }),
 });
 
-export let persistor = persistStore(store);
+export const persistor = persistStore(store);

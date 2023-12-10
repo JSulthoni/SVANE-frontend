@@ -25,6 +25,7 @@
         top: 70px;
         padding: 20px;
         font-size: var(--f16px);
+        background-color: var(--background-color8);
 
         @include xs {
             top: 55px;
@@ -50,16 +51,17 @@
             }
 
             h3 {
-            color: var(--slate950);
-            font-weight: 500;
-            margin-bottom: 20px;
-            font-size: var(--f18px);
+                color: var(--slate950);
+                font-weight: 500;
+                margin-bottom: 20px;
+                font-size: var(--f18px);
             }
 
             .search-bar {
                 -webkit-box-shadow: var(--box-shadow-value);
                 box-shadow: var(--box-shadow-value);
                 box-shadow: inset;
+                border: 1px solid var(--header);
             }
     
             .search-input {
@@ -85,10 +87,11 @@
                 input[type='text'] {
                     width: 100%;
                     line-height: 1.8em;
-                    color: inherit;
-                    border: 1px solid var(--header);
+                    color: var(--slate400);
+                    border: none;
                     padding: 0.5em 12px;
                     font-size: var(--f16px);
+                    background-color: var(--background-color8);
                     
                     &:active {
                         color: var(--slate950);

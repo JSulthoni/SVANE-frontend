@@ -6,16 +6,26 @@
     position: relative;
     overflow: hidden;
   
-    .container {
+    .slider-container {
 		width: 500dvw;
 		height: 100%;
 		display: flex;
 		transition: all 1000ms ease;
-  
+
       	img {
 			width: 100vw;
 			height: 100%;
 			object-fit: cover;
+
+			@include xs {
+				&:first-of-type {
+					object-position: 30%;
+				}
+
+				&:nth-child(2) {
+					object-position: 80%;
+				}
+			}
       	}
     }
   
@@ -26,15 +36,12 @@
 		left: 5%;
 		width: fit-content;
 		padding: 10px;
+		background-color: var(--background-color6);
 
 		h1 {
 			font-family: inherit;
 			color: var(--slate950);
 			font-size: calc(2.5 * var(--f24px));
-			
-			&:nth-child(1) {
-				color: var(--green600);
-			}
 
 			@include sm {
 				font-size: calc(2.5 * var(--f18px));
@@ -63,6 +70,7 @@
 			cursor: pointer;
 			border: none;
 			color: var(--slate950);
+			background-color: var(--background-color6);
       	}
     }
 
@@ -85,6 +93,7 @@
 			flex-direction: column;
 			align-items: center;
 			gap: 0px;
+			background-color: var(--background-color6);
 			
 			> * {
 				font-size: var(--f24px);

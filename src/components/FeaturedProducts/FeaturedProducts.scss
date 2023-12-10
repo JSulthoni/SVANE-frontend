@@ -4,10 +4,6 @@
     position: relative;
     margin: 130px auto;
 
-    @include xs {
-        position: relative;
-    }
-
     .top {
         display: flex;
         align-items: center;
@@ -25,7 +21,7 @@
             flex-direction: column;
             align-items: flex-start;
             margin: 0 50px;
-            margin-bottom: 50px;
+            margin-bottom: 20px;
         }
     
         h2 {
@@ -34,6 +30,18 @@
             font-size: calc(2 * var(--f16px));
             text-transform: capitalize;
             cursor: pointer;
+            
+            @include xs {
+                display: none;
+            }
+        }
+
+        .alt {
+            display: none;
+
+            @include xs {
+                display: block;
+            }
         }
     
         p {
@@ -88,9 +96,8 @@
             }
         }
 
-        
-        
     }
+
     button {
         position: absolute;
         bottom: -4em;

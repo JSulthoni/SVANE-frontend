@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { HashLink } from 'react-router-hash-link';
+import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
+import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import './Footer.scss';
 
 const Footer = () => {
@@ -22,7 +24,6 @@ const Footer = () => {
     
     // useEffect to set the openList on window resize
     useEffect(() => {
-        console.log(window.innerWidth)
         const handleResize = () => {
             if (window.innerWidth >= 810) {
                 setOpenState({
@@ -37,9 +38,7 @@ const Footer = () => {
             }
         };
         handleResize();
-    
         window.addEventListener('resize', handleResize);
-
         return () => {
             window.removeEventListener('resize', handleResize);
         };
@@ -49,7 +48,10 @@ const Footer = () => {
         <div className='footer' id='footer'>
             <div className='top'>
                 <div className='footer-item'>
-                    <h3 onClick={() => handleToogle('categories')}>Categories</h3>
+                    <div className='footer-title' onClick={() => handleToogle('categories')}>
+                        <h3>Categories</h3>
+                        { openState.categories ? <KeyboardArrowUpIcon/> : <KeyboardArrowDownIcon/>}
+                    </div>
                     <div className={`footer-list ${openState.categories ? 'active' : 'inactive'}`}>
                         <Link className='link' to='/products/women'>Women</Link>
                         <Link className='link' to='/products/men'>Men</Link>
@@ -60,7 +62,10 @@ const Footer = () => {
                     <div className='footer-divider'></div>
                 </div>
                 <div className='footer-item'>
-                    <h3 onClick={() => handleToogle('link')}>Link</h3>
+                    <div className='footer-title' onClick={() => handleToogle('link')}>
+                        <h3>Link</h3>
+                        { openState.link ? <KeyboardArrowUpIcon/> : <KeyboardArrowDownIcon/>}
+                    </div>
                     <div className={`footer-list ${openState.link ? 'active' : 'inactive'}`}>
                         <HashLink smooth className='link' to='/#categories'>Categories</HashLink>
                         <Link className='link' to='/about'>About</Link>
@@ -71,11 +76,15 @@ const Footer = () => {
                     <div className='footer-divider'></div>
                 </div>
                 <div className='footer-item'>
-                    <h3>About</h3>
+                    <div className='footer-title'>
+                        <h3>About</h3>
+                    </div>
                     <p>At <span className='logo'>SVANE</span>, we've reimagined the way you shop online. We understand the thrill of discovering fantastic products from around the world and the convenience of having them delivered to your doorstep. That's why we've designed a platform that connects you to every major fashion store across the globe from different places and buy them all in one go.</p>
                 </div>
                 <div className='footer-item'>
-                <h3>Contacts</h3>
+                    <div className='footer-title'>
+                        <h3>Contacts</h3>
+                    </div>
                     <p>Project <span className='logo'>SVANE</span> is created and developed by <a href='https://github.com/JSulthoni'>Javier Nauvel Sulthoni</a>. Reach out with email by <a href='mailto:sulthonijavier@gmail.com' target='_blank'>clicking here</a> or visit <a href='https://github.com/JSulthoni/SVANE-frontend'>the sourcecode</a>.</p>
                 </div>
             </div>

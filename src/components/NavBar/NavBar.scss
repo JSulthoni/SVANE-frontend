@@ -11,6 +11,7 @@
     color: var(--slate950);
     -webkit-box-shadow: var(--box-shadow-value);
     box-shadow: var(--box-shadow-value);
+    background-color: var(--background-color8);
 
     .wrapper {
         width: 100%;
@@ -106,17 +107,24 @@
                     gap: 1em;
                 } 
 
+                
+
                 .icon {
                     position: relative;
                     overflow-x: visible;
                     display: flex;
                     place-items: center;
+                    
+                    &:nth-last-child(2) {
+                        z-index: 1001;
+                    }
                 }
                 
                 .icon-login {
                     gap: 10px;
                     color: var(--green600);
                     font-size: var(--f18px);
+                    z-index: 1001;
                 }
 
                 .icon-menu {

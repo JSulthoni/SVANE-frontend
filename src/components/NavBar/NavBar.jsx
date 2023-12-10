@@ -7,7 +7,8 @@ import {
     TOGGLE_WISHLIST, 
     TOGGLE_CART, 
     TOGGLE_MENU, 
-    TOGGLE_SEARCH } from '../../redux/navigationReducer';
+    TOGGLE_SEARCH, 
+    TOGGLE_SIGN} from '../../redux/navigationSlice';
 import MenuIcon from '@mui/icons-material/Menu';
 import FavoriteBorderOutlinedIcon from '@mui/icons-material/FavoriteBorderOutlined'
 import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined'
@@ -21,23 +22,23 @@ import useClickOutside from '../../hooks/useClickOutside';
 import Favorite from '../Favorite/Favorite';
 import Menu from '../Menu/Menu';
 import Searchbar from '../Searchbar/Searchbar';
-import './NavBar.scss';
 import SignIn from '../SignIn/SignIn';
-import makeMode from '../../utils/makeMode';
+import useLoggedIn from '../../hooks/useLoggedIn';
+import './NavBar.scss';
 
 const NavBar = () => {
+    const isLoggedIn = useLoggedIn();
     const searchRef = useRef(null);
     const wishRef = useRef(null);
     const cartRef = useRef(null);
-    const products = useSelector(((state) => state.context.products));
-    const wishlist = useSelector(((state) => state.context.wishlist));
+    const { products, wishlist } = useSelector(((state) => state.context));
     const openSearch = useSelector(((state) => state.navigation.search));
     const nightmode = useSelector(((state) => state.navigation.nightmode));
     const openWishlist = useSelector(((state) => state.navigation.wishlist));
+    const openSign =  useSelector(((state) => state.navigation.sign))
     const openCart = useSelector(((state) => state.navigation.cart));
     const openMenu = useSelector(((state) => state.navigation.menu));
     const dispatch = useDispatch();
-    const getMode = makeMode();
 
     useClickOutside(wishRef, () => {
         if (openWishlist) {
@@ -57,15 +58,42 @@ const NavBar = () => {
         }
     });
 
-    const handleMenu = () => {
-        dispatch(TOGGLE_SEARCH({payload : false}))
-        dispatch(TOGGLE_CART({payload : false}))
-        dispatch(TOGGLE_WISHLIST({payload : false}))
-        dispatch(TOGGLE_MENU({payload : !openMenu}))
-    }
+    
+    const closeAllMenus = () => {
+        dispatch(TOGGLE_WISHLIST({ payload: false }));
+        dispatch(TOGGLE_CART({ payload: false }));
+        dispatch(TOGGLE_SIGN({ payload: false }));
+        dispatch(TOGGLE_SEARCH({ payload: false }));
+        dispatch(TOGGLE_MENU({ payload: false }));
+    };
+
+    const handleSearchClick = () => {
+        closeAllMenus();
+        dispatch(TOGGLE_SEARCH({ payload: !openSearch }));
+    };
+
+    const handleWishlistClick = () => {
+        closeAllMenus();
+        dispatch(TOGGLE_WISHLIST({ payload: !openWishlist }));
+    };
+
+    const handleCartClick = () => {
+        closeAllMenus();
+        dispatch(TOGGLE_CART({ payload: !openCart }));
+    };
+
+    const handleSignInClick = () => {
+        closeAllMenus();
+        dispatch(TOGGLE_SIGN({ payload: !openSign }));
+    };
+
+    const handleMenuClick = () => {
+        closeAllMenus();
+        dispatch(TOGGLE_MENU({ payload: !openMenu }));
+    };
 
     return (
-        <div className='navbar' style={getMode}>
+        <div className='navbar'>
             <div className='wrapper'>
                 <div className='left'>
                     <div className='item'>
@@ -99,36 +127,27 @@ const NavBar = () => {
                         <Link className='link' to='/search'>Discover</Link>
                     </div>
                     <div className='icons'>
-                        <div className='icon' onClick={() => {
-                            dispatch(TOGGLE_WISHLIST({payload : false}))
-                            dispatch(TOGGLE_CART({payload : false}))
-                            dispatch(TOGGLE_SEARCH({payload : !openSearch}))
-                        }}>
+                        <div className='icon' onClick={handleSearchClick}>
                             {openSearch ? <SearchOffOutlinedIcon /> : <SearchOutlinedIcon />}
                         </div>
-                        <div className='icon' onClick={() => {
-                            dispatch(TOGGLE_CART({payload : false}))
-                            dispatch(TOGGLE_SEARCH({payload : false}))
-                            dispatch(TOGGLE_WISHLIST({payload : !openWishlist}))
-                        }}>
+                        <div className='icon' onClick={handleWishlistClick}>
                             <FavoriteBorderOutlinedIcon />
                             <span>{wishlist.length}</span>
                         </div>
-                        <div className='icon' onClick={() => {
-                            dispatch(TOGGLE_WISHLIST({payload : false}))
-                            dispatch(TOGGLE_SEARCH({payload : false}))
-                            dispatch(TOGGLE_CART({payload : !openCart}))
-                        }}>
+                        {
+                            isLoggedIn && 
+                        <div className='icon' onClick={handleCartClick}>
                             <ShoppingCartOutlinedIcon />
                             <span>{products.length}</span>
                         </div>
-                        <div className='icon icon-login'>
-                            <p>Sign In</p><AccountBoxSharpIcon />
+                        }
+                        <div className='icon icon-login' onClick={handleSignInClick}>
+                            {!isLoggedIn && <p>Sign In</p>}<AccountBoxSharpIcon />
                         </div>
                         <div className='icon' onClick={() => dispatch(TOGGLE_NIGHT())}>
                             {nightmode ? <BedtimeIcon /> : <LightModeIcon />}
                         </div>
-                        <div className='icon-menu' onClick={handleMenu}>
+                        <div className='icon-menu' onClick={handleMenuClick}>
                             <MenuIcon />
                         </div>
                     </div>
@@ -137,8 +156,8 @@ const NavBar = () => {
                 <Searchbar open={openSearch} searchRef={searchRef}/>
                 <Favorite wishRef={wishRef} open={openWishlist}/>
                 <Cart cartRef={cartRef} open={openCart}/>
-                <Menu open={openMenu} handleMenu={handleMenu}/>
-                <SignIn />
+                <Menu open={openMenu} handleMenu={handleMenuClick}/>
+                <SignIn open={openSign}/>
         </div>
     )
 };
