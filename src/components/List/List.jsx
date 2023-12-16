@@ -4,12 +4,12 @@ import useFetch from '../../hooks/useFetch';
 import './List.scss';
 import FallbackDisplay from '../FallbackDisplay/FallbackDisplay';
 
-const List = ({catId, maxPrice, sort, search, subCats}) => {
+const List = ({category, maxPrice, sort, search, subCats}) => {
     
-    // Construct the API endpoint based on the presence of catId and subCats or search
+    // Construct the API endpoint based on the presence of category and subCats or search
     let endpoint;
-        if (catId && subCats) {
-            endpoint = `/api/products?category=${catId}&subcategory=${subCats}&sort=${sort}&price=${maxPrice}`;
+        if (category && subCats) {
+            endpoint = `/api/products?category=${category}&subcategory=${subCats}&sort=${sort}&price=${maxPrice}`;
         } else if (search) {
             endpoint = `/api/products?search=${search}&sort=${sort}&price=${maxPrice}`;
         } else {
@@ -39,7 +39,7 @@ const List = ({catId, maxPrice, sort, search, subCats}) => {
             isData ? 
                 data.map((item) => (<Card item={item} key={item._id} />)) 
             :
-            <FallbackDisplay search={search} />
+            <FallbackDisplay search={search} maxPrice={maxPrice} sort={sort}/>
             }
         </div>
     )

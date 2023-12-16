@@ -34,7 +34,7 @@ const Product = () => {
                     image : data?.image1,
                     quantity
                     }))
-                notification(type)
+                notification(type);
                 break;
             case 'ADDED TO WISHLIST':
                 dispatch(ADD_TO_WISH({
@@ -45,7 +45,7 @@ const Product = () => {
                     image : data?.image1,
                     quantity : parseInt(1)
                     }))
-                notification(type)
+                notification(type);
                 break;
             default:
                 break;
@@ -101,8 +101,8 @@ const Product = () => {
                 setNotif('');
             }
         } catch (error) {
-            console.error('Error during payment:', error)
-            notification('Something went wrong during checkout!')
+            console.error('Error during payment:', error);
+            notification('Something went wrong during checkout!');
         }
     };
     
