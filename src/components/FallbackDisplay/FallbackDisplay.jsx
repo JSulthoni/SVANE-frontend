@@ -3,12 +3,11 @@ import Card from '../Card/Card';
 import useFetch from '../../hooks/useFetch';
 import './FallbackDisplay.scss'
 
-const FallbackDisplay = ({search}) => {
+const FallbackDisplay = ({search, maxPrice, sort}) => {
     const title = ['hoodie', 'shirt', 'fedora'];
     const index = Math.floor(Math.random() * title.length);
     const [product, setProduct] = useState(search || null);
     const [type, setType] = useState(title[index] || null);
-    console.log(product)
 
     // useEffect to fetch either trending or featured
     useEffect(() => {
@@ -21,7 +20,8 @@ const FallbackDisplay = ({search}) => {
         }
     }, [search]);
 
-    const { data } = useFetch(`/api/products?search=${type}`);
+    // Fetch the data
+    const { data } = useFetch(`/api/products?search=${type}&sort=${sort}&price=${maxPrice}`);
 
     return (
         <>

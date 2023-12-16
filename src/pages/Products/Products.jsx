@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import { useSelector } from 'react-redux';
 import List from '../../components/List/List';
 import useFetch from '../../hooks/useFetch';
 import './Products.scss';
@@ -9,7 +8,7 @@ import './Products.scss';
 const Products = () => {
 
     // Getting id from url
-    const catId = useParams().id;
+    const category = useParams().id;
 
     // State for search parameters
     const [maxPrice, setMaxPrice] = useState(199);
@@ -17,11 +16,16 @@ const Products = () => {
     const [subCats, setSubCats] = useState([]);
 
     // Fetching data from api
-    const { data, loading, error } = useFetch(`/api/subcategory?title=${catId || ''}`);
-    const [subcategory] = data;
+    const { data, loading, error } = useFetch(`/api/category?title=${category || ''}`); // Getting the catefories based on category
+    const [ subcategory ] = data;
 
-    // Getting nightmode from redux
-    const nightmode = useSelector((state) => state.navigation.nightmode);
+    
+    // Function to filter and sort the data
+    const filterSubcategory = () => {
+        return subcategory?.subcategories.filter((subs) => subs.title !== 'all').sort((a,b) => a.title.localeCompare(b.title))
+    }
+    const filteredSubcategory = filterSubcategory();
+
 
     // Handle checkbox input
     const handleCheckbox = (event) => {
@@ -35,17 +39,19 @@ const Products = () => {
         window.scrollTo(0, 0)
     }, [])
 
+
+
     return (
         <div className='products'>
             {loading ? '' :
             <div className='left'>
                 <div className='products-filter'>
                     <h3>Product Categories</h3>
-                    {subcategory?.subcategory.map((item) => {
+                    {filteredSubcategory.map((item) => {
                         return (
-                    <div className='products-input' key={item}>
-                        <input className='checkbox' type='checkbox' id={item} value={item} onChange={handleCheckbox}/>
-                        <label htmlFor={item}>{item === 'tshirt' ? 't-shirt' : item}</label>
+                    <div className='products-input' key={item._id}>
+                        <input className='checkbox' type='checkbox' id={item._id} value={item.title} onChange={handleCheckbox}/>
+                        <label htmlFor={item.title}>{item.title === 'tshirt' ? 't-shirt' : item.title}</label>
                     </div>
                         )
                     })}
@@ -71,13 +77,13 @@ const Products = () => {
                 </div>
             </div>}
             <div className='right'>
-                    { catId === 'men' ? 
+                    { category === 'men' ? 
                     <img
                         className="cat-image"
                         src="https://images.pexels.com/photos/5102907/pexels-photo-5102907.jpeg?auto=compress&cs=tinysrgb&w=1600"
                         alt=""
                     /> : 
-                    catId === 'women' ? 
+                    category === 'women' ? 
                     <img
                         className="cat-image"
                         src="https://images.pexels.com/photos/5119207/pexels-photo-5119207.jpeg?auto=compress&cs=tinysrgb&w=1600"
@@ -88,7 +94,7 @@ const Products = () => {
                         src="https://images.pexels.com/photos/5120190/pexels-photo-5120190.jpeg?auto=compress&cs=tinysrgb&w=1600"
                         alt=""
                     /> }
-                <List catId={catId} maxPrice={maxPrice} sort={sort} subCats={subCats}/>
+                <List category={category} maxPrice={maxPrice} sort={sort} subCats={subCats}/>
             </div>
         </div>
     )

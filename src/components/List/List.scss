@@ -3,14 +3,22 @@
 .list {
     display: grid;
     grid-auto-flow: dense;
-    grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
+    grid-template-columns: repeat(auto-fit, 280px);
     grid-auto-rows: auto;
     column-gap: 20px;
     row-gap: 30px;
     container-type: inline-size;
 
-    @include lg {
-        grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr));
+    @include xxl {
+        grid-template-columns: repeat(auto-fit, 240px);
+    }
+
+    @include xl {
+        grid-template-columns: repeat(auto-fit, 220px);
+    }
+
+    @include md {
+        grid-template-columns: repeat(auto-fit, 200px);
     }
     
     @include sm {
