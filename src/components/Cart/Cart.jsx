@@ -26,27 +26,48 @@ const Cart = ({cartRef, open}) => {
         return total.toFixed(2)
     };
 
-    // Stripe Payment Function
+    // Stripe payment function
     const URL = import.meta.env.VITE_BACKEND_URL
     const handlePayment = async () => {
-        await fetch(`${URL}/api/stripe/create`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({products})
-        }).then((res) => {
-            return res.json()
-        }).then((res) => {
+        try {
+            const req = await fetch(`${URL}/api/stripe/create`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({products})
+            })
+            const res =  await req.json();
             if (res.url) {
                 window.location.assign(res.url); // User is redirected to this URL if request is fulfilled
-                dispatch(TOGGLE_CART());
-                dispatch(RESET_CART());
-            } else {
-                handleError(); // This will show if request is unfulfilled
             }
-        })
+        } catch (error) {
+            console.error('Error during payment:', error);
+            handleError();
+        }
     };
+
+    // Stripe Payment Function
+    // const URL = import.meta.env.VITE_BACKEND_URL
+    // const handlePayment = async () => {
+    //     await fetch(`${URL}/api/stripe/create`, {
+    //         method: 'POST',
+    //         headers: {
+    //             'Content-Type': 'application/json'
+    //         },
+    //         body: JSON.stringify({products})
+    //     }).then((res) => {
+    //         return res.json()
+    //     }).then((res) => {
+    //         if (res.url) {
+    //             window.location.assign(res.url); // User is redirected to this URL if request is fulfilled
+    //             dispatch(TOGGLE_CART());
+    //             dispatch(RESET_CART());
+    //         } else {
+    //             handleError(); // This will show if request is unfulfilled
+    //         }
+    //     })
+    // };
 
     return (
         <div ref={cartRef} className={`cart ${open ? 'active' : 'inactive'}`}>

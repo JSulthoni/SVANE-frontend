@@ -3,19 +3,28 @@
 .about {
     min-height: 100vh;
     min-height: 100dvh;
+    position: relative;
+    border-bottom: 1px solid var(--green600);
+    padding: 0 50px;
+    margin-inline: 50px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 10px;
-    text-align: justify;
-    font-size: var(--f18px);
-    position: relative;
-    border-bottom: 1px solid var(--green600);
-    padding: 0 50px;
 
-    @include sm {
-        min-width: 90dvw;
+    @include xs {
+        padding: 0 25px;
+        margin-inline: 0px;
+    }
+
+    .about-wrapper {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 40px;
+        text-align: justify;
+        font-size: var(--f18px);
     }
 
     .about-title {
@@ -23,7 +32,7 @@
         justify-content: space-between;
         align-items: center;
         color: var(--slate950);
-        margin-bottom: 1em;
+        margin-top: 2em;
 
         img {
             width: 100px;
@@ -31,16 +40,65 @@
         
     }
 
-    p, span {
-        color: var(--slate600);
-        max-width: 100ch;
-        line-height: 2em;
-    }
+    .about-par {
+        width: 100%;
 
-    .logo {
-        color: var(--green600);
-        font-weight: 500;
-        font-size: var(--f18px);
+        p, span {
+            color: var(--slate600);
+            max-width: 100ch;
+            line-height: 2em;
+        }
+    
+        .logo, b {
+            color: var(--green600);
+            font-weight: 500;
+            font-size: var(--f18px);
+        }
+
+        ul {
+            padding-left: 20px;
+            width: 100%;
+            color: var(--slate600);
+            display: flex;
+            flex-direction: column;
+
+            @include xs {
+                gap: 0.8em;
+            }
+            
+
+            li {
+                list-style-type: initial;
+                font-size: inherit;
+                line-height: 2em;
+                margin-block: 5px;
+
+                span {
+                    margin-inline: 0.5em;
+                }
+            }
+            .about-card {
+                display: initial;
+            }
+        }
+
+        .about-add {
+            width: fit-content;
+            padding: 0.5em;
+            padding-inline: 1em;
+            background-color: var(--green600);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            cursor: pointer;
+            border: none;
+            font-weight: 500;
+            height: 3em;
+            font-size: var(--f14px);
+            flex-wrap: nowrap;
+        
+        }
     }
 
     .about-button {

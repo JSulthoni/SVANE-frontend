@@ -43,7 +43,6 @@ const Favorite = ({wishRef, open}) => {
             const res =  await req.json();
             if (res.url) {
                 window.location.assign(res.url) // User is redirected to this URL if request is fulfilled
-                dispatch(REMOVE_WISH(item.id));
             }
         } catch (error) {
             console.error('Error during payment:', error);
