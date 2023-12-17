@@ -23,7 +23,7 @@ const Menu = ({open, handleMenu}) => {
                     <HashLink smooth className='link' to='/search#top'>Discover</HashLink>
                 </li>
                 <li onClick={() => handleMenu()}>
-                    <HashLink smooth className='link' to='/#footer'>About</HashLink>
+                    <HashLink smooth className='link' to='/about#top'>About</HashLink>
                 </li>
                 <li onClick={() => handleMenu()}>
                     <HashLink smooth className='link' to='/#contacts'>Contacts</HashLink>

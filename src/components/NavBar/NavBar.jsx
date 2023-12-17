@@ -104,13 +104,13 @@ const NavBar = () => {
                             to='/#categories'>Categories</HashLink>
                     </div>
                     <div className='item'>
-                        <Link className='link' to='/products/men'>Men</Link>
+                        <HashLink smooth className='link' to='/products/men#top'>Men</HashLink>
                     </div>
                     <div className='item'>
-                        <Link className='link' to='/products/women'>Women</Link>
+                        <HashLink smooth className='link' to='/products/women#top'>Women</HashLink>
                     </div>
                     <div className='item'>
-                        <Link className='link' to='/products/unisex'>Unisex</Link>
+                        <HashLink smooth className='link' to='/products/unisex#top'>Unisex</HashLink>
                     </div>
                 </div>
                 <div className='center'>
@@ -121,10 +121,10 @@ const NavBar = () => {
                         <HashLink smooth className='link' to='/#'>Homepage</HashLink>
                     </div>
                     <div className='item'>
-                        <HashLink smooth className='link' to='/#contacts'>Contact</HashLink>
+                        <HashLink smooth className='link' to='/about#top'>About</HashLink>
                     </div>
                     <div className='item'>
-                        <Link className='link' to='/search'>Discover</Link>
+                        <HashLink smooth className='link' to='/search#top'>Discover</HashLink>
                     </div>
                     <div className='icons'>
                         <div className='icon' onClick={handleSearchClick}>
