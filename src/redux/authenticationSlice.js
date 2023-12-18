@@ -15,7 +15,6 @@ export const authenticationSlice = createSlice({
             state.error = null; 
         },
         SIGNIN_SUCCESS: (state, action) => {
-            console.log(action.payload)
             state.user = action.payload;
             state.loading = false;
             state.error = null;

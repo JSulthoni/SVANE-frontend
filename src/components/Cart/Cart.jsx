@@ -1,13 +1,12 @@
 import React, { useState } from 'react';
 import DeleteOutlinedIcon from "@mui/icons-material/DeleteOutlined";
 import { useDispatch, useSelector } from 'react-redux';
-import { DECREMENT_ITEM_IN_CART, INCREMENT_ITEM_IN_CART, REMOVE_ITEM, RESET_CART } from '../../redux/contextSlice';
-import { TOGGLE_CART } from '../../redux/navigationSlice';
+import { DECREMENT_ITEM_IN_CART, INCREMENT_ITEM_IN_CART, REMOVE_ITEM, RESET_CART } from '../../redux/bagSlice';
 import './Cart.scss';
 
 
 const Cart = ({cartRef, open}) => {
-    const { products } = useSelector((state) => state.context);
+    const { cart } = useSelector((state) => state.bag);
     const dispatch = useDispatch();
     const [ showError, setShowError ] = useState(false)
 
@@ -22,7 +21,7 @@ const Cart = ({cartRef, open}) => {
     // Calculating total price in cart
     const totalPrice = () => {
         let total = 0
-        products.forEach((item) => (total += item.quantity * item.price))
+        cart.forEach((item) => (total += item.quantity * item.price))
         return total.toFixed(2)
     };
 
@@ -47,35 +46,13 @@ const Cart = ({cartRef, open}) => {
         }
     };
 
-    // Stripe Payment Function
-    // const URL = import.meta.env.VITE_BACKEND_URL
-    // const handlePayment = async () => {
-    //     await fetch(`${URL}/api/stripe/create`, {
-    //         method: 'POST',
-    //         headers: {
-    //             'Content-Type': 'application/json'
-    //         },
-    //         body: JSON.stringify({products})
-    //     }).then((res) => {
-    //         return res.json()
-    //     }).then((res) => {
-    //         if (res.url) {
-    //             window.location.assign(res.url); // User is redirected to this URL if request is fulfilled
-    //             dispatch(TOGGLE_CART());
-    //             dispatch(RESET_CART());
-    //         } else {
-    //             handleError(); // This will show if request is unfulfilled
-    //         }
-    //     })
-    // };
-
     return (
         <div ref={cartRef} className={`cart ${open ? 'active' : 'inactive'}`}>
-            <h3>{products.length ? 'Products in your cart' : 'Your cart is empty'}</h3>
-            {!products.length ? '' : 
+            <h3>{cart.length ? 'Products in your cart' : 'Your cart is empty'}</h3>
+            {!cart.length ? '' : 
             <div>
                 <div className='cart-list'>
-                    {products.map((item) => (
+                    {cart.map((item) => (
                         <div className='cart-item' key={item.id}>
                             <img src={`${item.image}?auto=compress&cs=tinysrgb&w=360&dpr=1`} alt=''/>
                             <div className='cart-details'>
@@ -83,8 +60,8 @@ const Cart = ({cartRef, open}) => {
                                 <p>{item.desc.substring(0,80) + '...'}</p>
                                 <div className='cart-quantity'>
                                 <span>{item.quantity} x ${item.price}</span>
-                                    <button aria-label='decrease amount' onClick={() => dispatch(DECREMENT_ITEM_IN_CART(item.id))}>-</button>
-                                    <button aria-label='increase amount' onClick={() => dispatch(INCREMENT_ITEM_IN_CART(item.id))}>+</button>
+                                    <button aria-label='decrement product' onClick={() => dispatch(DECREMENT_ITEM_IN_CART(item.id))}>-</button>
+                                    <button aria-label='increment product' onClick={() => dispatch(INCREMENT_ITEM_IN_CART(item.id))}>+</button>
                                 </div>
                             </div>
                             <DeleteOutlinedIcon className='cart-delete' onClick={() => dispatch(REMOVE_ITEM(item.id))}/>

@@ -1,4 +1,4 @@
-import contextReducer from "./contextSlice";
+import bagReducer from "./bagSlice";
 import navigationReducer from "./navigationSlice";
 import authenticationReducer from "./authenticationSlice";
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
@@ -14,8 +14,8 @@ import {
 } from "redux-persist";
 import storage from "redux-persist/lib/storage";
 
-const contextConfig = {
-    key: "context",
+const bagConfig = {
+    key: "bag",
     version: 1,
     storage,
 };
@@ -32,13 +32,13 @@ const authConfig = {
     storage,
 }
 
-const conReducer = persistReducer(contextConfig, contextReducer);
+const bReducer = persistReducer(bagConfig, bagReducer);
 const navReducer = persistReducer(navigationConfig, navigationReducer);
 const authReducer = persistReducer(authConfig, authenticationReducer)
 
 // Combining 3 reducers with combineReducers()
 const allReducer = combineReducers({
-    context : conReducer, 
+    bag : bReducer, 
     navigation : navReducer,
     authentication : authReducer
 })

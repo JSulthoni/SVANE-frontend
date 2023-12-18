@@ -1,16 +1,17 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { SIGNIN_FAILURE, SIGNIN_START, SIGNIN_SUCCESS, SIGNOUT } from '../../redux/authenticationSlice';
+import { SIGNOUT } from '../../redux/authenticationSlice';
 import { TOGGLE_CART, TOGGLE_SIGN, TOGGLE_WISHLIST } from '../../redux/navigationSlice';
+import { CREATE_USER, SIGN_USER } from '../../utils/makeAuthThunk';
+import { CREATE_BAG } from '../../utils/makeBagThunk';
 import useLoggedIn from '../../hooks/useLoggedIn';
-import axios from 'axios';
 import './SignIn.scss'
 
 const SignIn = ({open}) => {
     const dispatch = useDispatch();
 
     // Getting products and wishlist from redux
-    const { products, wishlist } = useSelector((state) => state.context);
+    const { cart, wishlist } = useSelector((state) => state.bag);
     
     // Getting state of user from redux
     const { user, loading, error } = useSelector((state) => state.authentication);
@@ -19,9 +20,9 @@ const SignIn = ({open}) => {
     const [credentials, setCredentials] = useState({
         email: '',
         password: ''
-    })
+    });
 
-    // Disable the button if either input is empty
+    // Variable used to disable the button if either input is empty
     const isDisabled = Boolean(credentials.email && credentials.password);
 
     // Using the input ID for a oneliner setCredentials for both input
@@ -30,46 +31,21 @@ const SignIn = ({open}) => {
     }
 
     // Sign in function
-    const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
     const handleSignin = async (event) => {
         event.preventDefault();
-        dispatch(SIGNIN_START());
-        try {
-            const req = await axios.post(`${BACKEND_URL}/api/user/signin`, 
-                { ...credentials },
-                { headers: { Authorization: 'Bearer ' + import.meta.env.VITE_MONGO_API_KEY }}
-            );
-            const res =  await req.data;
-            if (res) {
-                dispatch(SIGNIN_SUCCESS(res));
-                localStorage.setItem('user', JSON.stringify(res));
-                dispatch(TOGGLE_SIGN({payload: false}));
-            }
-        } catch (err) {
-                dispatch(SIGNIN_FAILURE(err.message));
-        }
+        dispatch(SIGN_USER(credentials)); // Request is handled by using thunk at makeThunk.js
     };
 
     // Create user function
     const handleCreate = async (event) => {
         event.preventDefault();
-        console.log('CREATE USER');
         try {
-            const req = await axios.post(`${BACKEND_URL}/api/user/register`,
-            { ...credentials },
-            { headers: { Authorization: 'Bearer' + import.meta.env.VITE_MONGO_API_KEY }}
-        );
-            const res = await req.data;
-            if (res) {
-                dispatch(SIGNIN_START());
-                dispatch(SIGNIN_SUCCESS(res));
-                localStorage.setItem('user', JSON.stringify(res));
-                dispatch(TOGGLE_SIGN({payload: false}));
-            }
-        } catch (err) {
-            dispatch(SIGNIN_FAILURE(err.message));
+            dispatch(CREATE_USER(credentials)); // Request is handled by using thunk at makeThunk.js
+            dispatch(CREATE_BAG(credentials));
+        } catch (error) {
+            throw new Error(error.message);
         }
-    }
+    };
 
     // Click handler
     const handleClick = (type) => {
@@ -97,7 +73,7 @@ const SignIn = ({open}) => {
                 </div>
                 <div className='sign-info'>
                     <div onClick={() => handleClick('cart')}>
-                        <span>Products in chart :</span><span className='sign-amount'>{products.length}</span>
+                        <span>Products in chart :</span><span className='sign-amount'>{cart.length}</span>
                     </div>
                     <div onClick={() => handleClick('wish')}>
                         <span>Items in wishlist :</span><span className='sign-amount'>{wishlist.length}</span>
@@ -108,20 +84,21 @@ const SignIn = ({open}) => {
                 >SIGN OUT</button>
             </div>
         : 
-            <form className='sign-form' action='javascript:void(0)'>
+            <form className='sign-form'>
                 <h2>SIGN IN</h2>
                 <input 
                     type='email'
                     id='email' 
+                    autoComplete='username'
                     value={credentials.email} 
                     onChange={handleChange} 
                     placeholder='example@email.com'/>
                 <input 
                     type='password'
                     id='password'
+                    autoComplete='current-password'
                     value={credentials.password} 
                     onChange={handleChange} 
-                    suggested= "current-password"
                     placeholder='password'/>
                 <button onClick={handleSignin} disabled={!isDisabled}>Sign In</button>
                 <button onClick={handleCreate} disabled={!isDisabled}>Create Account</button>

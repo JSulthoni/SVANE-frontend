@@ -4,13 +4,13 @@ import DeleteOutlinedIcon from "@mui/icons-material/DeleteOutlined";
 import LocalMallIcon from '@mui/icons-material/LocalMall';
 import { useDispatch, useSelector } from 'react-redux';
 import useLoggedIn from '../../hooks/useLoggedIn';
-import { ADD_TO_CART, REMOVE_WISH, RESET_WISH } from '../../redux/contextSlice';
+import { ADD_TO_CART, REMOVE_WISH, RESET_WISH } from '../../redux/bagSlice';
 import { TOGGLE_SIGN } from '../../redux/navigationSlice';
 import './Favorite.scss';
 
 const Favorite = ({wishRef, open}) => {
     const isLoggedIn = useLoggedIn();
-    const { wishlist } = useSelector((state) => state.context);
+    const { wishlist } = useSelector((state) => state.bag);
     const dispatch = useDispatch();
 
     // Function to handle the payment from wishlist

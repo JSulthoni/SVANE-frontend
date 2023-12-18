@@ -1,39 +1,37 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
-    products: [],
+    cart: [],
     wishlist: [],
 };
 
-export const contextSlice = createSlice({
-    name: 'context',
+export const bagSlice = createSlice({
+    name: 'bag',
     initialState,
     reducers: {
         ADD_TO_CART: (state, action) => {
-            const item = state.products.find((item) => item.id === action.payload.id)
+            const item = state.cart.find((item) => item.id === action.payload.id)
             
             if (item) {
                 item.quantity += action.payload.quantity
             } else {
-                state.products = [...state.products, action.payload]
+                state.cart = [...state.cart, action.payload]
             }
         },
         REMOVE_ITEM: (state, action) => {
-            state.products = state.products.filter((item) => item.id !== action.payload)
+            state.cart = state.cart.filter((item) => item.id !== action.payload)
         },
         RESET_CART: (state) => {
-            state.products = []
+            state.cart = []
         },
         INCREMENT_ITEM_IN_CART: (state, action) => {
-            const item = state.products.find((item) => item.id === action.payload)
-            
+            const item = state.cart.find((item) => item.id === action.payload)
             if (item) {
                 item.quantity += 1
             }
         },
         DECREMENT_ITEM_IN_CART: (state, action) => {
-            const item = state.products.find((item) => item.id === action.payload)
-            
+            const item = state.cart.find((item) => item.id === action.payload)
             if (item) {
                 item.quantity -= 1
             }
@@ -51,11 +49,17 @@ export const contextSlice = createSlice({
         },
         RESET_WISH: (state) => {
             state.wishlist = []
-        }
+        },
+        SET_BAG: (state, action) => {
+            const { cart, wishlist } = action.payload
+            console.log(cart, wishlist);
+            state.cart = [...cart]
+            state.wishlist = [...wishlist]
+        },
     }
 });
 
 
-export const { ADD_TO_CART, ADD_TO_WISH, REMOVE_ITEM, RESET_CART, REMOVE_WISH, RESET_WISH, INCREMENT_ITEM_IN_CART, DECREMENT_ITEM_IN_CART } = contextSlice.actions;
+export const { ADD_TO_CART, ADD_TO_WISH, REMOVE_ITEM, RESET_CART, REMOVE_WISH, RESET_WISH, INCREMENT_ITEM_IN_CART, DECREMENT_ITEM_IN_CART, SET_BAG } = bagSlice.actions;
 
-export default contextSlice.reducer;
+export default bagSlice.reducer;

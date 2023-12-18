@@ -16,6 +16,7 @@ import './styles/global.scss';
 import Search from "./pages/Search/Search";
 import NotFound from "./pages/NotFound/NotFound";
 import About from "./pages/About/About";
+import { GET_BAG } from "./utils/makeBagThunk";
 
 if (import.meta.env.NODE_ENV === 'production') {
 console.log('Welcome to SVANE')
@@ -30,8 +31,8 @@ const dispatch = useDispatch();
 
 useEffect(() => {
 	if (user) {
-		console.log(user)
-		dispatch(SIGNIN_SUCCESS(user))
+		dispatch(SIGNIN_SUCCESS(user));
+    dispatch(GET_BAG());
 	} else {
 		dispatch(SIGNOUT())
 	}

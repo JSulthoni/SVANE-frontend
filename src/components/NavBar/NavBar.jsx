@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux';
 import { HashLink } from 'react-router-hash-link';
@@ -25,13 +25,14 @@ import Searchbar from '../Searchbar/Searchbar';
 import SignIn from '../SignIn/SignIn';
 import useLoggedIn from '../../hooks/useLoggedIn';
 import './NavBar.scss';
+import { GET_BAG } from '../../utils/makeBagThunk';
 
 const NavBar = () => {
     const isLoggedIn = useLoggedIn();
     const searchRef = useRef(null);
     const wishRef = useRef(null);
     const cartRef = useRef(null);
-    const { products, wishlist } = useSelector(((state) => state.context));
+    const { cart, wishlist } = useSelector(((state) => state.bag));
     const openSearch = useSelector(((state) => state.navigation.search));
     const nightmode = useSelector(((state) => state.navigation.nightmode));
     const openWishlist = useSelector(((state) => state.navigation.wishlist));
@@ -58,8 +59,8 @@ const NavBar = () => {
         }
     });
 
-    
-    const closeAllMenus = () => {
+    // Collective function to close all panel
+    const closeAllPanel = () => {
         dispatch(TOGGLE_WISHLIST({ payload: false }));
         dispatch(TOGGLE_CART({ payload: false }));
         dispatch(TOGGLE_SIGN({ payload: false }));
@@ -68,27 +69,27 @@ const NavBar = () => {
     };
 
     const handleSearchClick = () => {
-        closeAllMenus();
+        closeAllPanel();
         dispatch(TOGGLE_SEARCH({ payload: !openSearch }));
     };
 
     const handleWishlistClick = () => {
-        closeAllMenus();
+        closeAllPanel();
         dispatch(TOGGLE_WISHLIST({ payload: !openWishlist }));
     };
 
     const handleCartClick = () => {
-        closeAllMenus();
+        closeAllPanel();
         dispatch(TOGGLE_CART({ payload: !openCart }));
     };
 
     const handleSignInClick = () => {
-        closeAllMenus();
+        closeAllPanel();
         dispatch(TOGGLE_SIGN({ payload: !openSign }));
     };
 
     const handleMenuClick = () => {
-        closeAllMenus();
+        closeAllPanel();
         dispatch(TOGGLE_MENU({ payload: !openMenu }));
     };
 
@@ -138,7 +139,7 @@ const NavBar = () => {
                             isLoggedIn && 
                         <div className='icon' onClick={handleCartClick}>
                             <ShoppingCartOutlinedIcon />
-                            <span>{products.length}</span>
+                            <span>{cart.length}</span>
                         </div>
                         }
                         <div className='icon icon-login' onClick={handleSignInClick}>

@@ -4,7 +4,7 @@ import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import LocalMallIcon from '@mui/icons-material/LocalMall';
 import { useParams } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { ADD_TO_CART, ADD_TO_WISH } from '../../redux/contextSlice';
+import { ADD_TO_CART, ADD_TO_WISH } from '../../redux/bagSlice';
 import useFetch from '../../hooks/useFetch';
 import useLoggedIn from '../../hooks/useLoggedIn';
 import './Product.scss';
@@ -142,7 +142,7 @@ const Product = () => {
                 <div className='info'>
                     <span>Vendor: SVANE</span>
                     <span>Product Type: Fashion</span>
-                    <span className='tag'>Tag: {data?.type.map((item) => <span>{item} </span>)}</span>
+                    <span className='tag'>Tag: {data?.type.map((item) => <span key={item}>{item} </span>)}</span>
                 <hr />
                     <span>DESCRIPTION</span>
                     <hr />

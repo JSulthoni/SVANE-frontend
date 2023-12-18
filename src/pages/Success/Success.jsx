@@ -2,7 +2,6 @@ import React, { useEffect } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import './Success.scss';
 import { useDispatch } from 'react-redux';
-import { RESET_CART } from '../../redux/contextSlice';
 import { TOGGLE_CART, TOGGLE_WISHLIST } from '../../redux/navigationSlice';
 
 const Success = () => {
