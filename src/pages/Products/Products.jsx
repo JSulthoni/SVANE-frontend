@@ -16,7 +16,7 @@ const Products = () => {
     const [subCats, setSubCats] = useState([]);
 
     // Fetching data from api
-    const { data, loading, error } = useFetch(`/api/category?title=${category || ''}`); // Getting the catefories based on category
+    const { data, loading, error } = useFetch(`/category?title=${category || ''}`); // Getting the catefories based on category
     const [ subcategory ] = data;
 
     
@@ -47,7 +47,7 @@ const Products = () => {
             <div className='left'>
                 <div className='products-filter'>
                     <h3>Product Categories</h3>
-                    {filteredSubcategory.map((item) => {
+                    {filteredSubcategory?.map((item) => {
                         return (
                     <div className='products-input' key={item._id}>
                         <input className='checkbox' type='checkbox' id={item._id} value={item.title} onChange={handleCheckbox}/>

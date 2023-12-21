@@ -7,7 +7,7 @@ import './FeaturedProducts.scss'
 
 const FeaturedProducts = ({ type }) => {
     const navigate = useNavigate()
-    const {data, loading, error} = useFetch(`/api/products?type=${type}&limit=7`);
+    const {data, loading, error} = useFetch(`/products?type=${type}&limit=7`);
 
     // This function routes user to trending/featured in search page
     const handleCategory = (type) => {

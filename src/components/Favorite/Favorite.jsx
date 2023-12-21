@@ -11,18 +11,18 @@ import './Favorite.scss';
 const Favorite = ({wishRef, open}) => {
     const isLoggedIn = useLoggedIn();
     const { wishlist } = useSelector((state) => state.bag);
+
     const dispatch = useDispatch();
 
     // Function to handle the payment from wishlist
-    const URL = import.meta.env.VITE_BACKEND_URL
-    const handlePayment = async (item) => {
-        console.log(item);
+    const BACKEND_URL = import.meta.env.VITE_BACKEND_URL
+    const handlePayment = async (product) => {
+        if (!isLoggedIn) {
+            dispatch(TOGGLE_SIGN({payload: true}));
+            return;
+        }
         try {
-            if (!isLoggedIn) {
-                dispatch(TOGGLE_SIGN({payload: true}));
-                return;
-            }
-            const req = await fetch(`${URL}/api/stripe/create`, {
+            const req = await fetch(`${BACKEND_URL}/stripe/create`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -30,12 +30,11 @@ const Favorite = ({wishRef, open}) => {
                 body: JSON.stringify({
                     products : [
                         {
-                            id : item.id,
-                            title : item.title,
-                            desc : item.desc,
-                            price : item.price,
-                            image : item.image,
-                            quantity : item.quantity
+                            _id : product._id,
+                            title : product.title,
+                            price : product.price,
+                            image : product.image1,
+                            quantity : 1
                         }    
                     ]   
                 })
@@ -54,37 +53,40 @@ const Favorite = ({wishRef, open}) => {
             <h3>{wishlist.length ? 'Products in your wishlist' : 'Your wishlist is empty'}</h3>
             {!wishlist.length ? '' : 
             <div className='wish-list'>
-            {wishlist?.map((item) => (
-                <div className='item' key={item.id}>
-                    <img src={`${item.image}?auto=compress&cs=tinysrgb&w=360&dpr=1`} alt=''/>
-                    <div className='details'>
-                        <h4>{item.title}</h4>
-                        <p>{item.desc.substring(0,100) + '...'}</p>
-                    </div>
-                    <button className='add' onClick={() => handlePayment(item)}>
-                    <LocalMallIcon className='add' />
+            {wishlist?.map((wish) => {
+                const { product } = wish;
+                return (
+                    <div className='item' key={product._id}>
+                        <img src={`${product.image1}?auto=compress&cs=tinysrgb&w=360&dpr=1`} alt=''/>
+                        <div className='details'>
+                            <h4>{product.title}</h4>
+                            <p>{product.description.substring(0,100) + '...'}</p>
+                        </div>
+                        <button className='add' onClick={() => handlePayment(product)}>
+                        <LocalMallIcon className='add' />
+                        </button>
+                        <button className='add' onClick={() => {
+                            if (!isLoggedIn) {
+                                dispatch(TOGGLE_SIGN({payload: true}));
+                                return;
+                            };
+                            dispatch(ADD_TO_CART({
+                                _id : product?._id,
+                                title : product?.title,
+                                desc : product?.desc,
+                                price : product?.price,
+                                image : product?.image1,
+                                quantity : 1
+                            }));
+                        }}>
+                        <AddShoppingCartIcon className='add'/>
                     </button>
-                    <button className='add' onClick={() => {
-                        if (!isLoggedIn) {
-                            dispatch(TOGGLE_SIGN({payload: true}));
-                            return;
-                        };
-                        dispatch(ADD_TO_CART({
-                            id : item?.id,
-                            title : item?.title,
-                            desc : item?.desc,
-                            price : item?.price,
-                            image : item?.image,
-                            quantity : item?.quantity
-                        }));
-                    }}>
-                    <AddShoppingCartIcon className='add'/>
-                </button>
-                    <DeleteOutlinedIcon className='delete' onClick={() => dispatch(REMOVE_WISH(item.id))}/>
-                </div>
-            ))}
+                        <DeleteOutlinedIcon className='delete' onClick={() => dispatch(REMOVE_WISH(product._id))}/>
+                    </div>
+                )
+            })}
             </div>}
-            <span className='reset' onClick={() => dispatch(RESET_WISH())}>Empty List</span>
+            { Boolean(wishlist.length) && <span className='reset' onClick={() => dispatch(RESET_WISH())}>Empty List</span> }
         </div>
     )
 };

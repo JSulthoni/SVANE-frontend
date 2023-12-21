@@ -2,8 +2,7 @@ import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { SIGNOUT } from '../../redux/authenticationSlice';
 import { TOGGLE_CART, TOGGLE_SIGN, TOGGLE_WISHLIST } from '../../redux/navigationSlice';
-import { CREATE_USER, SIGN_USER } from '../../utils/makeAuthThunk';
-import { CREATE_BAG } from '../../utils/makeBagThunk';
+import { CREATE_USER, SIGNOUT_USER, SIGN_USER } from '../../utils/makeAuthThunk';
 import useLoggedIn from '../../hooks/useLoggedIn';
 import './SignIn.scss'
 
@@ -33,16 +32,26 @@ const SignIn = ({open}) => {
     // Sign in function
     const handleSignin = async (event) => {
         event.preventDefault();
-        dispatch(SIGN_USER(credentials)); // Request is handled by using thunk at makeThunk.js
+        try {
+            dispatch(SIGN_USER(credentials)); // Request is handled by using thunk at makeAuthThunk.js
+        } catch (error) {
+            dispatch(SIGNOUT());
+            throw new Error(error.message);
+        }
     };
 
     // Create user function
     const handleCreate = async (event) => {
         event.preventDefault();
         try {
-            dispatch(CREATE_USER(credentials)); // Request is handled by using thunk at makeThunk.js
-            dispatch(CREATE_BAG(credentials));
+            const wishlistPayload = await Promise.all(wishlist.map((wish) => wish.product._id)) || [];
+            dispatch(CREATE_USER({
+                email: credentials.email,
+                password: credentials.password,
+                wishlist: wishlistPayload
+            })); // Request is handled by using thunk at makeAuthThunk.js
         } catch (error) {
+            dispatch(SIGNOUT());
             throw new Error(error.message);
         }
     };
@@ -80,7 +89,7 @@ const SignIn = ({open}) => {
                     </div>
                 </div>
                 <button
-                    onClick={() => dispatch(SIGNOUT())}
+                    onClick={() => dispatch(SIGNOUT_USER())}
                 >SIGN OUT</button>
             </div>
         : 

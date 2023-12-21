@@ -25,7 +25,7 @@ import Searchbar from '../Searchbar/Searchbar';
 import SignIn from '../SignIn/SignIn';
 import useLoggedIn from '../../hooks/useLoggedIn';
 import './NavBar.scss';
-import { GET_BAG } from '../../utils/makeBagThunk';
+import { GET_BAG, UPDATE_BAG } from '../../utils/makeBagThunk';
 
 const NavBar = () => {
     const isLoggedIn = useLoggedIn();
@@ -41,6 +41,8 @@ const NavBar = () => {
     const openMenu = useSelector(((state) => state.navigation.menu));
     const dispatch = useDispatch();
 
+
+    // useClickOutside is a function to close respective panel when user double click outside of it/s
     useClickOutside(wishRef, () => {
         if (openWishlist) {
             dispatch(TOGGLE_WISHLIST({payload : !openWishlist}))
@@ -92,6 +94,16 @@ const NavBar = () => {
         closeAllPanel();
         dispatch(TOGGLE_MENU({ payload: !openMenu }));
     };
+
+    useEffect(() => {
+        console.log('UPDATE BAG USEEFFECT CALLED')
+        const cartPayload = new Promise.all(cart.map((item) => ({_id: item.product._id, quantity: item.quantity}))) || [];
+        const wishlistPayload = new Promise.all(wishlist.map((item) => item.product._id)) || [];
+        dispatch(UPDATE_BAG({
+            cart: cartPayload, 
+            wishlist : wishlistPayload
+        }));
+    }, [cart, wishlist]) // CHECKPOINT
 
     return (
         <div className='navbar'>

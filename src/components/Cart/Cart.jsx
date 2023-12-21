@@ -29,12 +29,12 @@ const Cart = ({cartRef, open}) => {
     const URL = import.meta.env.VITE_BACKEND_URL
     const handlePayment = async () => {
         try {
-            const req = await fetch(`${URL}/api/stripe/create`, {
+            const req = await fetch(`${URL}/stripe/create`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify({products})
+                body: JSON.stringify({ cart })
             })
             const res =  await req.json();
             if (res.url) {
@@ -52,21 +52,24 @@ const Cart = ({cartRef, open}) => {
             {!cart.length ? '' : 
             <div>
                 <div className='cart-list'>
-                    {cart.map((item) => (
-                        <div className='cart-item' key={item.id}>
-                            <img src={`${item.image}?auto=compress&cs=tinysrgb&w=360&dpr=1`} alt=''/>
-                            <div className='cart-details'>
-                                <h4>{item.title}</h4>
-                                <p>{item.desc.substring(0,80) + '...'}</p>
-                                <div className='cart-quantity'>
-                                <span>{item.quantity} x ${item.price}</span>
-                                    <button aria-label='decrement product' onClick={() => dispatch(DECREMENT_ITEM_IN_CART(item.id))}>-</button>
-                                    <button aria-label='increment product' onClick={() => dispatch(INCREMENT_ITEM_IN_CART(item.id))}>+</button>
+                    {cart.map((item) => {
+                        const { product, quantity } = item;
+                        return (
+                            <div className='cart-item' key={product._id}>
+                                <img src={`${product.image}?auto=compress&cs=tinysrgb&w=360&dpr=1`} alt=''/>
+                                <div className='cart-details'>
+                                    <h4>{product.title}</h4>
+                                    <p>{product.description.substring(0,80) + '...'}</p>
+                                    <div className='cart-quantity'>
+                                    <span>{quantity} x ${product.price}</span>
+                                        <button aria-label='decrement product' onClick={() => dispatch(DECREMENT_ITEM_IN_CART(product._id))}>-</button>
+                                        <button aria-label='increment product' onClick={() => dispatch(INCREMENT_ITEM_IN_CART(product._id))}>+</button>
+                                    </div>
                                 </div>
+                                <DeleteOutlinedIcon className='cart-delete' onClick={() => dispatch(REMOVE_ITEM(product._id))}/>
                             </div>
-                            <DeleteOutlinedIcon className='cart-delete' onClick={() => dispatch(REMOVE_ITEM(item.id))}/>
-                        </div>
-                    ))}
+                        )
+                    })}
                 </div>
             <div className='cart-total'>
                 <span>SUBTOTAL</span>

@@ -21,7 +21,7 @@ const FallbackDisplay = ({search, maxPrice, sort}) => {
     }, [search]);
 
     // Fetch the data
-    const { data } = useFetch(`/api/products?search=${type}&sort=${sort}&price=${maxPrice}`);
+    const { data } = useFetch(`/products?search=${type}&sort=${sort}&price=${maxPrice}`);
 
     return (
         <>

@@ -11,7 +11,7 @@ const useFetch = (url) => {
         const fetchData = async () => {
             try {
                 const res = await makeRequest.get(url, {
-                    headers: {Authorization: 'Bearer ' + import.meta.env.VITE_MONGO_API_KEY}
+                    headers: { Authorization: 'Bearer ' + import.meta.env.VITE_MONGO_API_KEY }
                 })
                 setData(res.data)            
             } catch(error) {
@@ -19,7 +19,7 @@ const useFetch = (url) => {
             }
             setLoading(false)
         }
-        fetchData()
+        fetchData();
     }, [url])
     return {data, loading, error}
 };

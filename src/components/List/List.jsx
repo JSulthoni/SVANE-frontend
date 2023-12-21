@@ -9,11 +9,11 @@ const List = ({category, maxPrice, sort, search, subCats}) => {
     // Construct the API endpoint based on the presence of category and subCats or search
     let endpoint;
         if (category && subCats) {
-            endpoint = `/api/products?category=${category}&subcategory=${subCats}&sort=${sort}&price=${maxPrice}`;
+            endpoint = `/products?category=${category}&subcategory=${subCats}&sort=${sort}&price=${maxPrice}`;
         } else if (search) {
-            endpoint = `/api/products?search=${search}&sort=${sort}&price=${maxPrice}`;
+            endpoint = `/products?search=${search}&sort=${sort}&price=${maxPrice}`;
         } else {
-            endpoint = '/api/products'
+            endpoint = '/products'
         }
 
     const { data, loading, error } = useFetch(endpoint);

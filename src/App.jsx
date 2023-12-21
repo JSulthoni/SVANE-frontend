@@ -12,11 +12,11 @@ import NavBar from "./components/NavBar/NavBar";
 import Footer from "./components/Footer/Footer";
 import { useDispatch, useSelector } from "react-redux";
 import { SIGNIN_SUCCESS, SIGNOUT } from "./redux/authenticationSlice";
+import { GET_BAG } from "./utils/makeBagThunk";
 import './styles/global.scss';
 import Search from "./pages/Search/Search";
 import NotFound from "./pages/NotFound/NotFound";
 import About from "./pages/About/About";
-import { GET_BAG } from "./utils/makeBagThunk";
 
 if (import.meta.env.NODE_ENV === 'production') {
 console.log('Welcome to SVANE')
@@ -25,8 +25,8 @@ console.log('Welcome to SVANE')
 
 // Page layout
 const Layout = () => {
-const mode = useSelector((state) => state.navigation.nightmode);
-const user = JSON.parse(localStorage.getItem('user'));
+const nightmode = useSelector((state) => state.navigation.nightmode);
+const { user } = useSelector((state) => state.authentication)
 const dispatch = useDispatch();
 
 useEffect(() => {
@@ -34,12 +34,12 @@ useEffect(() => {
 		dispatch(SIGNIN_SUCCESS(user));
     dispatch(GET_BAG());
 	} else {
-		dispatch(SIGNOUT())
+		dispatch(SIGNOUT());
 	}
 }, [user, dispatch]);
 
 return (
-	<div className={`app ${mode ? 'night' : ''}`}>
+	<div className={`app ${nightmode ? 'night' : ''}`}>
 		<NavBar />
 		<Outlet />
 		<Footer />

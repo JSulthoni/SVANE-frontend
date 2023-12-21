@@ -12,7 +12,7 @@ const Searchbar = ({searchRef, open}) => {
     const navigate = useNavigate();
 
     // Fetching data based on search argument
-    const { data, loading } = useFetch(`/api/products?search=${searchQuery}`);
+    const { data, loading } = useFetch(`/products?search=${searchQuery}`);
     const dispatch = useDispatch();
 
     const handleItem = () => {

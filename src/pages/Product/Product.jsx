@@ -20,30 +20,33 @@ const Product = () => {
     const openNotif = Boolean(notif);
 
     // Fetching single product data
-    const { data, loading } = useFetch(`/api/products/get/${id}?populate=*`);
+    const { data, loading } = useFetch(`/products/get/${id}?populate=*`);
     
     // Button control switch
     const buttonControl = (type) => {
         switch (type) {
             case 'ADDED TO CART':
                 dispatch(ADD_TO_CART({
-                    id : data?._id,
-                    title : data?.title,
-                    desc : data?.description,
-                    price : data?.price,
-                    image : data?.image1,
+                    product : {
+                        _id : data?._id,
+                        title : data?.title,
+                        description : data?.description,
+                        price : data?.price,
+                        image1 : data?.image1,
+                    },
                     quantity
                     }))
                 notification(type);
                 break;
             case 'ADDED TO WISHLIST':
                 dispatch(ADD_TO_WISH({
-                    id : data?._id,
-                    title : data?.title,
-                    desc : data?.description,
-                    price : data?.price,
-                    image : data?.image1,
-                    quantity : parseInt(1)
+                    product: {
+                        _id : data?._id,
+                        title : data?.title,
+                        description : data?.description,
+                        price : data?.price,
+                        image1 : data?.image1,
+                    }
                     }))
                 notification(type);
                 break;
@@ -77,7 +80,7 @@ const Product = () => {
                 dispatch(TOGGLE_SIGN({payload: true}));
                 return;
             }
-            const req = await fetch(`${URL}/api/stripe/create`, {
+            const req = await fetch(`${URL}/stripe/create`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -85,9 +88,9 @@ const Product = () => {
                 body: JSON.stringify({
                     products : [
                         {
-                            id : data?._id,
+                            _id : data?._id,
                             title : data?.title,
-                            desc : data?.description,
+                            description : data?.description,
                             price : data?.price,
                             image : data?.image1,
                             quantity
@@ -114,11 +117,11 @@ const Product = () => {
             <>
             <div className='left'>
                 <div className='images'>
-                    <img src={`${data?.image1}?auto=compress&cs=tinysrgb&w=1600&dpr=1` || 'https://placehold.co/400'} alt='' onClick={() => setMainImg('image1')}/>
-                    <img src={`${data?.image2}?auto=compress&cs=tinysrgb&w=1600&dpr=1` || 'https://placehold.co/400'} alt='' onClick={() => setMainImg('image2')}/>
+                    <img src={`${data?.image1}?auto=compress&cs=tinysrgb&w=640&dpr=1` || 'https://placehold.co/400'} alt='' onClick={() => setMainImg('image1')}/>
+                    <img src={`${data?.image2}?auto=compress&cs=tinysrgb&w=640&dpr=1` || 'https://placehold.co/400'} alt='' onClick={() => setMainImg('image2')}/>
                 </div>
                 <div className='mainImage'>
-                    <img src={data?.[mainImg] || 'https://placehold.co/400'} alt=''/>
+                    <img src={data?.[mainImg] + '?auto=compress&cs=tinysrgb&w=1600&dpr=1' || 'https://placehold.co/400'} alt=''/>
                 </div>
             </div>
             <div className='right'>

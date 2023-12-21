@@ -10,7 +10,7 @@ export const bagSlice = createSlice({
     initialState,
     reducers: {
         ADD_TO_CART: (state, action) => {
-            const item = state.cart.find((item) => item.id === action.payload.id)
+            const item = state.cart.find((item) => item.product._id === action.payload.product._id)
             
             if (item) {
                 item.quantity += action.payload.quantity
@@ -19,42 +19,39 @@ export const bagSlice = createSlice({
             }
         },
         REMOVE_ITEM: (state, action) => {
-            state.cart = state.cart.filter((item) => item.id !== action.payload)
+            state.cart = state.cart.filter((item) => item.product._id !== action.payload)
         },
         RESET_CART: (state) => {
             state.cart = []
         },
         INCREMENT_ITEM_IN_CART: (state, action) => {
-            const item = state.cart.find((item) => item.id === action.payload)
+            const item = state.cart.find((item) => item.product._id === action.payload)
             if (item) {
                 item.quantity += 1
             }
         },
         DECREMENT_ITEM_IN_CART: (state, action) => {
-            const item = state.cart.find((item) => item.id === action.payload)
+            const item = state.cart.find((item) => item.product._id === action.payload)
             if (item) {
                 item.quantity -= 1
             }
         },
         ADD_TO_WISH: (state, action) => {
-            const item = state.wishlist.find((item) => item.id === action.payload.id)      
-            if (item) {
-                item.quantity += action.payload.quantity
-            } else {
+            const item = state.wishlist.find((item) => item.product._id === action.payload.product._id)      
+            if (!item) {
                 state.wishlist = [...state.wishlist, action.payload]
             }
         },
         REMOVE_WISH: (state, action) => {
-            state.wishlist = state.wishlist.filter((item) => item.id !== action.payload)
+            state.wishlist = state.wishlist.filter((item) => item.product._id !== action.payload)
         },
         RESET_WISH: (state) => {
             state.wishlist = []
         },
         SET_BAG: (state, action) => {
             const { cart, wishlist } = action.payload
-            console.log(cart, wishlist);
-            state.cart = [...cart]
-            state.wishlist = [...wishlist]
+            state.cart = [ ...cart ]
+            state.wishlist = [ ...wishlist ]
         },
     }
 });

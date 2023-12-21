@@ -10,7 +10,7 @@ const Contacts = () => {
         <div className='contacts' id='contacts'>
             <div className='wrapper'>
                 <span>FALL IN LOVE WITH <b>SVANE</b></span>
-                <form action='javascript:void(0)' className='mail'>
+                <form className='mail'>
                     <input type='email' placeholder='example@email.com' />
                     <button>SUBSCRIBE</button>
                 </form>

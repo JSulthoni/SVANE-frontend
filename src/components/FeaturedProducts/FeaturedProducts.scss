@@ -31,6 +31,10 @@
             text-transform: capitalize;
             cursor: pointer;
             
+            @include xl {
+                flex: 2;
+            }
+
             @include xs {
                 display: none;
             }
@@ -48,6 +52,10 @@
             flex: 4;
             color: var(--slate600);
             font-size: var(--f16px);
+
+            @include xl {
+                flex: 5;
+            }
 
             @include xs {
                 display: none;
