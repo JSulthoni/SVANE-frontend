@@ -1,16 +1,15 @@
-import axios from "axios";
 import { SIGNIN_FAILURE, SIGNIN_START, SIGNIN_SUCCESS, SIGNOUT } from "../redux/authenticationSlice";
 import { TOGGLE_SIGN } from "../redux/navigationSlice";
-import { makeAuth } from "./makeRequest";
+import { makeAuth } from "./makeAPI";
 import { GET_BAG } from "./makeBagThunk";
 import { RESET_CART, RESET_WISH } from "../redux/bagSlice";
 
 // Sign in function
-export const SIGN_USER = (credentials) => {
+export const SIGN_USER = ({ email, password }) => {
     return async (dispatch) => {
         dispatch(SIGNIN_START());
         try {
-            const res = await makeAuth.post('/user/signin', { ...credentials });
+            const res = await makeAuth.post('/user/signin', { email, password });
             dispatch(SIGNIN_SUCCESS(res.data)); // Initialize user session 
 
             // Getting user's bag after request is success
@@ -26,10 +25,10 @@ export const SIGN_USER = (credentials) => {
 
 // Create user function
 // This function will also initialize users cart and wishlist
-export const CREATE_USER = (body) => {
+export const CREATE_USER = ({ email, password, wishlist }) => {
     return async (dispatch) => {
         try {
-            const res = await makeAuth.post('/user/register', { ...body });
+            const res = await makeAuth.post('/user/register', {  email, password, wishlist  });
             dispatch(SIGNIN_START());
             dispatch(SIGNIN_SUCCESS(res.data));
             dispatch(GET_BAG());

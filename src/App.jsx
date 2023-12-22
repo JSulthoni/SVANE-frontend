@@ -1,8 +1,8 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import {
   createBrowserRouter,
   RouterProvider,
-  Outlet
+  Outlet,
 } from "react-router-dom";
 import Home from "./pages/Home/Home";
 import Products from "./pages/Products/Products";
@@ -12,7 +12,7 @@ import NavBar from "./components/NavBar/NavBar";
 import Footer from "./components/Footer/Footer";
 import { useDispatch, useSelector } from "react-redux";
 import { SIGNIN_SUCCESS, SIGNOUT } from "./redux/authenticationSlice";
-import { GET_BAG } from "./utils/makeBagThunk";
+import { GET_BAG, UPDATE_BAG } from "./utils/makeBagThunk";
 import './styles/global.scss';
 import Search from "./pages/Search/Search";
 import NotFound from "./pages/NotFound/NotFound";
@@ -26,7 +26,7 @@ console.log('Welcome to SVANE')
 // Page layout
 const Layout = () => {
 const nightmode = useSelector((state) => state.navigation.nightmode);
-const { user } = useSelector((state) => state.authentication)
+const { user } = useSelector((state) => state.authentication);
 const dispatch = useDispatch();
 
 useEffect(() => {
@@ -36,6 +36,7 @@ useEffect(() => {
 	} else {
 		dispatch(SIGNOUT());
 	}
+
 }, [user, dispatch]);
 
 return (

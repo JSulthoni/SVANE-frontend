@@ -21,13 +21,15 @@ const Success = () => {
     },[]);
 
     return (
-        <div className='success'>
-            <h2>SUCCESS</h2>
-            <p>Your order with ID:</p>
-            <h4>{session_id}</h4>
-            <p>is being prepared.</p>
-            <p>We are grateful for you choosing <span>SVANE</span></p>
-        </div>
+        <section className='success'>
+            <div className='success-wrapper flex-center'>
+                <h2>SUCCESS</h2>
+                <p>Your order with ID:</p>
+                <h4>{session_id}</h4>
+                <p>is being prepared.</p>
+                <p>We are grateful for you choosing <span>SVANE</span></p>
+            </div>
+        </section>
     )
 };
 

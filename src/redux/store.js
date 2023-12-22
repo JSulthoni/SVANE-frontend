@@ -1,7 +1,8 @@
-import bagReducer from "./bagSlice";
-import navigationReducer from "./navigationSlice";
-import authenticationReducer from "./authenticationSlice";
-import { combineReducers, configureStore } from "@reduxjs/toolkit";
+import bagSlice from './bagSlice';
+import navigationSlice from './navigationSlice';
+import authenticationSlice from './authenticationSlice';
+import notificationSlice from './notificationSlice';
+import { combineReducers, configureStore } from '@reduxjs/toolkit';
 import {
     persistStore,
     persistReducer,
@@ -11,36 +12,46 @@ import {
     PERSIST,
     PURGE,
     REGISTER,
-} from "redux-persist";
-import storage from "redux-persist/lib/storage";
+} from 'redux-persist';
+import storage from 'redux-persist/lib/storage';
 
 const bagConfig = {
-    key: "bag",
+    key: 'bag',
     version: 1,
     storage,
 };
 
 const navigationConfig = {
-    key: "navigation",
+    key: 'navigation',
     version: 1,
     storage,
 };
 
 const authConfig = {
-    key: "authentication",
+    key: 'authentication',
     version: 1,
     storage,
+    blacklist: ['authentication'],
 }
 
-const bReducer = persistReducer(bagConfig, bagReducer);
-const navReducer = persistReducer(navigationConfig, navigationReducer);
-const authReducer = persistReducer(authConfig, authenticationReducer)
+const notifConfig = {
+    key: 'notification',
+    version: 1,
+    storage,
+    blacklist: ['notification'],
+}
+
+const bagReducer = persistReducer(bagConfig, bagSlice);
+const navigationReducer = persistReducer(navigationConfig, navigationSlice);
+const authenticationReducer = persistReducer(authConfig, authenticationSlice);
+const notificationReducer = persistReducer(notifConfig, notificationSlice);
 
 // Combining 3 reducers with combineReducers()
 const allReducer = combineReducers({
-    bag : bReducer, 
-    navigation : navReducer,
-    authentication : authReducer
+    bag : bagReducer, 
+    navigation : navigationReducer,
+    authentication : authenticationReducer,
+    notification : notificationReducer 
 })
 
 export const store = configureStore({

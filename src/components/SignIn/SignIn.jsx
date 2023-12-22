@@ -30,30 +30,21 @@ const SignIn = ({open}) => {
     }
 
     // Sign in function
-    const handleSignin = async (event) => {
+    const handleSignin = (event) => {
         event.preventDefault();
-        try {
-            dispatch(SIGN_USER(credentials)); // Request is handled by using thunk at makeAuthThunk.js
-        } catch (error) {
-            dispatch(SIGNOUT());
-            throw new Error(error.message);
-        }
+        dispatch(SIGN_USER(credentials)); // Request is handled by using thunk at makeAuthThunk.js
     };
 
     // Create user function
-    const handleCreate = async (event) => {
+    const handleCreate = (event) => {
         event.preventDefault();
-        try {
-            const wishlistPayload = await Promise.all(wishlist.map((wish) => wish.product._id)) || [];
-            dispatch(CREATE_USER({
-                email: credentials.email,
-                password: credentials.password,
-                wishlist: wishlistPayload
-            })); // Request is handled by using thunk at makeAuthThunk.js
-        } catch (error) {
-            dispatch(SIGNOUT());
-            throw new Error(error.message);
-        }
+        const wishlistPayload = Promise.all(wishlist.map((item) => ({_id: item.product._id}))) || [];
+        dispatch(CREATE_USER({
+            email: credentials.email,
+            password: credentials.password,
+            wishlist: wishlistPayload
+        })); // Request is handled by using thunk at makeAuthThunk.js
+
     };
 
     // Click handler

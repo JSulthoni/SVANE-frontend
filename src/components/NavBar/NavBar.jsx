@@ -26,6 +26,7 @@ import SignIn from '../SignIn/SignIn';
 import useLoggedIn from '../../hooks/useLoggedIn';
 import './NavBar.scss';
 import { GET_BAG, UPDATE_BAG } from '../../utils/makeBagThunk';
+import { RESET_NOTIFICATION } from '../../redux/notificationSlice';
 
 const NavBar = () => {
     const isLoggedIn = useLoggedIn();
@@ -41,69 +42,69 @@ const NavBar = () => {
     const openMenu = useSelector(((state) => state.navigation.menu));
     const dispatch = useDispatch();
 
+    // Setting the notification
+    const { message } = useSelector((state) => state.notification);
+    const openNotif = Boolean(message);
+    useEffect(() => {
+        setTimeout(() => {
+            dispatch(RESET_NOTIFICATION());
+        }, 3000);
+    }, [openNotif])
+
+
 
     // useClickOutside is a function to close respective panel when user double click outside of it/s
     useClickOutside(wishRef, () => {
         if (openWishlist) {
-            dispatch(TOGGLE_WISHLIST({payload : !openWishlist}))
+            dispatch(TOGGLE_WISHLIST(!openWishlist))
         }
     });
 
     useClickOutside(searchRef, () => {
         if (openSearch) {
-            dispatch(TOGGLE_SEARCH({payload : !openSearch}))
+            dispatch(TOGGLE_SEARCH(!openSearch))
         }
     });
 
     useClickOutside(cartRef, () => {
         if (openCart) {
-            dispatch(TOGGLE_CART({payload : !openCart}))
+            dispatch(TOGGLE_CART(!openCart))
         }
     });
 
     // Collective function to close all panel
     const closeAllPanel = () => {
-        dispatch(TOGGLE_WISHLIST({ payload: false }));
-        dispatch(TOGGLE_CART({ payload: false }));
-        dispatch(TOGGLE_SIGN({ payload: false }));
-        dispatch(TOGGLE_SEARCH({ payload: false }));
-        dispatch(TOGGLE_MENU({ payload: false }));
+        dispatch(TOGGLE_WISHLIST(false));
+        dispatch(TOGGLE_CART(false));
+        dispatch(TOGGLE_SIGN(false));
+        dispatch(TOGGLE_SEARCH(false));
+        dispatch(TOGGLE_MENU(false));
     };
 
     const handleSearchClick = () => {
         closeAllPanel();
-        dispatch(TOGGLE_SEARCH({ payload: !openSearch }));
+        dispatch(TOGGLE_SEARCH(!openSearch));
     };
 
     const handleWishlistClick = () => {
         closeAllPanel();
-        dispatch(TOGGLE_WISHLIST({ payload: !openWishlist }));
+        dispatch(TOGGLE_WISHLIST(!openWishlist));
     };
 
     const handleCartClick = () => {
         closeAllPanel();
-        dispatch(TOGGLE_CART({ payload: !openCart }));
+        dispatch(TOGGLE_CART(!openCart));
     };
 
     const handleSignInClick = () => {
         closeAllPanel();
-        dispatch(TOGGLE_SIGN({ payload: !openSign }));
+        dispatch(TOGGLE_SIGN(!openSign));
     };
 
     const handleMenuClick = () => {
         closeAllPanel();
-        dispatch(TOGGLE_MENU({ payload: !openMenu }));
+        dispatch(TOGGLE_MENU(!openMenu));
     };
-
-    useEffect(() => {
-        console.log('UPDATE BAG USEEFFECT CALLED')
-        const cartPayload = new Promise.all(cart.map((item) => ({_id: item.product._id, quantity: item.quantity}))) || [];
-        const wishlistPayload = new Promise.all(wishlist.map((item) => item.product._id)) || [];
-        dispatch(UPDATE_BAG({
-            cart: cartPayload, 
-            wishlist : wishlistPayload
-        }));
-    }, [cart, wishlist]) // CHECKPOINT
 
     return (
         <div className='navbar'>
@@ -166,11 +167,18 @@ const NavBar = () => {
                     </div>
                 </div>
             </div>
+
+            {/* Navigation Panels */}
                 <Searchbar open={openSearch} searchRef={searchRef}/>
                 <Favorite wishRef={wishRef} open={openWishlist}/>
                 <Cart cartRef={cartRef} open={openCart}/>
                 <Menu open={openMenu} handleMenu={handleMenuClick}/>
                 <SignIn open={openSign}/>
+
+            {/* Notification Snack Bar */}
+            <div className={`notification ${openNotif ? 'active' : 'inactive'}`}>
+                <p>{ message }</p>
+            </div>
         </div>
     )
 };
