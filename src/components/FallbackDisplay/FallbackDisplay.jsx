@@ -1,8 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import Card from '../Card/Card';
 import useFetch from '../../hooks/useFetch';
 import './FallbackDisplay.scss'
 
+
+// Fallback display is used as placeholder for Discover page if search query returns empty array
 const FallbackDisplay = ({search, maxPrice, sort}) => {
     const title = ['hoodie', 'shirt', 'fedora'];
     const index = Math.floor(Math.random() * title.length);

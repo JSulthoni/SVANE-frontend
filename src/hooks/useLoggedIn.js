@@ -1,13 +1,12 @@
 import { useSelector } from "react-redux"
 
+// This custom hook is used to return true if there are logged user in session
 const useLoggedIn = () => {
-    const { user, loading, error } = useSelector((state) => state.authentication)
-
+    const { user } = useSelector((state) => state.authentication)
     if (user) {
         return true
-    } else if (error) {
-        return false
-    }
+    } 
+    return false
 };
 
 export default useLoggedIn;

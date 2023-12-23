@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import { useEffect, useMemo, useRef } from 'react';
 import { Link } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux';
 import { HashLink } from 'react-router-hash-link';
@@ -27,6 +27,7 @@ import useLoggedIn from '../../hooks/useLoggedIn';
 import './NavBar.scss';
 import { GET_BAG, UPDATE_BAG } from '../../utils/makeBagThunk';
 import { RESET_NOTIFICATION } from '../../redux/notificationSlice';
+import usePanels from '../../hooks/usePanels';
 
 const NavBar = () => {
     const isLoggedIn = useLoggedIn();
@@ -34,13 +35,10 @@ const NavBar = () => {
     const wishRef = useRef(null);
     const cartRef = useRef(null);
     const { cart, wishlist } = useSelector(((state) => state.bag));
-    const openSearch = useSelector(((state) => state.navigation.search));
+    const { openCart, openWishlist, openSearch, openSign, openMenu } = usePanels();
     const nightmode = useSelector(((state) => state.navigation.nightmode));
-    const openWishlist = useSelector(((state) => state.navigation.wishlist));
-    const openSign =  useSelector(((state) => state.navigation.sign))
-    const openCart = useSelector(((state) => state.navigation.cart));
-    const openMenu = useSelector(((state) => state.navigation.menu));
     const dispatch = useDispatch();
+    
 
     // Setting the notification
     const { message } = useSelector((state) => state.notification);
@@ -49,8 +47,48 @@ const NavBar = () => {
         setTimeout(() => {
             dispatch(RESET_NOTIFICATION());
         }, 3000);
-    }, [openNotif])
+    }, [openNotif]);
 
+
+    // This condition is to get user's bag only and after user is signed in
+    // This is intended to run only once after user is signed in
+    useEffect(() => {
+        let mounted = true
+            if (mounted && isLoggedIn) {
+                console.log('GET BAG USEEFFECT CALLED');
+                dispatch(GET_BAG());
+            } 
+        () => {
+            mounted = false
+        }
+    }, [isLoggedIn]);
+
+
+    // This useEffect is to update user's bag only when cart or wishlist panel is closed and if value is changed
+    // Memoize cart and wishlist values
+    const memoizedCart = useMemo(() => cart, [cart]);
+    const memoizedWishlist = useMemo(() => wishlist, [wishlist]);
+    // (see condition variable)
+    useEffect(() => {
+        // Conditions to dispatch UPDATE_BAG. this is intended to lower request traffic and because wishlist and cart is a panel
+        const condition = 
+            isLoggedIn && 
+            memoizedCart !== undefined && 
+            memoizedWishlist !== undefined && 
+            !openCart && 
+            !openWishlist && 
+            (memoizedCart !== cart || memoizedWishlist !== wishlist)
+        let mounted = true
+        if (mounted && condition) {
+            console.log('UPDATE BAG USEEFFECT CALLED'); // CHECKPOINT
+            // dispatch(UPDATE_BAG({ cart: memoizedCart, wishlist: memoizedWishlist }));
+        }
+        () => {
+            mounted = false
+        }
+        // The dependency array includes openCart and openWishlist which is a Boolean condition
+        // of their respective panel
+    }, [memoizedCart, memoizedWishlist, openCart, openWishlist]);
 
 
     // useClickOutside is a function to close respective panel when user double click outside of it/s
@@ -138,7 +176,7 @@ const NavBar = () => {
                         <HashLink smooth className='link' to='/about#top'>About</HashLink>
                     </div>
                     <div className='item'>
-                        <HashLink smooth className='link' to='/search#top'>Discover</HashLink>
+                        <HashLink smooth className='link' to='/discover#top'>Discover</HashLink>
                     </div>
                     <div className='icons'>
                         <div className='icon' onClick={handleSearchClick}>

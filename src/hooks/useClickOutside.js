@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 
+// This custom hook is used to handle double click or touch event
 const useClickOutside = (ref, handler) => {
     useEffect(() => {
         let lastClickTime = 0;

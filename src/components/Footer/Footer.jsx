@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { HashLink } from 'react-router-hash-link';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
@@ -90,7 +90,7 @@ const Footer = () => {
             </div>
             <div className='bottom'>
                     <span className='logo'>SVANE</span>
-                    <span className='copyright'> © 2023 Sulthoni Development. All Rights Reserved</span>
+                    <span className='copyright'>2023. © Sulthoni Development. All Rights Reserved</span>
             </div>
         </div>
     )

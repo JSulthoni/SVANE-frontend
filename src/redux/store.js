@@ -25,20 +25,21 @@ const navigationConfig = {
     key: 'navigation',
     version: 1,
     storage,
+    whitelist: ['nightmode']
 };
 
 const authConfig = {
     key: 'authentication',
     version: 1,
     storage,
-    blacklist: ['authentication'],
+    blacklist: []
 }
 
 const notifConfig = {
     key: 'notification',
     version: 1,
     storage,
-    blacklist: ['notification'],
+    blacklist: []
 }
 
 const bagReducer = persistReducer(bagConfig, bagSlice);

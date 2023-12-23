@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import ClearOutlinedIcon from '@mui/icons-material/ClearOutlined';
 import useFetch from '../../hooks/useFetch';
 import { Link, useNavigate } from 'react-router-dom';
@@ -30,7 +30,7 @@ const Searchbar = ({searchRef, open}) => {
         }
 
         const encodedSearch = encodeURI(searchQuery);
-        navigate(`/search?search=${encodedSearch}`, { replace: true });
+        navigate(`/discover?search=${encodedSearch}`, { replace: true });
         dispatch(TOGGLE_SEARCH({payload : false}))
         setSearchQuery('')
     };

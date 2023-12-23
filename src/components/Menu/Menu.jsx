@@ -1,4 +1,3 @@
-import React from 'react';
 import { HashLink } from 'react-router-hash-link';
 import { Link } from 'react-router-dom';
 import './Menu.scss';
@@ -20,7 +19,7 @@ const Menu = ({open, handleMenu}) => {
                     className='link' to='/#categories'>Categories</HashLink>
                 </li>
                 <li onClick={() => handleMenu()}>
-                    <HashLink smooth className='link' to='/search#top'>Discover</HashLink>
+                    <HashLink smooth className='link' to='/discover#top'>Discover</HashLink>
                 </li>
                 <li onClick={() => handleMenu()}>
                     <HashLink smooth className='link' to='/about#top'>About</HashLink>

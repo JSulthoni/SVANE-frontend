@@ -16,9 +16,10 @@ export const SIGN_USER = ({ email, password }) => {
             dispatch(GET_BAG());
 
             // Closing the sign in panel after succesful request
-            dispatch(TOGGLE_SIGN({payload: false})); 
+            dispatch(TOGGLE_SIGN(false));
         } catch (error) {
             dispatch(SIGNIN_FAILURE(error.message));
+            dispatch(SIGNOUT());
         }
     }
 };
@@ -31,12 +32,12 @@ export const CREATE_USER = ({ email, password, wishlist }) => {
             const res = await makeAuth.post('/user/register', {  email, password, wishlist  });
             dispatch(SIGNIN_START());
             dispatch(SIGNIN_SUCCESS(res.data));
-            dispatch(GET_BAG());
 
-            // Closing the sign in panel after succesful request
-            dispatch(TOGGLE_SIGN({payload: false}));
+            // Getting user's bag after request is success
+            dispatch(GET_BAG());
         } catch (error) {
             dispatch(SIGNIN_FAILURE(error.message));
+            dispatch(SIGNOUT());
         }
     }
 };

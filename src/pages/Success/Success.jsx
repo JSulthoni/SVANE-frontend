@@ -1,8 +1,9 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
-import './Success.scss';
 import { useDispatch } from 'react-redux';
 import { TOGGLE_CART, TOGGLE_WISHLIST } from '../../redux/navigationSlice';
+import { GET_BAG } from '../../utils/makeBagThunk';
+import './Success.scss';
 
 const Success = () => {
     const [ searchParams ] = useSearchParams();
@@ -17,6 +18,7 @@ const Success = () => {
         } else if (session_id) {
             dispatch(TOGGLE_WISHLIST({ payload: false }));
             dispatch(TOGGLE_CART({ payload: false }));
+            dispatch(GET_BAG());
         }
     },[]);
 

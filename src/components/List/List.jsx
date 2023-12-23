@@ -1,8 +1,8 @@
-import React from 'react';
 import Card from '../Card/Card';
 import useFetch from '../../hooks/useFetch';
 import './List.scss';
 import FallbackDisplay from '../FallbackDisplay/FallbackDisplay';
+import ErrorElement from '../ErrorElement/ErrorElement';
 
 const List = ({category, maxPrice, sort, search, subCats}) => {
     
@@ -20,26 +20,19 @@ const List = ({category, maxPrice, sort, search, subCats}) => {
     const isData = Boolean(data.length);
     
     return (
-        <div className={isData ? 'list' : ''}>
-            { 
-            error ? 
-                <div className='top'>
-                    Error loading results. 
-                    <span onClick={() => window.location.reload()}>
-                        Refresh
-                    </span>
-                    &nbsp;the page or try again later.
-                </div> 
-            : 
-            loading ? 
+        <div className='list'>
+            { loading ? 
                 <div className='top'>
                     <p>Loading products</p>
                 </div> 
-            : 
-            isData ? 
+            : error ? 
+                <div className='top'>
+                    <ErrorElement maxHeight={50} />
+                </div> 
+            : isData ? 
                 data.map((item) => (<Card item={item} key={item._id} />)) 
             :
-            <FallbackDisplay search={search} maxPrice={maxPrice} sort={sort}/>
+                <FallbackDisplay search={search} maxPrice={maxPrice} sort={sort}/>
             }
         </div>
     )

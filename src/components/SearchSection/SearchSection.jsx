@@ -1,22 +1,13 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import KeyboardArrowLeftIcon from '@mui/icons-material/KeyboardArrowLeft';
 import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
 import './SearchSection.scss';
 
-const images = [
-	'https://images.pexels.com/photos/5699177/pexels-photo-5699177.jpeg?auto=compress&cs=tinysrgb&w=1600&dpr=1',
-	'https://images.pexels.com/photos/5710137/pexels-photo-5710137.jpeg?auto=compress&cs=tinysrgb&w=1600&dpr=1',
-	'https://images.pexels.com/photos/6069546/pexels-photo-6069546.jpeg?auto=compress&cs=tinysrgb&w=1600&dpr=1',
-	'https://images.pexels.com/photos/373289/pexels-photo-373289.jpeg?auto=compress&cs=tinysrgb&w=1600&dpr=1',
-	'https://images.pexels.com/photos/5705102/pexels-photo-5705102.jpeg?auto=compress&cs=tinysrgb&w=1600&dpr=1'
-];
-
 const SearchSection = () => {
     const [searchQuery, setSearchQuery] = useState(undefined);
-    const [currentSlide, setCurrentSlide] = useState(0);
     const navigate = useNavigate();
-
+    
     // Navigate user to search page after submittin input
     const handleSubmit = (event) => {
         event.preventDefault();
@@ -24,17 +15,27 @@ const SearchSection = () => {
         if (typeof searchQuery !== 'string') {
             return;
         }
-
+        
         const encodedSearch = encodeURI(searchQuery);
-        navigate(`/search?search=${encodedSearch}`);
+        navigate(`/discover?search=${encodedSearch}`);
     };
+    
+    // Slider images and function to slides
+    const images = [
+        'https://images.pexels.com/photos/5699177/pexels-photo-5699177.jpeg?auto=compress&cs=tinysrgb&w=1600&dpr=1',
+        'https://images.pexels.com/photos/5710137/pexels-photo-5710137.jpeg?auto=compress&cs=tinysrgb&w=1600&dpr=1',
+        'https://images.pexels.com/photos/6069546/pexels-photo-6069546.jpeg?auto=compress&cs=tinysrgb&w=1600&dpr=1',
+        'https://images.pexels.com/photos/373289/pexels-photo-373289.jpeg?auto=compress&cs=tinysrgb&w=1600&dpr=1',
+        'https://images.pexels.com/photos/5705102/pexels-photo-5705102.jpeg?auto=compress&cs=tinysrgb&w=1600&dpr=1'
+    ];
 
-    	// Function to slide the images
+    const [currentSlide, setCurrentSlide] = useState(0);
+    const index = images.length - 1
 	const prevSlide = () => {
-		setCurrentSlide(currentSlide === 0 ? 4 : (prev) => prev - 1);
+		setCurrentSlide(currentSlide === 0 ? index : (prev) => prev - 1);
 	};
 	const nextSlide = () => {
-		setCurrentSlide(currentSlide === 4 ? 0 : (prev) => prev + 1);
+		setCurrentSlide(currentSlide === index ? 0 : (prev) => prev + 1);
 	};
 
     return (
@@ -56,7 +57,7 @@ const SearchSection = () => {
                             />
                     </form>
                 </div>
-                <div className='search-slider' style={{transform:`translateX(-${currentSlide * 100}vw)`}}>
+                <div className='search-slider' style={{transform:`translateX(-${currentSlide * 100}vw)`, width: `${images.length}00dvw`}}>
                     <img src={images[0]} alt='slider0' />
                     <img src={images[1]} alt='slider1' />
                     <img src={images[2]} alt='slider2' />

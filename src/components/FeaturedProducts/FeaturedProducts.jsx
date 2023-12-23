@@ -1,9 +1,9 @@
-import React from 'react';
 import Card from '../Card/Card';
 import useFetch from '../../hooks/useFetch';
 import { useNavigate } from 'react-router-dom';
 import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
 import './FeaturedProducts.scss'
+import ErrorElement from '../ErrorElement/ErrorElement';
 
 const FeaturedProducts = ({ type }) => {
     const navigate = useNavigate()
@@ -21,15 +21,16 @@ const FeaturedProducts = ({ type }) => {
 
     return (
         <div className='featuredProducts'>
-            {error ? 
+            { loading ? 
                 <div className='top'>
-                    <p>Failed to load products. We are sorry for the inconvenience.</p>
-                </div> : 
-            loading ? 
-                <div className='top'>
-                    <p>Loading products</p>
-                </div> : 
-            <>
+                    <p>Loading products...</p>
+                </div> 
+            : error ? 
+                <div className='bottom'>
+                    <ErrorElement maxHeight={60} />
+                </div>
+            : 
+            (<>
                 <div className='top' id={type}>
                     {type === 'trending' ? 
                     <>
@@ -50,7 +51,7 @@ const FeaturedProducts = ({ type }) => {
                 <button onClick={() => handleCategory(type)}>
                     Discover More <KeyboardArrowRightIcon />
                 </button>
-            </>
+            </>)
             }
         </div>
     )

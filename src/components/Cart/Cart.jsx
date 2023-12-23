@@ -1,4 +1,3 @@
-import React, { useState } from 'react';
 import DeleteOutlinedIcon from "@mui/icons-material/DeleteOutlined";
 import { useDispatch, useSelector } from 'react-redux';
 import { DECREMENT_ITEM_IN_CART, INCREMENT_ITEM_IN_CART, REMOVE_ITEM, RESET_CART } from '../../redux/bagSlice';
@@ -16,26 +15,6 @@ const Cart = ({cartRef, open}) => {
         cart.forEach((item) => (total += item.quantity * item.product.price))
         return total.toFixed(2)
     };
-
-    // Stripe payment function
-    // const BACKEND_URL = import.meta.env.VITE_BACKEND_URL
-    // const handlePayment = async () => {
-    //     try {
-    //         const req = await fetch(`${BACKEND_URL}/stripe/create`, {
-    //             method: 'POST',
-    //             headers: {
-    //                 'Content-Type': 'application/json'
-    //             },
-    //             body: JSON.stringify({ cart })
-    //         })
-    //         const res =  await req.json();
-    //         if (res.url) {
-    //             window.location.assign(res.url); // User is redirected to this URL if request is fulfilled
-    //         }
-    //     } catch (error) {
-    //         console.error('Error during payment:', error);
-    //     }
-    // };
 
     return (
         <div ref={cartRef} className={`cart ${open ? 'active' : 'inactive'}`}>

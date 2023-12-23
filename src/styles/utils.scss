@@ -4,3 +4,52 @@
     align-items: center;
     justify-content: center;
 }
+
+.active {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+    margin-bottom: 10px;
+}
+
+.inactive {
+    overflow-y: hidden;
+    height: 0;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-20px);
+    margin-bottom: 0px;
+}
+
+/*
+    button {
+        width: 200px;
+        padding: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        border: none;
+        background-color: var(--green600);
+        color: #fff;
+        font-weight: 500;
+        font-size: var(--f14px);
+        margin: 1.25em 0;
+    }
+
+    .cart-error {
+        color: var(--red600);
+        font-size: var(--f14px);
+        width: 100%;
+        background-color: var(--white);
+    }
+  
+    .cart-reset{
+        margin: 0 auto;
+        width: max-content;
+        color: var(--slate400);
+        font-size: var(--f14px);
+        cursor: pointer;
+    }
+
+*/

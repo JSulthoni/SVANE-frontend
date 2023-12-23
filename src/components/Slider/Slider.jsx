@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { HashLink } from 'react-router-hash-link';
 import KeyboardArrowLeftIcon from '@mui/icons-material/KeyboardArrowLeft';
 import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
@@ -28,7 +28,7 @@ const Slider = () => {
 
   	return (
 		<div className='slider' id='home'>
-		<div className='slider-container' style={{transform:`translateX(-${currentSlide * 100}vw)`}}>
+		<div className='slider-wrapper' style={{transform:`translateX(-${currentSlide * 100}vw)`, width: `${images.length}00dvw`}}>
 			<img src={images[0]} alt='slider0' />
 			<img src={images[1]} alt='slider1' />
 			<img src={images[2]} alt='slider2' />

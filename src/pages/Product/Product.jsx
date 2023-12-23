@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import LocalMallIcon from '@mui/icons-material/LocalMall';
@@ -11,6 +11,7 @@ import { STRIPE_CHECKOUT } from '../../utils/makeStripeThunk';
 import useFetch from '../../hooks/useFetch';
 import useLoggedIn from '../../hooks/useLoggedIn';
 import './Product.scss';
+import ErrorElement from '../../components/ErrorElement/ErrorElement';
 
 const Product = () => {
     const dispatch = useDispatch();
@@ -21,7 +22,6 @@ const Product = () => {
     // Fetching single product data by id
     const id = useParams().id;
     const { data, loading, error } = useFetch(`/products/get/${id}?populate=*`);
-
     // Button control switch
     const buttonControl = (type) => {
         switch (type) {
@@ -89,26 +89,19 @@ const Product = () => {
     
     return (
         <div className='product'>
-            {   loading ? 
-            (<>
+            { error ? 
+                <ErrorElement maxHeight={100} />
+            : loading ? 
+            <>
                 <div className='left'>
                     <p>Loading product...</p>
                 </div> 
                 <div className='right'>
                     <p>Loading product...</p>
                 </div> 
-            </>)
-                : error ? 
-            (<>
-                <div className='left'>
-                    <p>Error</p>
-                </div> 
-                <div className='right'>
-                    <p>Error</p>
-                </div> 
-            </>)
-                : 
-            (<>
+            </>
+            : 
+            <>
                 <div className='left'>
                     <div className='images'>
                         <img src={`${data?.image1}?auto=compress&cs=tinysrgb&w=640&dpr=1` || 'https://placehold.co/400'} alt='' onClick={() => setMainImg('image1')}/>
@@ -148,7 +141,7 @@ const Product = () => {
                         <span>FAQ</span>
                     </div>
                 </div>
-            </>)}
+            </>}
         </div>
     )
 };

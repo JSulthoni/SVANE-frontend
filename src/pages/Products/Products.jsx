@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import List from '../../components/List/List';
 import useFetch from '../../hooks/useFetch';
 import './Products.scss';
+import ErrorElement from '../../components/ErrorElement/ErrorElement';
 
 
 const Products = () => {
@@ -43,7 +44,6 @@ const Products = () => {
 
     return (
         <div className='products'>
-            {loading ? '' :
             <div className='left'>
                 <div className='products-filter'>
                     <h3>Product Categories</h3>
@@ -75,7 +75,7 @@ const Products = () => {
                         <label htmlFor='desc'>Price (Highest first)</label> 
                     </div>
                 </div>
-            </div>}
+            </div>
             <div className='right'>
                     { category === 'men' ? 
                     <img
@@ -94,7 +94,13 @@ const Products = () => {
                         src="https://images.pexels.com/photos/5120190/pexels-photo-5120190.jpeg?auto=compress&cs=tinysrgb&w=1600"
                         alt=""
                     /> }
+            { loading ? 
+                <p>Loading products...</p>
+            : error ? 
+                <ErrorElement maxHeight={60} />
+            :
                 <List category={category} maxPrice={maxPrice} sort={sort} subCats={subCats}/>
+            }
             </div>
         </div>
     )

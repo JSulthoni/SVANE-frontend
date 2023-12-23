@@ -13,20 +13,6 @@
     @include xs {
         width: 100dvw;
     }
-
-    &.active {
-        opacity: 1;
-        visibility: visible;
-        transform: translateY(0);
-        transition: 250ms ease;
-    }
-
-    &.inactive {
-        opacity: 0;
-        visibility: hidden;
-        transform: translateY(-20px);
-        transition: 250ms ease;
-    }
   
     h3 {
         margin-bottom: 30px;
