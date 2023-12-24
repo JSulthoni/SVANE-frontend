@@ -10,15 +10,15 @@ import './About.scss'
 
 const About = () => {
     return (
-        <section className='about'>
-            <div className='about-wrapper'>
+        <section className='about flex-center'>
+            <div className='about-wrapper flex-center'>
                 <div className='about-title'>
                     <img src={icon} alt='icon' />
                 </div>
                 <article className='about-par'>
                     <p>
                         <span className='logo'>SVANE </span> 
-                        began in 2023 as a portofolio project. The initial goal was to create Fullstack M.E.R.N online shop application designed for ease-of-use and high responsiveness, ensuring website's UI and functionality to various screen sizes.
+                        began in 2023 as a portofolio project. The initial goal was to create full-stack M.E.R.N online shop application designed for ease-of-use and high responsiveness, ensuring website's UI and functionality to various screen sizes.
                     </p>
                 </article>
                 <article className='about-par'>
@@ -30,7 +30,7 @@ const About = () => {
                         <li>User can search for product by clicking<span><SearchOutlinedIcon/></span> or go to Discover page.</li>
                         <li>User can close search, wishlist, and cart panel by double-clicking outside.</li>
                         <li>User can switch between daymode and nightmode by toggling between <span><BedtimeIcon/></span>and <span><LightModeIcon/></span>.</li>
-                        <li>User make checkout session by clicking <span><LocalMallIcon /></span>or<b> PROCEED TO CHECKOUT</b>. Checkout session is provided by Stripe.</li>
+                        <li>User make checkout session by clicking<span><LocalMallIcon /></span>or<b> PROCEED TO CHECKOUT</b>. Checkout session is provided by Stripe.</li>
                         <li>For checkout session, please enter <b>4242 4242 4242 4242</b> for Card Information, <b>04/02</b> for Card Expiry Date, and <b>424</b> for CVC as of Stripe test session. Any other information can be filled as wished.</li>
                     </ul>
                 </article>

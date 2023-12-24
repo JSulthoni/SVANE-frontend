@@ -32,7 +32,8 @@ const Favorite = ({wishRef, open}) => {
                     },
                     quantity : 1
                 }    
-            ]   
+            ],
+            option: 'wishlist'   
         }))
     };
 
@@ -76,7 +77,9 @@ const Favorite = ({wishRef, open}) => {
                 )
             })}
             </div>}
-            { Boolean(wishlist.length) && <span className='reset' onClick={() => dispatch(RESET_WISH())}>Empty List</span> }
+            { 
+                Boolean(wishlist.length) && <span className='reset' onClick={() => dispatch(RESET_WISH())}>Empty List</span> 
+            }
         </div>
     )
 };

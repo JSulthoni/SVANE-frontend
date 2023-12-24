@@ -7,10 +7,6 @@
     border-bottom: 1px solid var(--green600);
     padding: 0 50px;
     margin-inline: 50px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
 
     @include xs {
         padding: 0 25px;
@@ -18,10 +14,6 @@
     }
 
     .about-wrapper {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
         gap: 40px;
         text-align: justify;
         font-size: var(--f18px);

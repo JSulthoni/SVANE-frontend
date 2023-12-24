@@ -1,5 +1,5 @@
-import { useEffect, useMemo, useRef } from 'react';
-import { Link } from 'react-router-dom'
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux';
 import { HashLink } from 'react-router-hash-link';
 import { 
@@ -40,7 +40,7 @@ const NavBar = () => {
     const dispatch = useDispatch();
     
 
-    // Setting the notification
+    // otification set ups
     const { message } = useSelector((state) => state.notification);
     const openNotif = Boolean(message);
     useEffect(() => {
@@ -55,40 +55,50 @@ const NavBar = () => {
     useEffect(() => {
         let mounted = true
             if (mounted && isLoggedIn) {
-                console.log('GET BAG USEEFFECT CALLED');
                 dispatch(GET_BAG());
             } 
-        () => {
+        return () => {
             mounted = false
         }
     }, [isLoggedIn]);
 
 
-    // This useEffect is to update user's bag only when cart or wishlist panel is closed and if value is changed
-    // Memoize cart and wishlist values
-    const memoizedCart = useMemo(() => cart, [cart]);
-    const memoizedWishlist = useMemo(() => wishlist, [wishlist]);
-    // (see condition variable)
+    // This is a chain of debounching mechanism is intended to make the UPDATE_BAG dispatch execute after
+    // timer expires. This is intended to lower request traffic and because wishlist and cart is a panel
+    // that follows user anywhere.
+    const [debounceTimer, setDebounceTimer] = useState(null);
+
+    const debouncedDispatch = () => {
+        if (debounceTimer) {
+            clearTimeout(debounceTimer)
+        }
+        const newDebounceDispatch = setTimeout(() => {
+            const debouncedCart = cart.map((item) => ({ _id: item.product._id, quantity: item.quantity })) || [];
+            const debouncedWishlist = wishlist.map((item) => ({ _id: item.product._id })) || [];
+            
+            // dispatch UPDATE_BAG with the specified condition 
+            const condition = isLoggedIn && debouncedCart !== undefined && debouncedWishlist !== undefined
+            if (condition) {
+                dispatch(UPDATE_BAG({ cart: debouncedCart, wishlist: debouncedWishlist }));
+            }
+        }, 750) // Timer for debounce is adjusted at 750ms
+
+        setDebounceTimer(newDebounceDispatch);
+    };
+
+    
+    // This useEffect is to execute the debounce mechanism
     useEffect(() => {
-        // Conditions to dispatch UPDATE_BAG. this is intended to lower request traffic and because wishlist and cart is a panel
-        const condition = 
-            isLoggedIn && 
-            memoizedCart !== undefined && 
-            memoizedWishlist !== undefined && 
-            !openCart && 
-            !openWishlist && 
-            (memoizedCart !== cart || memoizedWishlist !== wishlist)
-        let mounted = true
-        if (mounted && condition) {
-            console.log('UPDATE BAG USEEFFECT CALLED'); // CHECKPOINT
-            // dispatch(UPDATE_BAG({ cart: memoizedCart, wishlist: memoizedWishlist }));
+        debouncedDispatch();
+
+        return () => {
+            if (debounceTimer) {
+                clearTimeout(debounceTimer);
+            }
         }
-        () => {
-            mounted = false
-        }
-        // The dependency array includes openCart and openWishlist which is a Boolean condition
-        // of their respective panel
-    }, [memoizedCart, memoizedWishlist, openCart, openWishlist]);
+        // The dependency array includes cart and wishlist which to execute calculateDebouncedValues if
+        // either of the value changed
+    }, [cart, wishlist]);
 
 
     // useClickOutside is a function to close respective panel when user double click outside of it/s
@@ -111,13 +121,13 @@ const NavBar = () => {
     });
 
     // Collective function to close all panel
-    const closeAllPanel = () => {
+    const closeAllPanel = useCallback(() => {
         dispatch(TOGGLE_WISHLIST(false));
         dispatch(TOGGLE_CART(false));
         dispatch(TOGGLE_SIGN(false));
         dispatch(TOGGLE_SEARCH(false));
         dispatch(TOGGLE_MENU(false));
-    };
+    }, []);
 
     const handleSearchClick = () => {
         closeAllPanel();

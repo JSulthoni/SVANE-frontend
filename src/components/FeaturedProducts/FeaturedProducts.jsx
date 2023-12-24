@@ -16,7 +16,7 @@ const FeaturedProducts = ({ type }) => {
             return;
         }
 
-        navigate(`/search?search=${type}`)
+        navigate(`/discover?search=${type}`)
     }
 
     return (

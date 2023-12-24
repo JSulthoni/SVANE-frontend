@@ -3,7 +3,7 @@ import './NotFound.scss';
 
 const NotFound = () => {
     return (
-        <div className='notfound'>
+        <div className='notfound flex-center'>
             <div className='notfound-wrapper flex-center'>
                 <h2>Page not found!</h2>
                 <p>Sorry, we could not find what you are looking for</p>

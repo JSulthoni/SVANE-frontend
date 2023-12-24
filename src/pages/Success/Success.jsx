@@ -13,17 +13,17 @@ const Success = () => {
 
     // Redirect user to homepage if user is not having a checkout session
     useEffect(() => {
-        if (!session_id) {
-            navigate('/');
-        } else if (session_id) {
-            dispatch(TOGGLE_WISHLIST({ payload: false }));
-            dispatch(TOGGLE_CART({ payload: false }));
+        if (session_id) {
+            dispatch(TOGGLE_WISHLIST(false));
+            dispatch(TOGGLE_CART(false));
             dispatch(GET_BAG());
+        } else {
+            navigate('/');
         }
     },[]);
 
     return (
-        <section className='success'>
+        <section className='success flex-center'>
             <div className='success-wrapper flex-center'>
                 <h2>SUCCESS</h2>
                 <p>Your order with ID:</p>

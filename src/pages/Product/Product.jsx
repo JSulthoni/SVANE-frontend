@@ -83,7 +83,8 @@ const Product = () => {
                     },
                     quantity
                 }    
-            ]   
+            ],
+            option: 'direct'   
         }))
     };
     

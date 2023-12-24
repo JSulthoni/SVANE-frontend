@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { memo, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import ClearOutlinedIcon from '@mui/icons-material/ClearOutlined';
 import useFetch from '../../hooks/useFetch';
@@ -17,7 +17,7 @@ const Searchbar = ({searchRef, open}) => {
 
     const handleItem = () => {
         if (open) {
-            dispatch(TOGGLE_SEARCH({payload : false}))
+            dispatch(TOGGLE_SEARCH(false))
         }
     };
 
@@ -31,7 +31,7 @@ const Searchbar = ({searchRef, open}) => {
 
         const encodedSearch = encodeURI(searchQuery);
         navigate(`/discover?search=${encodedSearch}`, { replace: true });
-        dispatch(TOGGLE_SEARCH({payload : false}))
+        dispatch(TOGGLE_SEARCH(false))
         setSearchQuery('')
     };
 
@@ -45,12 +45,14 @@ const Searchbar = ({searchRef, open}) => {
                     name='searchbar'
                     type='text' 
                     placeholder='e.g: Hoodie' 
-                    onChange={(e) => setSearchQuery(e.target.value)}
+                    onChange={(event) => setSearchQuery(event.target.value)}
                     />
-                    { searchQuery && 
+                    { 
+                        searchQuery && 
                         <div className='clearIcon' onClick={() => setSearchQuery('')}>
                             <ClearOutlinedIcon />
-                        </div> }
+                        </div> 
+                    }
                 </form>
             </div>
             { !loading && searchQuery &&
@@ -75,4 +77,4 @@ const Searchbar = ({searchRef, open}) => {
     )
 };
 
-export default Searchbar;
+export default memo(Searchbar);

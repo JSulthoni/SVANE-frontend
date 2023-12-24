@@ -33,7 +33,7 @@ export const bagSlice = createSlice({
         DECREMENT_ITEM_IN_CART: (state, action) => {
             const item = state.cart.find((item) => item.product._id === action.payload)
             if (item) {
-                item.quantity -= 1
+                item.quantity === 1 ? 1 : item.quantity -= 1
             }
         },
         ADD_TO_WISH: (state, action) => {

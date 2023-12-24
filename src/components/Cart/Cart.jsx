@@ -19,7 +19,7 @@ const Cart = ({cartRef, open}) => {
     return (
         <div ref={cartRef} className={`cart ${open ? 'active' : 'inactive'}`}>
             <h3>{cart.length ? 'Products in your cart' : 'Your cart is empty'}</h3>
-            {!cart.length ? '' : 
+            {!cart.length ? null : 
             <div>
                 <div className='cart-list'>
                     {cart.map((item) => {
@@ -45,7 +45,7 @@ const Cart = ({cartRef, open}) => {
                 <span>SUBTOTAL</span>
                 <span>${totalPrice()}</span>
             </div>
-            <button onClick={() => dispatch(STRIPE_CHECKOUT({ cart }))}>PROCEED TO CHECKOUT</button>
+            <button onClick={() => dispatch(STRIPE_CHECKOUT({ cart, option: 'cart' }))}>PROCEED TO CHECKOUT</button>
             <span className='cart-reset' onClick={() => dispatch(RESET_CART())}>Empty Cart</span>
             </div>}
         </div>

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { memo, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { TOGGLE_CART, TOGGLE_SIGN, TOGGLE_WISHLIST } from '../../redux/navigationSlice';
 import { CREATE_USER, SIGNOUT_USER, SIGN_USER } from '../../utils/makeAuthThunk';
@@ -72,7 +72,7 @@ const SignIn = ({open}) => {
                 </div>
                 <div className='sign-info'>
                     <div onClick={() => handleClick('cart')}>
-                        <span>Products in chart :</span><span className='sign-amount'>{cart.length}</span>
+                        <span>Products in cart :</span><span className='sign-amount'>{cart.length}</span>
                     </div>
                     <div onClick={() => handleClick('wish')}>
                         <span>Items in wishlist :</span><span className='sign-amount'>{wishlist.length}</span>
@@ -101,14 +101,14 @@ const SignIn = ({open}) => {
                     placeholder='password'/>
                 <button onClick={handleSignin} disabled={!isDisabled}>Sign In</button>
                 <button onClick={handleCreate} disabled={!isDisabled}>Create Account</button>
-                { error && 
+                { error ? 
                 <div className='sign-error'>
                     <p>{error}</p>
-                </div> }
+                </div> : null }
             </form>
         }
         </div>
     );
 }
 
-export default SignIn;
+export default memo(SignIn);
