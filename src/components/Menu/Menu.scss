@@ -12,20 +12,6 @@
     justify-content: center;
     background-color: var(--background-color8);
 
-    &.active {
-        opacity: 1;
-        visibility: visible;
-        transform: translateY(0);
-        transition: 250ms ease;
-    }
-
-    &.inactive {
-        opacity: 0;
-        visibility: hidden;
-        transform: translateY(-20px);
-        transition: 250ms ease;
-    }
-
     h2 {
         margin-bottom: 3em;
         padding: 10px;

@@ -1,20 +1,12 @@
 @import '../../styles/responsive.scss';
-@import '../../styles/global.scss';
+@import '../../styles/utils.scss';
 
 .searchbar {
-    position: absolute;
-    right: 0;
-    z-index: 999;
-    padding: 20px;
-    -webkit-box-shadow: var(--box-shadow-value);
-    box-shadow: var(--box-shadow-value);
-    background-color: var(--background-color8);
     display: grid;
     place-items: center;
     gap: 20px;
     min-width: 300px;
     color: var(--slate950);
-    overflow-x: hidden;
 
     @include xs {
         width: 100dvw;
@@ -28,9 +20,6 @@
 
         form {
             width: 100%;
-            display: flex;
-            flex-direction: row;
-            align-items: center;
 
             input {
                 line-height: 2em;
@@ -46,7 +35,7 @@
                 }
             }
     
-            .clearIcon {
+            .clear-icon {
                 color: var(--slate400);
                 cursor: pointer;
             }
@@ -55,19 +44,12 @@
     }
 
     .searchbar-res {
-        display: flex;
-        flex-direction: column;
-        align-items: stretch;
         gap: 20px;
         max-height: 85dvh;
         overflow-y: scroll;
         overscroll-behavior: contain;
         
-
         .searchbar-item {
-            display: flex;
-            align-items: center;
-            justify-content: stretch;
             text-decoration: none;
             color: inherit;
             cursor: pointer;

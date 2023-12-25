@@ -1,4 +1,6 @@
 @import './responsive.scss';
+@import './utils.scss';
+
 
 :root {
     // Text color
@@ -40,6 +42,8 @@
     --box-shadow-value: 0px 0px 7px -5px rgba(0, 0, 0, 0.5);
 
     // Background color
+    --placeholder-color0: #f8fafc;
+    --placeholder-color100:#e2e8f0;
     --background-color6: rgba(255, 255, 255, 0.6);
     --background-color8: rgba(255, 255, 255, 0.8);
 }
@@ -68,6 +72,9 @@
 
     --box-shadow-value: 0px 0px 7px -5px rgba(255, 255, 255, 0.5);
 
+
+    --placeholder-color0: #070a13;
+    --placeholder-color100:rgba(0, 0, 0, 0.8);
     --background-color6: rgba(0, 0, 0, 0.6);
     --background-color8: rgba(0, 0, 0, 0.8);
 }
@@ -101,22 +108,6 @@ html {
     -moz-user-select: none; /* Old versions of Firefox */
     -ms-user-select: none; /* Internet Explorer/Edge */
     user-select: none; /* Non-prefixed version, currently supported by Chrome, Edge, Opera and Firefox */
-}
-
-.active {
-    opacity: 1;
-    visibility: visible;
-    transform: translateY(0);
-    margin-bottom: 10px;
-}
-
-.inactive {
-    overflow-y: hidden;
-    height: 0;
-    opacity: 0;
-    visibility: hidden;
-    transform: translateY(-20px);
-    margin-bottom: 0px;
 }
 
 @include xxl {

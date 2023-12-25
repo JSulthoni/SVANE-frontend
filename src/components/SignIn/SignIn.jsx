@@ -1,16 +1,16 @@
-import React, { useState } from 'react';
+import { memo, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { SIGNIN_FAILURE, SIGNIN_START, SIGNIN_SUCCESS, SIGNOUT } from '../../redux/authenticationSlice';
 import { TOGGLE_CART, TOGGLE_SIGN, TOGGLE_WISHLIST } from '../../redux/navigationSlice';
+import { CREATE_USER, SIGNOUT_USER, SIGN_USER } from '../../utils/makeAuthThunk';
+import { GET_BAG } from '../../utils/makeBagThunk';
 import useLoggedIn from '../../hooks/useLoggedIn';
-import axios from 'axios';
 import './SignIn.scss'
 
 const SignIn = ({open}) => {
     const dispatch = useDispatch();
 
     // Getting products and wishlist from redux
-    const { products, wishlist } = useSelector((state) => state.context);
+    const { cart, wishlist } = useSelector((state) => state.bag);
     
     // Getting state of user from redux
     const { user, loading, error } = useSelector((state) => state.authentication);
@@ -19,120 +19,116 @@ const SignIn = ({open}) => {
     const [credentials, setCredentials] = useState({
         email: '',
         password: ''
-    })
+    });
 
-    // Disable the button if either input is empty
+
+    // Variable used to disable the button if either input is empty
     const isDisabled = Boolean(credentials.email && credentials.password);
+
 
     // Using the input ID for a oneliner setCredentials for both input
     const handleChange = (event) => {
         setCredentials((prev) => ({...prev, [event.target.id]: event.target.value}))
     }
 
+
     // Sign in function
-    const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
-    const handleSignin = async (event) => {
+    const handleSignin = (event) => {
         event.preventDefault();
-        dispatch(SIGNIN_START());
-        try {
-            const req = await axios.post(`${BACKEND_URL}/api/user/signin`, 
-                { ...credentials },
-                { headers: { Authorization: 'Bearer ' + import.meta.env.VITE_MONGO_API_KEY }}
-            );
-            const res =  await req.data;
-            if (res) {
-                dispatch(SIGNIN_SUCCESS(res));
-                localStorage.setItem('user', JSON.stringify(res));
-                dispatch(TOGGLE_SIGN({payload: false}));
-            }
-        } catch (err) {
-                dispatch(SIGNIN_FAILURE(err.message));
-        }
+        dispatch(SIGN_USER(credentials)); // Request is handled by using thunk at makeAuthThunk.js
     };
 
-    // Create user function
-    const handleCreate = async (event) => {
-        event.preventDefault();
-        console.log('CREATE USER');
-        try {
-            const req = await axios.post(`${BACKEND_URL}/api/user/register`,
-            { ...credentials },
-            { headers: { Authorization: 'Bearer' + import.meta.env.VITE_MONGO_API_KEY }}
-        );
-            const res = await req.data;
-            if (res) {
-                dispatch(SIGNIN_START());
-                dispatch(SIGNIN_SUCCESS(res));
-                localStorage.setItem('user', JSON.stringify(res));
-                dispatch(TOGGLE_SIGN({payload: false}));
-            }
-        } catch (err) {
-            dispatch(SIGNIN_FAILURE(err.message));
-        }
-    }
 
-    // Click handler
+    // Create user function
+    const handleCreate = (event) => {
+        event.preventDefault();
+        const wishlistPayload = Promise.all(wishlist.map((item) => ({_id: item.product._id}))) || [];
+        dispatch(CREATE_USER({
+            email: credentials.email,
+            password: credentials.password,
+            wishlist: wishlistPayload
+        })); // Request is handled by using thunk at makeAuthThunk.js
+
+    };
+
+
+    // Panel click handler
     const handleClick = (type) => {
-        dispatch(TOGGLE_SIGN({payload : !open}));
+        dispatch(TOGGLE_SIGN(false));
         switch (type) {
             case 'cart':
-                dispatch(TOGGLE_CART({payload : true}));
+                dispatch(TOGGLE_CART(true));
                 break;
             case 'wish':
-                dispatch(TOGGLE_WISHLIST({payload : true}));
+                dispatch(TOGGLE_WISHLIST(true));
                 break;    
             default:
                 break;
         }
     };
 
+
+    // This condition is to get user's bag only and after user is signed in
+    // This is intended to run only once after user is signed in
+    useEffect(() => {
+        let mounted = true
+            if (mounted && isLoggedIn) {
+                dispatch(GET_BAG());
+            } 
+        return () => {
+            mounted = false
+        }
+    }, [isLoggedIn]);
+
     return (
-        <div className={`sign ${open ? 'active' : 'inactive'}`}>
+        <div className={`sign flexc-center ${open ? 'active' : 'inactive'}`}>
         { isLoggedIn ? 
-            <div className='sign-profile'>
-                <div className='sign-header'>
+            <div className='sign-panel flexc-c-start'>
+                <div className='sign-header flexc-s-between'>
                     <h3>WELCOME</h3>
                     <h4>{user.email}</h4>
                     <p>ID : {user._id}</p>
                 </div>
-                <div className='sign-info'>
+                <div className='sign-info flexc-s-between'>
                     <div onClick={() => handleClick('cart')}>
-                        <span>Products in chart :</span><span className='sign-amount'>{products.length}</span>
+                        <span>Products in cart :</span><span className='sign-amount'>{cart.length}</span>
                     </div>
                     <div onClick={() => handleClick('wish')}>
                         <span>Items in wishlist :</span><span className='sign-amount'>{wishlist.length}</span>
                     </div>
                 </div>
                 <button
-                    onClick={() => dispatch(SIGNOUT())}
+                    className='sign-button button-transparent'
+                    onClick={() => dispatch(SIGNOUT_USER())}
                 >SIGN OUT</button>
             </div>
         : 
-            <form className='sign-form' action='javascript:void(0)'>
+            <form className='sign-panel flexc-c-start'>
                 <h2>SIGN IN</h2>
                 <input 
                     type='email'
                     id='email' 
+                    autoComplete='username'
                     value={credentials.email} 
                     onChange={handleChange} 
                     placeholder='example@email.com'/>
                 <input 
                     type='password'
                     id='password'
+                    autoComplete='current-password'
                     value={credentials.password} 
                     onChange={handleChange} 
-                    suggested= "current-password"
                     placeholder='password'/>
-                <button onClick={handleSignin} disabled={!isDisabled}>Sign In</button>
-                <button onClick={handleCreate} disabled={!isDisabled}>Create Account</button>
-                { error && 
-                <div className='sign-error'>
+                <button className='panel-button button-green' onClick={handleSignin} disabled={!isDisabled}>Sign In</button>
+                <button className='panel-button button-green' onClick={handleCreate} disabled={!isDisabled}>Create Account</button>
+                { error ? 
+                <div className='panel-error'>
                     <p>{error}</p>
-                </div> }
+                </div> : null }
             </form>
         }
         </div>
     );
 }
 
-export default SignIn;
+export default memo(SignIn);

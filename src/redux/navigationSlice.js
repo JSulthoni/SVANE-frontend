@@ -14,24 +14,19 @@ export const navigationSlice = createSlice({
     initialState,
     reducers: {
         TOGGLE_SEARCH: (state, action) => {
-            const { payload } = action.payload
-            state.search = payload
+            state.search = action.payload
         },
         TOGGLE_WISHLIST: (state, action) => {
-            const { payload } = action.payload
-            state.wishlist = payload
+            state.wishlist = action.payload
         },
         TOGGLE_CART: (state, action) => {
-            const { payload } = action.payload
-            state.cart = payload
+            state.cart = action.payload
         },
         TOGGLE_MENU: (state, action) => {
-            const { payload } = action.payload
-            state.menu = payload
+            state.menu = action.payload
         },
         TOGGLE_SIGN: (state, action) => {
-            const { payload } = action.payload
-            state.sign = payload
+            state.sign = action.payload
         },
         TOGGLE_NIGHT: (state) => {
             state.nightmode = !state.nightmode

@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import List from '../../components/List/List';
-import './Search.scss'
+import './Discover.scss'
 
 const headerImage = [
     "https://images.pexels.com/photos/2672979/pexels-photo-2672979.jpeg?auto=compress&cs=tinysrgb&w=1600&dpr=1",
@@ -11,7 +11,7 @@ const headerImage = [
     "https://images.pexels.com/photos/12674918/pexels-photo-12674918.jpeg?auto=compress&cs=tinysrgb&w=1600&dpr=1"
 ];
 
-const Search = () => {
+const Discover = () => {
     const [randomImageIndex, setRandomImageIndex] = useState(0);
     
     // Getting query parameter from URL
@@ -34,7 +34,7 @@ const Search = () => {
         }
 
         const encodedSearch = encodeURI(searchQuery);
-        navigate(`/search?search=${encodedSearch}`, { replace: true })
+        navigate(`/discover?search=${encodedSearch}`, { replace: true })
     }
     
     // Disable the button if searchQuery is empty
@@ -92,17 +92,15 @@ const Search = () => {
                 </div>
             </div>
             <div className='right'>
-                    <img
-                        className="search-image"
-                        src={headerImage[randomImageIndex]}
-                        alt="search-page-image"
-                    />
-                    {
-                    <List search={queryParams || 'trending'} maxPrice={maxPrice} sort={sort}/>
-                    }
+                <img
+                    className="search-image"
+                    src={headerImage[randomImageIndex]}
+                    alt="search-page-image"
+                />
+                <List search={queryParams || 'trending'} maxPrice={maxPrice} sort={sort}/>
             </div>
         </div>
     );
 }
 
-export default Search;
+export default Discover;

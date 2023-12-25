@@ -32,14 +32,10 @@
         }
 
         .item {
-            display: flex;
-            align-items: center;
             font-size: var(--f18px);
         }
 
         .left {
-            display: flex;
-            align-items: center;
             place-self: center start;
             gap: 1.5em;
 
@@ -80,8 +76,6 @@
         }
 
         .right {
-            display: flex;
-            align-items: center;
             place-self: center end;
             gap: 1.5em;
             width: max-content;
@@ -107,17 +101,12 @@
                     gap: 1em;
                 } 
 
-                
-
                 .icon {
                     position: relative;
                     overflow-x: visible;
                     display: flex;
                     place-items: center;
-                    
-                    &:nth-last-child(2) {
-                        z-index: 1001;
-                    }
+                    z-index: 1001; 
                 }
                 
                 .icon-login {
@@ -127,9 +116,7 @@
                     z-index: 1001;
                 }
 
-                .icon-menu {
-                    z-index: 1001;
-    
+                .icon-menu {    
                     @media screen and (min-width: 810px) {
                         display: none;
                     }
@@ -145,15 +132,29 @@
                     position: absolute;
                     right: -10px;
                     bottom: 0;
-                    display: flex;
-                    justify-content: center;
-                    align-items: center;
 
                     @include md {
                         right: -5px;
                     } 
                 }
             }
+        }
+    }
+    
+    .notification {
+        position: fixed;
+        bottom: 10px;
+        right: 10px;
+        padding: 0.5em 2em;
+        text-align: center;
+        -webkit-box-shadow: var(--box-shadow-value);
+        box-shadow: var(--box-shadow-value);
+        background-color: var(--background-color8);
+        
+        p {
+            font-size: var(--f20px);
+            margin-block: 1em;
+            color: var(--green600);
         }
     }
 }

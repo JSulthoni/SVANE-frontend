@@ -1,0 +1,64 @@
+@import '../../styles/responsive.scss';
+
+//  Animation
+
+@keyframes placeholder {
+    0% {
+        background-color: var(--placeholder-color0);
+    }
+    
+    100% {
+        background-color: var(--placeholder-color100);
+    }
+}
+
+.placeholder-animation {
+    animation: placeholder 1500ms linear infinite alternate;
+}
+
+@import '../../styles/responsive.scss';
+
+.placeholder-card {
+    position: relative;
+    background-color: var(--slate50);
+    width: 100%;
+    gap: 10px;
+
+    .placeholder-image {
+        width: 100%;
+        aspect-ratio: 9 / 13.5;
+        overflow: hidden;
+
+        h3 {
+            color: var(--green600);
+            font-size: calc(2 * var(--f18px));
+        }
+
+    }
+    
+    .placeholder-info {
+        padding-left: 5px;
+        width: 100%;
+        background-color: var(--background-color8);
+        
+        @include xs {
+            position: absolute;
+            bottom: 0;
+            padding: 5px;
+        }
+
+        h3 {
+            color: var(--slate950);
+            font-size: var(--f16px);
+            font-weight: 400;
+            margin-bottom: 10px;
+        }
+        
+        .placeholder-prices {
+            gap: 10px;
+            color: var(--green600);
+            font-size: var(--f18px);
+            font-weight: 500; 
+        }
+    }
+}

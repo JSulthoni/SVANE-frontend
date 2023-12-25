@@ -1,0 +1,32 @@
+@import '../../styles/responsive.scss';
+@import '../../styles/utils.scss';
+
+.error {
+	height: 100%;
+    overflow: hidden;
+	position: relative;
+	
+    .error-wrapper {
+		height: 100%;
+		display: flex;
+		transition: all 1000ms ease;
+        
+        img {
+            width: 100dvw;
+			height: auto;
+			object-fit: cover;
+            object-position: 50% 40%;
+      	}
+    }
+  
+	.error-title {
+        margin: 0 auto;
+		width: fit-content;
+		text-align: center;
+		p {
+			font-family: inherit;
+			color: var(--slate950);
+			font-size: var(--f18px);
+		}
+	}
+}

@@ -3,20 +3,20 @@
 Welcome to the SVANE frontend repository, SVANE is a fullstack MERN online shop project 🚀✨.
 
 ## Project Overview
-SVANE is a M.E.R.N online shop application designed for ease-of-use and responsive UI, ensuring website's functionality to various screen sizes.
+SVANE is a M.E.R.N online shop application designed for high performance and responsive UI, ensuring website's functionality to various screen sizes.
 
 ## Key Objectives
-* Create a web application from scratch by using M.E.R.N Stack, HTML, Javascript, and CSS (SASS).
-* Provide a shop platform with simple UI and high responsiveness across multiple screen-size.
-* Solve the problem of resetting states on each session by utilizing local storage.
+* Create a high performance web application to achieve green web vitals and SEO score.
+* Minimize data transfer size with transformation and client request debouncing mechanism to lower user network cost.
+* Provide great user experience (Unlighthouse & web vitals scoring) with responsive UI and ease-of-use design.
+* Implementing unified source of data in client side by using Redux to speed up performance, maintenance, and bug tracing.
 
 ## Features
-* Simplicity of design and ease of use.
-* User can create an account gain access to car and checkout session.
-* Search bar and dedicated search page to browse the products.
-* Using Redux to simulate cart and wishlist.
-* Day and night mode without flickering effect.
-* UI layout and fontsize will change to accomodate screensize.
+* High performance design, ~ <1500ms LCP, ~ 0.01 CLS, ~ 26ms FID.
+* Background request is managed by debouncing mechanism. Resulting in low network traffic and cost.
+* Safe user authentication by using JWT and cookie.
+* Responsive UI layout to accomodate different screensizes with all functionality.
+* Fully functional Stripe checkout test session to simulate user's order.
 
 ## Technologies
 SVANE utilise modules and libraries of following technologies:
@@ -32,6 +32,7 @@ Back-End:
 * Mongoose: For database schema and query building.
 * MongoDB: For database service.
 * Node.js: For server-side scripting.
+* JWT: For credentials signin.
 
 [Backend code can be found here](https://github.com/JSulthoni/BUNDLER-backend)
 
@@ -40,22 +41,11 @@ Back-End:
 * HTML
 * SCSS
 
-## Deployment
-To deploy this project run:
-
-```bash
-  npm install
-```
-
-```bash
-  npm start
-```
-
-To deploy this project you will also need the backend server [here](https://github.com/JSulthoni/BUNDLER-backend)
-
 ## License
 [MIT](https://choosealicense.com/licenses/mit/)
 
 
 ## Author
 - [@JSulthoni](https://www.github.com/JSulthoni)
+
+if you like it, dont forget to give it a ✨✨✨!

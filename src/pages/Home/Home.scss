@@ -1,13 +1,8 @@
 .home {
     overscroll-behavior-y: contain;
-    scroll-snap-type: y mandatory;
     scrollbar-width: none;  /* Firefox */
     
     &::-webkit-scrollbar {
         display: none;
-    }
-          
-    > * {
-        scroll-snap-align: start;
     }
 }

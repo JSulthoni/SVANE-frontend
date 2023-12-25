@@ -1,13 +1,15 @@
-import React from 'react';
+import ErrorElement from '../ErrorElement/ErrorElement';
+import { memo } from 'react';
 import Card from '../Card/Card';
 import useFetch from '../../hooks/useFetch';
 import { useNavigate } from 'react-router-dom';
 import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
 import './FeaturedProducts.scss'
+import CardPlaceholder from '../CardPlaceholder/CardPlaceholder';
 
 const FeaturedProducts = ({ type }) => {
     const navigate = useNavigate()
-    const {data, loading, error} = useFetch(`/api/products?type=${type}&limit=7`);
+    const {data, loading, error} = useFetch(`/products?type=${type}&limit=7`);
 
     // This function routes user to trending/featured in search page
     const handleCategory = (type) => {
@@ -16,21 +18,21 @@ const FeaturedProducts = ({ type }) => {
             return;
         }
 
-        navigate(`/search?search=${type}`)
+        navigate(`/discover?search=${type}`)
     }
-
     return (
-        <div className='featuredProducts'>
-            {error ? 
-                <div className='top'>
-                    <p>Failed to load products. We are sorry for the inconvenience.</p>
-                </div> : 
-            loading ? 
-                <div className='top'>
-                    <p>Loading products</p>
-                </div> : 
-            <>
-                <div className='top' id={type}>
+        <section className='featured-products'>
+            { loading ? 
+                <div className='bottom'>
+                {[...Array(7)].map((arr, i) => <CardPlaceholder key={i} />)}
+                </div> 
+            : error ? 
+                <div className='bottom'>
+                    <ErrorElement maxHeight={60} />
+                </div>
+            : 
+            (<>
+                <div className='top flexr-c-start' id={type}>
                     {type === 'trending' ? 
                     <>
                         <h2 onClick={() => handleCategory('trending')}>Step into Fashion Excellence</h2>
@@ -47,13 +49,13 @@ const FeaturedProducts = ({ type }) => {
                 <div className='bottom'>
                     {data.map((item) => <Card item={item} key={item._id}/>)}
                 </div>
-                <button onClick={() => handleCategory(type)}>
+                <button className='featured-button button-transparent flexr-c-between' onClick={() => handleCategory(type)}>
                     Discover More <KeyboardArrowRightIcon />
                 </button>
-            </>
+            </>)
             }
-        </div>
+        </section>
     )
 };
 
-export default FeaturedProducts;
+export default memo(FeaturedProducts);

@@ -1,13 +1,14 @@
 @import '../../styles/responsive.scss';
+@import '../../styles/utils.scss';
 
-.error {
+.fallback {
     margin-bottom: 50px;
-
 
     h2 {
         color: var(--header);
         font-size: var(--f24px);
         margin-bottom: 20px;
+
         @include xs {
             padding-inline: 5dvw;
         }
@@ -17,44 +18,9 @@
         color: var(--slate950);
         font-size: var(--f16px);
         margin-bottom: 20px;
+        
         @include xs {
             margin-inline: 5dvw;
         }
-    }
-
-
-    .bottom {
-        display: grid;
-        grid-auto-flow: dense;
-        grid-template-columns: repeat(auto-fit, 280px);
-        grid-auto-rows: auto;
-        column-gap: 20px;
-        row-gap: 30px;
-        container-type: inline-size;
-
-        @include xxl {
-            grid-template-columns: repeat(auto-fit, 240px);
-        }
-    
-        @include xl {
-            grid-template-columns: repeat(auto-fit, 220px);
-        }
-    
-        @include md {
-            grid-template-columns: repeat(auto-fit, 200px);
-        }
-        
-        @include sm {
-            column-gap: 10px;
-            grid-template-columns: repeat(auto-fit, minmax(min(100%, 200px), 1fr));
-        }
-    
-        @include xs {
-            row-gap: 10px;
-            grid-template-columns: 1fr 1fr;
-            grid-auto-flow: row;
-            place-items: initial;
-        }
-        
     }
 }

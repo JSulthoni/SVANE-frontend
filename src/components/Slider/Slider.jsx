@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { HashLink } from 'react-router-hash-link';
 import KeyboardArrowLeftIcon from '@mui/icons-material/KeyboardArrowLeft';
 import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
@@ -14,33 +14,30 @@ const images = [
 ];
 
 const Slider = () => {
-	const [currentSlide, setCurrentSlide] = useState(0);
-
+	const [currentSlide, setCurrentSlide] = useState(0);	
+	
 	// Function to slide the images
+	const index = images.length - 1
 	const prevSlide = () => {
-		setCurrentSlide(currentSlide === 0 ? 4 : (prev) => prev - 1);
+		setCurrentSlide(currentSlide === 0 ? index : (prev) => prev - 1);
 	};
 	const nextSlide = () => {
-		setCurrentSlide(currentSlide === 4 ? 0 : (prev) => prev + 1);
+		setCurrentSlide(currentSlide === index ? 0 : (prev) => prev + 1);
 	};
 
   	return (
 		<div className='slider' id='home'>
-		<div className='slider-container' style={{transform:`translateX(-${currentSlide * 100}vw)`}}>
-			<img src={images[0]} alt='slider0' />
-			<img src={images[1]} alt='slider1' />
-			<img src={images[2]} alt='slider2' />
-			<img src={images[3]} alt='slider3' />
-			<img src={images[4]} alt='slider4' />
+		<div className='slider-wrapper' style={{transform:`translateX(-${currentSlide * 100}vw)`, width: `${images.length}00dvw`}}>
+			{images.map((image, index) => <img key={index} src={image} alt={`slider${index}`} />)}
 		</div>
 		<div className='slider-title'>
 			<h1>First love to last sight</h1>
 		</div>
 		<div className='slider-buttons'>
-			<div aria-label='prev-image' className='slider-button' onClick={prevSlide}>
+			<div aria-label='prev-image' className='slider-button flexc-center' onClick={prevSlide}>
 			<KeyboardArrowLeftIcon />
 			</div>
-			<div aria-label='next-image' className='slider-button' onClick={nextSlide}>
+			<div aria-label='next-image' className='slider-button flexc-center' onClick={nextSlide}>
 			<KeyboardArrowRightIcon />
 			</div>
 		</div>

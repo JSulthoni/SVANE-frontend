@@ -35,7 +35,6 @@
             flex-direction: column;
             gap: 10px;
             text-align: justify;
-            font-size: var(--f14px);
             position: relative;
 
             @include sm {
@@ -47,9 +46,6 @@
             }
 
             .footer-title {
-                display: flex;
-                justify-content: space-between;
-                align-items: center;
                 color: var(--slate950);
                 margin-bottom: 1em;
 
@@ -68,8 +64,6 @@
             }
 
             .footer-list {
-                display: flex;
-                flex-direction: column;
                 gap: 10px;
                 text-align: justify;
             }
@@ -87,15 +81,17 @@
 
             p, span {
                 color: var(--slate600);
+                font-size: var(--f14px);
             }
             
-            a {
+            a, b {
                 color: var(--green600);
                 text-decoration: none;
+                font-size: var(--f14px);
+            }
 
-                &:hover {
-                    color: var(--green400);
-                }
+            a:hover {
+                color: var(--green400);
             }
         }
     }

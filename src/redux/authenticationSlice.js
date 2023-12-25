@@ -15,11 +15,9 @@ export const authenticationSlice = createSlice({
             state.error = null; 
         },
         SIGNIN_SUCCESS: (state, action) => {
-            console.log(action.payload)
             state.user = action.payload;
             state.loading = false;
             state.error = null;
-            localStorage.setItem('user', JSON.stringify(action.payload));
         },
         SIGNIN_FAILURE: (state, action) => {
             state.loading = false;
@@ -33,7 +31,6 @@ export const authenticationSlice = createSlice({
             state.user = null;
             state.loading = false;
             state.error = null;
-            localStorage.removeItem('user');
         },
     }
 });

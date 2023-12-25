@@ -1,4 +1,5 @@
 @import '../../styles/responsive.scss';
+@import '../../styles/utils.scss';
 
 .about {
     min-height: 100vh;
@@ -7,10 +8,6 @@
     border-bottom: 1px solid var(--green600);
     padding: 0 50px;
     margin-inline: 50px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
 
     @include xs {
         padding: 0 25px;
@@ -18,26 +15,17 @@
     }
 
     .about-wrapper {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
         gap: 40px;
         text-align: justify;
         font-size: var(--f18px);
     }
 
     .about-title {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        color: var(--slate950);
         margin-top: 2em;
-
+        
         img {
             width: 100px;
         }
-        
     }
 
     .about-par {
@@ -81,43 +69,17 @@
                 display: initial;
             }
         }
-
-        .about-add {
-            width: fit-content;
-            padding: 0.5em;
-            padding-inline: 1em;
-            background-color: var(--green600);
-            color: white;
-            display: flex;
-            align-items: center;
-            justify-content: flex-start;
-            cursor: pointer;
-            border: none;
-            font-weight: 500;
-            height: 3em;
-            font-size: var(--f14px);
-            flex-wrap: nowrap;
-        
-        }
     }
 
-    .about-button {
+    .about-buttons {
         width: 100%;
-        display: flex;
-        justify-content: center;
         gap: 20px;
         text-decoration: none;
 
-        button {
+        .about-button {
             width: 180px;
-            padding: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            border: none;
-            background-color: var(--green600);
             margin: 1.25em 0;
+            
             a {
                 color: #fff;
                 font-weight: 500;

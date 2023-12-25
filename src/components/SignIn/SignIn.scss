@@ -6,25 +6,7 @@
     height: 100dvh;
     z-index: 2;
     padding: 20px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
     background-color: var(--background-color8);
-
-    &.active {
-        opacity: 1;
-        visibility: visible;
-        transform: translateY(0);
-        transition: 250ms ease;
-    }
-
-    &.inactive {
-        opacity: 0;
-        visibility: hidden;
-        transform: translateY(-20px);
-        transition: 250ms ease;
-    }
 
     h2 {
         margin-bottom: 1em;
@@ -33,12 +15,9 @@
         font-size: calc(2.5 * var(--f16px));
     }
 
-    .sign-profile {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
+    .sign-panel {
         min-width: 300px;
-        gap: 50px;
+        gap: 10px;
         padding: 20px;
         -webkit-box-shadow: var(--box-shadow-value);
         box-shadow: var(--box-shadow-value);
@@ -55,21 +34,18 @@
             font-size: calc(2 * var(--f16px));
         }
 
-        .sign-header, .sign-info {
-            display: flex;
-            flex-direction: column;
-            align-items: stretch;
+        .sign-header {
             gap: 20px;
             text-align: center;
 
             p {
                 color: var(--green600);
-                font-size: var(--f24px);
+                font-size: var(--f18px);
             }
         }
 
         .sign-info {
-            text-align: start;
+            margin-block: 20px;
             font-size: var(--f18px);
 
             > div {
@@ -87,40 +63,15 @@
             }
         }
 
-        button {
+        .sign-button {
             width: fit-content;
-            padding: 10px;
-            background-color: transparent;
-            border: 1px solid var(--green600);
-            color: var(--green600);
-            display: flex;
-            align-items: center;
-            justify-content: flex-start;
             padding-inline: 2em;
-            gap: 3em;
-            cursor: pointer;
-            font-weight: 500;
             font-size: var(--f16px);
         }
-        
-    }
-
-    .sign-form {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        min-width: 300px;
-        gap: 20px;
-        font-size: var(--f8px);
-        font-family: inherit;
-        padding: 20px;
-        -webkit-box-shadow: var(--box-shadow-value);
-        box-shadow: var(--box-shadow-value);
-        color: var(--slate950);
-        background-color: var(--background-color8);
-
 
         input {
+            font-size: var(--f8px);
+            font-family: inherit;
             line-height: 2em;
             color: inherit;
             border: none;
@@ -137,20 +88,14 @@
             }
         }
 
-        button {
+        .panel-button {
             width: 100%;
-            padding: 10px;
-            background-color: var(--green600);
-            border: none;
             color: var(--slate950);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding-inline: 2em;
-            gap: 3em;
-            cursor: pointer;
-            font-weight: 500;
             font-size: var(--f16px);
+
+            &:first-of-type {
+                margin-top: 20px;
+            }
             
             &:active {
                 background-color: var(--green200);
@@ -162,11 +107,11 @@
             }
         }
 
-        .sign-error {
+        .panel-error {
             color: var(--red600);
             font-size: var(--f18px);
         }
+        
     }
-  
     
 }

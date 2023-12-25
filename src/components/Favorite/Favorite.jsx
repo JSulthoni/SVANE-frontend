@@ -1,90 +1,84 @@
-import React from 'react';
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 import DeleteOutlinedIcon from "@mui/icons-material/DeleteOutlined";
 import LocalMallIcon from '@mui/icons-material/LocalMall';
 import { useDispatch, useSelector } from 'react-redux';
 import useLoggedIn from '../../hooks/useLoggedIn';
-import { ADD_TO_CART, REMOVE_WISH, RESET_WISH } from '../../redux/contextSlice';
+import { ADD_TO_CART, REMOVE_WISH, RESET_WISH } from '../../redux/bagSlice';
+import { STRIPE_CHECKOUT } from '../../utils/makeStripeThunk';
 import { TOGGLE_SIGN } from '../../redux/navigationSlice';
 import './Favorite.scss';
 
 const Favorite = ({wishRef, open}) => {
     const isLoggedIn = useLoggedIn();
-    const { wishlist } = useSelector((state) => state.context);
     const dispatch = useDispatch();
-
+    const { wishlist } = useSelector((state) => state.bag);
+    
     // Function to handle the payment from wishlist
-    const URL = import.meta.env.VITE_BACKEND_URL
-    const handlePayment = async (item) => {
-        console.log(item);
-        try {
-            if (!isLoggedIn) {
-                dispatch(TOGGLE_SIGN({payload: true}));
-                return;
-            }
-            const req = await fetch(`${URL}/api/stripe/create`, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({
-                    products : [
-                        {
-                            id : item.id,
-                            title : item.title,
-                            desc : item.desc,
-                            price : item.price,
-                            image : item.image,
-                            quantity : item.quantity
-                        }    
-                    ]   
-                })
-            });
-            const res =  await req.json();
-            if (res.url) {
-                window.location.assign(res.url) // User is redirected to this URL if request is fulfilled
-            }
-        } catch (error) {
-            console.error('Error during payment:', error);
+    const handlePayment = (product) => {
+        if (!isLoggedIn) {
+            dispatch(TOGGLE_SIGN({payload: true}));
+            return;
         }
+        dispatch(STRIPE_CHECKOUT({
+            cart: [
+                {
+                    product: {
+                        _id : product._id,
+                        title : product.title,
+                        description : product.description,
+                        price : product.price,
+                        image1 : product.image1
+                    },
+                    quantity : 1
+                }    
+            ],
+            option: 'wishlist'   
+        }))
     };
 
     return (
-        <div ref={wishRef} className={`wish ${open ? 'active' : 'inactive'}`}>
+        <div ref={wishRef} className={`panel ${open ? 'active' : 'inactive'}`}>
             <h3>{wishlist.length ? 'Products in your wishlist' : 'Your wishlist is empty'}</h3>
-            {!wishlist.length ? '' : 
-            <div className='wish-list'>
-            {wishlist?.map((item) => (
-                <div className='item' key={item.id}>
-                    <img src={`${item.image}?auto=compress&cs=tinysrgb&w=360&dpr=1`} alt=''/>
-                    <div className='details'>
-                        <h4>{item.title}</h4>
-                        <p>{item.desc.substring(0,100) + '...'}</p>
-                    </div>
-                    <button className='add' onClick={() => handlePayment(item)}>
-                    <LocalMallIcon className='add' />
+            {!wishlist.length ? null : 
+            <div className='panel-list'>
+            {wishlist?.map((item) => {
+                const { product } = item;
+                return (
+                    <div className='panel-item' key={product._id}>
+                        <img src={`${product.image1}?auto=compress&cs=tinysrgb&w=360&dpr=1`} alt=''/>
+                        <div className='panel-details'>
+                            <h4>{product.title}</h4>
+                            <p>{product.description.substring(0,100) + '...'}</p>
+                        </div>
+                        <button className='panel-button button-green' onClick={() => handlePayment(product)}>
+                        <LocalMallIcon/>
+                        </button>
+                        <button className='panel-button button-green' onClick={() => {
+                            if (!isLoggedIn) {
+                                dispatch(TOGGLE_SIGN(true));
+                                return;
+                            };
+                            dispatch(ADD_TO_CART({
+                                product : {
+                                    _id : product._id,
+                                    title : product.title,
+                                    description : product?.description,
+                                    price : product.price,
+                                    image1 : product.image1,
+                                },
+                                quantity: 1
+                            }));
+                        }}>
+                        <AddShoppingCartIcon/>
                     </button>
-                    <button className='add' onClick={() => {
-                        if (!isLoggedIn) {
-                            dispatch(TOGGLE_SIGN({payload: true}));
-                            return;
-                        };
-                        dispatch(ADD_TO_CART({
-                            id : item?.id,
-                            title : item?.title,
-                            desc : item?.desc,
-                            price : item?.price,
-                            image : item?.image,
-                            quantity : item?.quantity
-                        }));
-                    }}>
-                    <AddShoppingCartIcon className='add'/>
-                </button>
-                    <DeleteOutlinedIcon className='delete' onClick={() => dispatch(REMOVE_WISH(item.id))}/>
-                </div>
-            ))}
+                        <DeleteOutlinedIcon className='panel-delete' onClick={() => dispatch(REMOVE_WISH(product._id))}/>
+                    </div>
+                )
+            })}
             </div>}
-            <span className='reset' onClick={() => dispatch(RESET_WISH())}>Empty List</span>
+            { 
+                Boolean(wishlist.length) ? <span className='panel-reset' onClick={() => dispatch(RESET_WISH())}>Empty List</span> : null
+            }
         </div>
     )
 };
