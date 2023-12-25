@@ -37,11 +37,11 @@ const ErrorElement = ({ maxHeight }) => {
             <div className='error-wrapper' style={{transform:`translateX(-${currentSlide * 100}vw)`, width: `${images.length}00dvw`}}>
                 {images.map((image, index) => <img key={index} src={image} alt={`slider${index}`} />)}
             </div>
-            <div className='error-buttons'>
-                <div aria-label='prev-image' className='error-button' onClick={prevSlide}>
+            <div className='slider-buttons'>
+                <div aria-label='prev-image' className='slider-button flexc-center' onClick={prevSlide}>
                 <KeyboardArrowLeftIcon />
                 </div>
-                <div aria-label='next-image' className='error-button' onClick={nextSlide}>
+                <div aria-label='next-image' className='slider-button flexc-center' onClick={nextSlide}>
                 <KeyboardArrowRightIcon />
                 </div>
             </div>

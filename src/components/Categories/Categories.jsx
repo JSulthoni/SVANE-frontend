@@ -26,11 +26,11 @@ const Categories = () => {
             return;
         }
 
-        navigate(`/search?search=${type}`)
+        navigate(`/discover?search=${type}`)
     }
 
     return (
-        <div className='categories' id='categories'>
+        <section className='categories flexc-center' id='categories'>
             <h2>Our categories</h2>
             <div className='grid'>
                 <div className='cell'>
@@ -69,7 +69,7 @@ const Categories = () => {
                     </button>
                 </div>
             </div>
-        </div>
+        </section>
     )
 };
 

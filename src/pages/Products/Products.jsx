@@ -94,13 +94,7 @@ const Products = () => {
                         src="https://images.pexels.com/photos/5120190/pexels-photo-5120190.jpeg?auto=compress&cs=tinysrgb&w=1600"
                         alt=""
                     /> }
-            { loading ? 
-                <p>Loading products...</p>
-            : error ? 
-                <ErrorElement maxHeight={60} />
-            :
                 <List category={category} maxPrice={maxPrice} sort={sort} subCats={subCats}/>
-            }
             </div>
         </div>
     )

@@ -1,6 +1,6 @@
 import { SIGNIN_FAILURE, SIGNIN_START, SIGNIN_SUCCESS, SIGNOUT } from "../redux/authenticationSlice";
 import { TOGGLE_SIGN } from "../redux/navigationSlice";
-import { makeAuth } from "./makeAPI";
+import { makeAuth, makeRequest } from "./makeAPI";
 import { GET_BAG } from "./makeBagThunk";
 import { RESET_CART, RESET_WISH } from "../redux/bagSlice";
 
@@ -19,7 +19,6 @@ export const SIGN_USER = ({ email, password }) => {
             dispatch(TOGGLE_SIGN(false));
         } catch (error) {
             dispatch(SIGNIN_FAILURE(error.message));
-            dispatch(SIGNOUT());
         }
     }
 };
@@ -37,7 +36,6 @@ export const CREATE_USER = ({ email, password, wishlist }) => {
             dispatch(GET_BAG());
         } catch (error) {
             dispatch(SIGNIN_FAILURE(error.message));
-            dispatch(SIGNOUT());
         }
     }
 };

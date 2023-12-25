@@ -1,5 +1,5 @@
-import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom'
+import { useCallback, useEffect, useRef, memo } from 'react';
+import { Link } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux';
 import { HashLink } from 'react-router-hash-link';
 import { 
@@ -25,7 +25,6 @@ import Searchbar from '../Searchbar/Searchbar';
 import SignIn from '../SignIn/SignIn';
 import useLoggedIn from '../../hooks/useLoggedIn';
 import './NavBar.scss';
-import { GET_BAG, UPDATE_BAG } from '../../utils/makeBagThunk';
 import { RESET_NOTIFICATION } from '../../redux/notificationSlice';
 import usePanels from '../../hooks/usePanels';
 
@@ -40,7 +39,7 @@ const NavBar = () => {
     const dispatch = useDispatch();
     
 
-    // otification set ups
+    // Notification set ups
     const { message } = useSelector((state) => state.notification);
     const openNotif = Boolean(message);
     useEffect(() => {
@@ -48,57 +47,6 @@ const NavBar = () => {
             dispatch(RESET_NOTIFICATION());
         }, 3000);
     }, [openNotif]);
-
-
-    // This condition is to get user's bag only and after user is signed in
-    // This is intended to run only once after user is signed in
-    useEffect(() => {
-        let mounted = true
-            if (mounted && isLoggedIn) {
-                dispatch(GET_BAG());
-            } 
-        return () => {
-            mounted = false
-        }
-    }, [isLoggedIn]);
-
-
-    // This is a chain of debounching mechanism is intended to make the UPDATE_BAG dispatch execute after
-    // timer expires. This is intended to lower request traffic and because wishlist and cart is a panel
-    // that follows user anywhere.
-    const [debounceTimer, setDebounceTimer] = useState(null);
-
-    const debouncedDispatch = () => {
-        if (debounceTimer) {
-            clearTimeout(debounceTimer)
-        }
-        const newDebounceDispatch = setTimeout(() => {
-            const debouncedCart = cart.map((item) => ({ _id: item.product._id, quantity: item.quantity })) || [];
-            const debouncedWishlist = wishlist.map((item) => ({ _id: item.product._id })) || [];
-            
-            // dispatch UPDATE_BAG with the specified condition 
-            const condition = isLoggedIn && debouncedCart !== undefined && debouncedWishlist !== undefined
-            if (condition) {
-                dispatch(UPDATE_BAG({ cart: debouncedCart, wishlist: debouncedWishlist }));
-            }
-        }, 750) // Timer for debounce is adjusted at 750ms
-
-        setDebounceTimer(newDebounceDispatch);
-    };
-
-    
-    // This useEffect is to execute the debounce mechanism
-    useEffect(() => {
-        debouncedDispatch();
-
-        return () => {
-            if (debounceTimer) {
-                clearTimeout(debounceTimer);
-            }
-        }
-        // The dependency array includes cart and wishlist which to execute calculateDebouncedValues if
-        // either of the value changed
-    }, [cart, wishlist]);
 
 
     // useClickOutside is a function to close respective panel when user double click outside of it/s
@@ -129,63 +77,67 @@ const NavBar = () => {
         dispatch(TOGGLE_MENU(false));
     }, []);
 
-    const handleSearchClick = () => {
+    const togglePanel = (panelType) => {
         closeAllPanel();
-        dispatch(TOGGLE_SEARCH(!openSearch));
+        switch (panelType) {
+          case 'search':
+            dispatch(TOGGLE_SEARCH(!openSearch));
+            break;
+          case 'wishlist':
+            dispatch(TOGGLE_WISHLIST(!openWishlist));
+            break;
+          case 'cart':
+            dispatch(TOGGLE_CART(!openCart));
+            break;
+          case 'sign':
+            dispatch(TOGGLE_SIGN(!openSign));
+            break;
+          case 'menu':
+            dispatch(TOGGLE_MENU(!openMenu));
+            break;
+          default:
+            break;
+        }
     };
-
-    const handleWishlistClick = () => {
-        closeAllPanel();
-        dispatch(TOGGLE_WISHLIST(!openWishlist));
-    };
-
-    const handleCartClick = () => {
-        closeAllPanel();
-        dispatch(TOGGLE_CART(!openCart));
-    };
-
-    const handleSignInClick = () => {
-        closeAllPanel();
-        dispatch(TOGGLE_SIGN(!openSign));
-    };
-
-    const handleMenuClick = () => {
-        closeAllPanel();
-        dispatch(TOGGLE_MENU(!openMenu));
-    };
+      
+    const handleSearchClick = () => togglePanel('search');
+    const handleWishlistClick = () => togglePanel('wishlist');
+    const handleCartClick = () => togglePanel('cart');
+    const handleSignInClick = () => togglePanel('sign');
+    const handleMenuClick = () => togglePanel('menu');
 
     return (
         <div className='navbar'>
             <div className='wrapper'>
-                <div className='left'>
-                    <div className='item'>
+                <div className='left flexr-c-start'>
+                    <div className='item flexr-c-start'>
                         <HashLink 
                             scroll={(el) => el.scrollIntoView({ block: 'start' })}
                             smooth 
                             className='link' 
                             to='/#categories'>Categories</HashLink>
                     </div>
-                    <div className='item'>
+                    <div className='item flexr-c-start'>
                         <HashLink smooth className='link' to='/products/men#top'>Men</HashLink>
                     </div>
-                    <div className='item'>
+                    <div className='item flexr-c-start'>
                         <HashLink smooth className='link' to='/products/women#top'>Women</HashLink>
                     </div>
-                    <div className='item'>
+                    <div className='item flexr-c-start'>
                         <HashLink smooth className='link' to='/products/unisex#top'>Unisex</HashLink>
                     </div>
                 </div>
                 <div className='center'>
                     <Link className='link' to='/'>SVANE</Link>
                 </div>
-                <div className='right'>
-                    <div className='item'>
+                <div className='right flexr-c-start'>
+                    <div className='item flexr-c-start'>
                         <HashLink smooth className='link' to='/#'>Homepage</HashLink>
                     </div>
-                    <div className='item'>
+                    <div className='item flexr-c-start'>
                         <HashLink smooth className='link' to='/about#top'>About</HashLink>
                     </div>
-                    <div className='item'>
+                    <div className='item flexr-c-start'>
                         <HashLink smooth className='link' to='/discover#top'>Discover</HashLink>
                     </div>
                     <div className='icons'>
@@ -194,13 +146,13 @@ const NavBar = () => {
                         </div>
                         <div className='icon' onClick={handleWishlistClick}>
                             <FavoriteBorderOutlinedIcon />
-                            <span>{wishlist.length}</span>
+                            <span className='flexc-center'>{wishlist.length}</span>
                         </div>
                         {
                             isLoggedIn && 
                         <div className='icon' onClick={handleCartClick}>
                             <ShoppingCartOutlinedIcon />
-                            <span>{cart.length}</span>
+                            <span className='flexc-center'>{cart.length}</span>
                         </div>
                         }
                         <div className='icon icon-login' onClick={handleSignInClick}>
@@ -209,7 +161,7 @@ const NavBar = () => {
                         <div className='icon' onClick={() => dispatch(TOGGLE_NIGHT())}>
                             {nightmode ? <BedtimeIcon /> : <LightModeIcon />}
                         </div>
-                        <div className='icon-menu' onClick={handleMenuClick}>
+                        <div className='icon icon-menu' onClick={handleMenuClick}>
                             <MenuIcon />
                         </div>
                     </div>

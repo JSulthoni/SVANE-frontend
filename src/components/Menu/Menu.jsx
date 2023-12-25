@@ -1,5 +1,5 @@
+import { memo } from 'react'
 import { HashLink } from 'react-router-hash-link';
-import { Link } from 'react-router-dom';
 import './Menu.scss';
 
 
@@ -14,7 +14,7 @@ const Menu = ({open, handleMenu}) => {
                 </li>
                 <li onClick={() => handleMenu()}>
                     <HashLink 
-                    scroll={(el) => el.scrollIntoView({ block: 'end' })}
+                    scroll={(el) => el.scrollIntoView({ block: 'start' })}
                     smooth 
                     className='link' to='/#categories'>Categories</HashLink>
                 </li>
@@ -32,5 +32,4 @@ const Menu = ({open, handleMenu}) => {
     )
 };
 
-export default Menu;
-<Link className='link' to='/search'>Discover</Link>
+export default memo(Menu);

@@ -1,6 +1,7 @@
 import { SET_BAG } from "../redux/bagSlice";
 import { makeAuth } from "./makeAPI";
 import { SET_NOTIFICATION } from "../redux/notificationSlice";
+import { SIGNOUT_USER } from "./makeAuthThunk";
 
 // This function gets user's bag and update redux store with the response
 export const GET_BAG = () => {
@@ -11,7 +12,8 @@ export const GET_BAG = () => {
             // Setting redux bag with data from response
             dispatch(SET_BAG(res.data));
         } catch (error) {
-            dispatch(SET_NOTIFICATION('OOPS, SOMETHING WENT WRONG. PLEASE TRY AGAIN LATER')); // change these later with console.log('')
+            dispatch(SET_NOTIFICATION('SOMETHING WENT WRONG'));
+            dispatch(SIGNOUT_USER());
         }
     }
 };
@@ -25,7 +27,7 @@ export const UPDATE_BAG = ({ cart, wishlist }) => {
             // Setting redux bag with data from response
             dispatch(SET_BAG(res.data));
         } catch (error) {
-            dispatch(SET_NOTIFICATION('OOPS, SOMETHING WENT WRONG. PLEASE TRY AGAIN LATER'));
+            dispatch(SET_NOTIFICATION('SOMETHING WENT WRONG. PLEASE TRY AGAIN LATER'));
         }
     }
 };

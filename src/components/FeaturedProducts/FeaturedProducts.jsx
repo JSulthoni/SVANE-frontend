@@ -1,9 +1,11 @@
+import ErrorElement from '../ErrorElement/ErrorElement';
+import { memo } from 'react';
 import Card from '../Card/Card';
 import useFetch from '../../hooks/useFetch';
 import { useNavigate } from 'react-router-dom';
 import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
 import './FeaturedProducts.scss'
-import ErrorElement from '../ErrorElement/ErrorElement';
+import CardPlaceholder from '../CardPlaceholder/CardPlaceholder';
 
 const FeaturedProducts = ({ type }) => {
     const navigate = useNavigate()
@@ -18,12 +20,11 @@ const FeaturedProducts = ({ type }) => {
 
         navigate(`/discover?search=${type}`)
     }
-
     return (
-        <div className='featuredProducts'>
+        <section className='featured-products'>
             { loading ? 
-                <div className='top'>
-                    <p>Loading products...</p>
+                <div className='bottom'>
+                {[...Array(7)].map((arr, i) => <CardPlaceholder key={i} />)}
                 </div> 
             : error ? 
                 <div className='bottom'>
@@ -31,7 +32,7 @@ const FeaturedProducts = ({ type }) => {
                 </div>
             : 
             (<>
-                <div className='top' id={type}>
+                <div className='top flexr-c-start' id={type}>
                     {type === 'trending' ? 
                     <>
                         <h2 onClick={() => handleCategory('trending')}>Step into Fashion Excellence</h2>
@@ -48,13 +49,13 @@ const FeaturedProducts = ({ type }) => {
                 <div className='bottom'>
                     {data.map((item) => <Card item={item} key={item._id}/>)}
                 </div>
-                <button onClick={() => handleCategory(type)}>
+                <button className='featured-button button-transparent flexr-c-between' onClick={() => handleCategory(type)}>
                     Discover More <KeyboardArrowRightIcon />
                 </button>
             </>)
             }
-        </div>
+        </section>
     )
 };
 
-export default FeaturedProducts;
+export default memo(FeaturedProducts);

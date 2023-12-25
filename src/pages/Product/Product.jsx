@@ -117,24 +117,24 @@ const Product = () => {
                     <span className='price'>${data?.price}</span>
                     <p>{data?.description}</p>
                     <div className='quantity'>
-                        <button aria-label='decrease amount' onClick={() => setQuantity((prev) => prev === 1 ? 1 : prev - 1)}>-</button>
+                        <button className='quantity-button' aria-label='decrease amount' onClick={() => setQuantity((prev) => prev === 1 ? 1 : prev - 1)}>-</button>
                         <span>{quantity}</span>
-                        <button aria-label='increase amount' onClick={() => setQuantity((prev) => prev + 1)}>+</button>
-                        <button onClick={handleCart}>
+                        <button className='quantity-button' aria-label='increase amount' onClick={() => setQuantity((prev) => prev + 1)}>+</button>
+                        <button className='cart-button button-green' onClick={handleCart}>
                             <AddShoppingCartIcon />
                         </button>
                     </div>
-                    <button className='add' onClick={() => handlePayment(data)}>
+                    <button className='buy-button button-green' onClick={() => handlePayment(data)}>
                         <LocalMallIcon />BUY NOW
                     </button>
-                    <button className='add' onClick={() => buttonControl('ADDED TO WISHLIST')}>
+                    <button className='buy-button button-transparent' onClick={() => buttonControl('ADDED TO WISHLIST')}>
                         <FavoriteBorderIcon /> ADD TO WISHLIST
                     </button>
                     <div className='info'>
                         <span>Vendor: SVANE</span>
                         <span>Product Type: Fashion</span>
                         <span className='tag'>Tag: {data?.type?.map((item) => <span key={item}>{item} </span>)}</span>
-                    <hr />
+                        <hr />
                         <span>DESCRIPTION</span>
                         <hr />
                         <span>ADDITIONAL INFORMATION</span>

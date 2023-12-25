@@ -5,7 +5,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import useLoggedIn from '../../hooks/useLoggedIn';
 import { ADD_TO_CART, REMOVE_WISH, RESET_WISH } from '../../redux/bagSlice';
 import { STRIPE_CHECKOUT } from '../../utils/makeStripeThunk';
-import { SET_NOTIFICATION } from '../../redux/notificationSlice';
 import { TOGGLE_SIGN } from '../../redux/navigationSlice';
 import './Favorite.scss';
 
@@ -38,25 +37,25 @@ const Favorite = ({wishRef, open}) => {
     };
 
     return (
-        <div ref={wishRef} className={`wish ${open ? 'active' : 'inactive'}`}>
+        <div ref={wishRef} className={`panel ${open ? 'active' : 'inactive'}`}>
             <h3>{wishlist.length ? 'Products in your wishlist' : 'Your wishlist is empty'}</h3>
-            {!wishlist.length ? '' : 
-            <div className='wish-list'>
+            {!wishlist.length ? null : 
+            <div className='panel-list'>
             {wishlist?.map((item) => {
                 const { product } = item;
                 return (
-                    <div className='item' key={product._id}>
+                    <div className='panel-item' key={product._id}>
                         <img src={`${product.image1}?auto=compress&cs=tinysrgb&w=360&dpr=1`} alt=''/>
-                        <div className='details'>
+                        <div className='panel-details'>
                             <h4>{product.title}</h4>
                             <p>{product.description.substring(0,100) + '...'}</p>
                         </div>
-                        <button className='add' onClick={() => handlePayment(product)}>
-                        <LocalMallIcon className='add' />
+                        <button className='panel-button button-green' onClick={() => handlePayment(product)}>
+                        <LocalMallIcon/>
                         </button>
-                        <button className='add' onClick={() => {
+                        <button className='panel-button button-green' onClick={() => {
                             if (!isLoggedIn) {
-                                dispatch(TOGGLE_SIGN({payload: true}));
+                                dispatch(TOGGLE_SIGN(true));
                                 return;
                             };
                             dispatch(ADD_TO_CART({
@@ -70,15 +69,15 @@ const Favorite = ({wishRef, open}) => {
                                 quantity: 1
                             }));
                         }}>
-                        <AddShoppingCartIcon className='add'/>
+                        <AddShoppingCartIcon/>
                     </button>
-                        <DeleteOutlinedIcon className='delete' onClick={() => dispatch(REMOVE_WISH(product._id))}/>
+                        <DeleteOutlinedIcon className='panel-delete' onClick={() => dispatch(REMOVE_WISH(product._id))}/>
                     </div>
                 )
             })}
             </div>}
             { 
-                Boolean(wishlist.length) && <span className='reset' onClick={() => dispatch(RESET_WISH())}>Empty List</span> 
+                Boolean(wishlist.length) ? <span className='panel-reset' onClick={() => dispatch(RESET_WISH())}>Empty List</span> : null
             }
         </div>
     )

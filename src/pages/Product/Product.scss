@@ -88,6 +88,7 @@
             display: flex;
             align-items: center;
             width: 250px;
+            height: 50px;
             gap: 10px;
             font-size: var(--f18px);
 
@@ -97,62 +98,34 @@
                 text-align: center;
             }
     
-            button {
+            .quantity-button {
                 flex: 1;
                 max-width: 50px;
-                height: 50px;
-                display: flex;
-                align-items: center;
-                justify-content: center;
+                height: 100%;
                 cursor: pointer;
                 border: none;
                 font-size: inherit;
-                
-                &:active {
-                    background-color: var(--green200);
-                }
+            }
 
-                &:last-child {
-                    flex: 1;
-                    max-width: 100%;
-                    background-color: var(--green600);
-                    color: white;
-                    border: none;
-                    font-weight: 500;
-                    font-size: var(--f16px);
-                    margin-left: 20px;
-                }
+            .cart-button {
+                flex: 1;
+                height: 100%;
+                max-width: 100%;
+                font-size: var(--f16px);
+                margin-left: 20px;
             }
         }
   
-        .add {
+        .buy-button {
             width: 250px;
-            padding: 10px;
-            background-color: var(--green600);
-            color: white;
-            display: flex;
-            align-items: center;
-            justify-content: flex-start;
-            padding-inline: 2em;
             gap: 3em;
-            cursor: pointer;
-            border: none;
+            padding-inline: 2em;
             font-weight: 500;
             font-size: var(--f16px);
+            justify-content: flex-start !important;
 
-                @include xl {
-                    gap: 70px
-                }
-
-            &:nth-last-child(2) {
-                gap: 1em;
-                background-color: transparent;
-                color: var(--green600);
-                border: 1px solid var(--green600);
-
-                @include xl {
-                    gap: 40px
-                }
+            &:first-of-type {
+                gap: 5em;
             }
         }
   
@@ -165,19 +138,12 @@
     
             hr {
             width: 100%;
-            border: 1px solid rgb(238, 237, 237);
+            border-bottom: 1px solid rgba(238, 237, 237, 0.8);
             }
 
             .tag {
                 text-transform: capitalize;
             }
         }
-  
-        hr {
-            width: 100%;
-            border: 1px solid rgb(238, 237, 237);
-        }
-  
     }
-
 }

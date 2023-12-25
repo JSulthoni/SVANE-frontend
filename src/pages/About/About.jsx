@@ -10,8 +10,8 @@ import './About.scss'
 
 const About = () => {
     return (
-        <section className='about flex-center'>
-            <div className='about-wrapper flex-center'>
+        <section className='about flexc-center'>
+            <div className='about-wrapper flexc-center'>
                 <div className='about-title'>
                     <img src={icon} alt='icon' />
                 </div>
@@ -34,9 +34,9 @@ const About = () => {
                         <li>For checkout session, please enter <b>4242 4242 4242 4242</b> for Card Information, <b>04/02</b> for Card Expiry Date, and <b>424</b> for CVC as of Stripe test session. Any other information can be filled as wished.</li>
                     </ul>
                 </article>
-                <div className='about-button'>
-                    <button><a href='https://github.com/JSulthoni' target='_blank'>Author's Profile</a></button>
-                    <button><a href='https://github.com/JSulthoni/SVANE-frontend' target='_blank'>Github Code</a></button>
+                <div className='about-buttons flexr-center'>
+                    <button className='about-button button-green'><a href='https://github.com/JSulthoni' target='_blank'>Author's Profile</a></button>
+                    <button className='about-button button-green'><a href='https://github.com/JSulthoni/SVANE-frontend' target='_blank'>Github Code</a></button>
                 </div>
             </div>
         </section>

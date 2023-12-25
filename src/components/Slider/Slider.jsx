@@ -5,17 +5,16 @@ import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import './Slider.scss';
 
+const images = [
+	'https://images.pexels.com/photos/3062594/pexels-photo-3062594.jpeg?auto=compress&cs=tinysrgb&w=1600&dpr=1',
+	'https://images.pexels.com/photos/3756158/pexels-photo-3756158.jpeg?auto=compress&cs=tinysrgb&w=1600&dpr=1',
+	'https://images.pexels.com/photos/839011/pexels-photo-839011.jpeg?auto=compress&cs=tinysrgb&w=1600&dpr=1',
+	'https://images.pexels.com/photos/1310501/pexels-photo-1310501.jpeg?auto=compress&cs=tinysrgb&w=1600&dpr=1',
+	'https://images.pexels.com/photos/944761/pexels-photo-944761.jpeg?auto=compress&cs=tinysrgb&w=1600&dpr=1'
+];
 
 const Slider = () => {
-	const [currentSlide, setCurrentSlide] = useState(0);
-	
-	const images = [
-		'https://images.pexels.com/photos/3062594/pexels-photo-3062594.jpeg?auto=compress&cs=tinysrgb&w=1600&dpr=1',
-		'https://images.pexels.com/photos/3756158/pexels-photo-3756158.jpeg?auto=compress&cs=tinysrgb&w=1600&dpr=1',
-		'https://images.pexels.com/photos/839011/pexels-photo-839011.jpeg?auto=compress&cs=tinysrgb&w=1600&dpr=1',
-		'https://images.pexels.com/photos/1310501/pexels-photo-1310501.jpeg?auto=compress&cs=tinysrgb&w=1600&dpr=1',
-		'https://images.pexels.com/photos/944761/pexels-photo-944761.jpeg?auto=compress&cs=tinysrgb&w=1600&dpr=1'
-	];
+	const [currentSlide, setCurrentSlide] = useState(0);	
 	
 	// Function to slide the images
 	const index = images.length - 1
@@ -29,20 +28,16 @@ const Slider = () => {
   	return (
 		<div className='slider' id='home'>
 		<div className='slider-wrapper' style={{transform:`translateX(-${currentSlide * 100}vw)`, width: `${images.length}00dvw`}}>
-			<img src={images[0]} alt='slider0' />
-			<img src={images[1]} alt='slider1' />
-			<img src={images[2]} alt='slider2' />
-			<img src={images[3]} alt='slider3' />
-			<img src={images[4]} alt='slider4' />
+			{images.map((image, index) => <img key={index} src={image} alt={`slider${index}`} />)}
 		</div>
 		<div className='slider-title'>
 			<h1>First love to last sight</h1>
 		</div>
 		<div className='slider-buttons'>
-			<div aria-label='prev-image' className='slider-button' onClick={prevSlide}>
+			<div aria-label='prev-image' className='slider-button flexc-center' onClick={prevSlide}>
 			<KeyboardArrowLeftIcon />
 			</div>
-			<div aria-label='next-image' className='slider-button' onClick={nextSlide}>
+			<div aria-label='next-image' className='slider-button flexc-center' onClick={nextSlide}>
 			<KeyboardArrowRightIcon />
 			</div>
 		</div>

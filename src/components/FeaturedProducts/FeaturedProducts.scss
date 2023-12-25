@@ -1,13 +1,10 @@
 @import '../../styles/responsive.scss';
 
-.featuredProducts {
+.featured-products {
     position: relative;
     margin: 130px auto;
 
     .top {
-        display: flex;
-        align-items: center;
-        justify-content: flex-start;
         gap: 10px;
         margin: 0 200px;
         margin-bottom: 50px;
@@ -18,8 +15,8 @@
         }
 
         @include sm {
-            flex-direction: column;
-            align-items: flex-start;
+            flex-direction: column !important;
+            align-items: flex-start !important;
             margin: 0 50px;
             margin-bottom: 20px;
         }
@@ -106,22 +103,13 @@
 
     }
 
-    button {
+    .featured-button {
         position: absolute;
         bottom: -4em;
         right: 5dvw;
         width: 12em;
-        padding: 5px;
-        padding-right: 0;
-        background-color: transparent;
-        color: var(--green600);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 1em;
-        cursor: pointer;
-        border: 1px solid var(--green600);
-        font-weight: 500;
         font-size: var(--f16px);
+        padding: 5px !important;
+        gap: 1em;
     }
 }

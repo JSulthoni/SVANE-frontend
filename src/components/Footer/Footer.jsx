@@ -45,14 +45,14 @@ const Footer = () => {
     }, []);
 
     return (
-        <div className='footer' id='footer'>
+        <section className='footer' id='footer'>
             <div className='top'>
                 <div className='footer-item'>
-                    <div className='footer-title' onClick={() => handleToogle('categories')}>
+                    <div className='footer-title flexr-c-between' onClick={() => handleToogle('categories')}>
                         <h3>Categories</h3>
                         { openState.categories ? <KeyboardArrowUpIcon/> : <KeyboardArrowDownIcon/>}
                     </div>
-                    <div className={`footer-list ${openState.categories ? 'active' : 'inactive'}`}>
+                    <div className={`footer-list flexc-s-start ${openState.categories ? 'active' : 'inactive'}`}>
                         <Link className='link' to='/products/women'>Women</Link>
                         <Link className='link' to='/products/men'>Men</Link>
                         <Link className='link' to='/products/unisex'>Unisex</Link>
@@ -62,11 +62,11 @@ const Footer = () => {
                     <div className='footer-divider'></div>
                 </div>
                 <div className='footer-item'>
-                    <div className='footer-title' onClick={() => handleToogle('link')}>
+                    <div className='footer-title flexr-c-between' onClick={() => handleToogle('link')}>
                         <h3>Link</h3>
                         { openState.link ? <KeyboardArrowUpIcon/> : <KeyboardArrowDownIcon/>}
                     </div>
-                    <div className={`footer-list ${openState.link ? 'active' : 'inactive'}`}>
+                    <div className={`footer-list flexc-s-start ${openState.link ? 'active' : 'inactive'}`}>
                         <HashLink smooth className='link' to='/#categories'>Categories</HashLink>
                         <Link className='link' to='/about'>About</Link>
                         <a className='link' href='https://github.com/JSulthoni'>Profile</a>
@@ -76,23 +76,27 @@ const Footer = () => {
                     <div className='footer-divider'></div>
                 </div>
                 <div className='footer-item'>
-                    <div className='footer-title'>
+                    <div className='footer-title flexr-c-between'>
                         <h3>About</h3>
                     </div>
-                    <p>At <span className='logo'>SVANE</span>, we've reimagined the way you shop online. We understand the thrill of discovering fantastic products from around the world and the convenience of having them delivered to your doorstep. That's why we've designed a platform that connects you to every major fashion store across the globe from different places and buy them all in one go.</p>
+                    <div className='footer-list flexc-s-start'>
+                        <p>At <b>SVANE</b>, we've reimagined the way you shop online. We understand the thrill of discovering fantastic products from around the world and the convenience of having them delivered to your doorstep. That's why we've designed a platform that connects you to every major fashion store across the globe from different places and buy them all in one go.</p>
+                    </div>
                 </div>
                 <div className='footer-item'>
-                    <div className='footer-title'>
+                    <div className='footer-title flexr-c-between'>
                         <h3>Contacts</h3>
                     </div>
-                    <p>Project <span className='logo'>SVANE</span> is created and developed by <a href='https://github.com/JSulthoni'>Javier Nauvel Sulthoni</a>. Reach out with email by <a href='mailto:sulthonijavier@gmail.com' target='_blank'>clicking here</a> or visit <a href='https://github.com/JSulthoni/SVANE-frontend'>the sourcecode</a>.</p>
+                    <div className='footer-list flexc-s-start'>
+                        <p>Project <b>SVANE</b> is created and developed by <a href='https://github.com/JSulthoni'>Javier Nauvel Sulthoni</a>. Reach out with email by <a href='mailto:sulthonijavier@gmail.com' target='_blank'>clicking here</a> or visit <a href='https://github.com/JSulthoni/SVANE-frontend'>the sourcecode</a>.</p>
+                    </div>
                 </div>
             </div>
             <div className='bottom'>
                     <span className='logo'>SVANE</span>
                     <span className='copyright'>2023. © Sulthoni Development. All Rights Reserved</span>
             </div>
-        </div>
+        </section>
     )
 };
 

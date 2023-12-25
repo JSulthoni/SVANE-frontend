@@ -1,4 +1,5 @@
 @import '../../styles/responsive.scss';
+@import '../../styles/utils.scss';
 
 .search-section {
     margin: 130px auto;
@@ -11,9 +12,6 @@
     }
 
     .top {
-        display: flex;
-        align-items: center;
-        justify-content: flex-start;
         gap: 10px;
         margin: 0 200px;
         margin-bottom: 50px;
@@ -24,8 +22,8 @@
         }
 
         @include sm {
-            flex-direction: column;
-            align-items: flex-start;
+            flex-direction: column !important;
+            align-items: flex-start !important;
             margin: 0 50px;
             margin-bottom: 50px;
         }
@@ -133,32 +131,8 @@
 			object-fit: cover;
       	}
     }
-
-    .search-buttons {
-		width: 100%;
-		display: flex;
-		justify-content: space-between;
-		position: absolute;
-		padding-inline: 5px;
-		left: 0;
-		right: 0;
-		bottom: 30%;
-		margin: auto;
-
-      	.search-button {
-			width: 50px;
-			height: 50px;
-			border: none;
-			display: flex;
-			align-items: center;
-			justify-content: center;
-			cursor: pointer;
-			border: none;
-			color: var(--slate950);
-            background-color: var(--background-color6);
-      	}
-    }
-
     
-
+    .search-buttons {
+        bottom: 30% !important;
+    }
 }

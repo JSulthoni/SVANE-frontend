@@ -1,4 +1,5 @@
 @import '../../styles/responsive.scss';
+@import '../../styles/utils.scss';
 
 .slider {
 	height: 100vh;
@@ -12,8 +13,8 @@
 		transition: all 1000ms ease;
 
       	img {
-			width: 100vw;
-			height: 100%;
+			width: 100dvw;
+			height: auto;
 			object-fit: cover;
 
 			@include xs {
@@ -47,31 +48,6 @@
 			}
 		}
 	}
-
-    .slider-buttons {
-		width: 100%;
-		display: flex;
-		justify-content: space-between;
-		position: absolute;
-		padding-inline: 5px;
-		left: 0;
-		right: 0;
-		bottom: 50%;
-		margin: auto;
-
-      	.slider-button {
-			width: 50px;
-			height: 50px;
-			border: none;
-			display: flex;
-			align-items: center;
-			justify-content: center;
-			cursor: pointer;
-			border: none;
-			color: var(--slate950);
-			background-color: var(--background-color6);
-      	}
-    }
 
 	.slider-navigate {
 		width: 100%;
@@ -107,6 +83,5 @@
 				width: 0.5em;
 			}
 		}
-		
 	}
 }
