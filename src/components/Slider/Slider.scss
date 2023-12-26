@@ -13,8 +13,10 @@
 		transition: all 1000ms ease;
 
       	img {
+			width: 100vw;
 			width: 100dvw;
-			height: auto;
+			height: 100vh;
+			height: 100dvh;
 			object-fit: cover;
 
 			@include xs {

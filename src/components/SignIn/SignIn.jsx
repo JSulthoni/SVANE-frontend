@@ -87,7 +87,6 @@ const SignIn = ({open}) => {
                 <div className='sign-header flexc-s-between'>
                     <h3>WELCOME</h3>
                     <h4>{user.email}</h4>
-                    <p>ID : {user._id}</p>
                 </div>
                 <div className='sign-info flexc-s-between'>
                     <div onClick={() => handleClick('cart')}>
