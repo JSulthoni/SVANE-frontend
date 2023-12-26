@@ -8,8 +8,8 @@ const Card = ({item}) => {
             <div className='card'>
                 <div className='image'>
                 {item?.newArrival && <span className='season'>New Season</span>}
-                    <img src={`${item?.image1}?auto=compress&cs=tinysrgb&w=1600&dpr=1`} alt='' className='image1' />
-                    <img src={`${item?.image2}?auto=compress&cs=tinysrgb&w=1600&dpr=1`} alt='' className='image2' />
+                    <img src={`${item?.image1}?auto=compress&cs=tinysrgb&h=360&dpr=1`} alt='image1' loading='lazy' className='image1' />
+                    <img src={`${item?.image2}?auto=compress&cs=tinysrgb&h=360&dpr=1`} alt='image2' loading='lazy' className='image2' />
                 </div>
                 <div className='info'>
                     <h3>{item.title}</h3>

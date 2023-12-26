@@ -1,22 +1,5 @@
 @import '../../styles/responsive.scss';
-
-//  Animation
-
-@keyframes placeholder {
-    0% {
-        background-color: var(--placeholder-color0);
-    }
-    
-    100% {
-        background-color: var(--placeholder-color100);
-    }
-}
-
-.placeholder-animation {
-    animation: placeholder 1500ms linear infinite alternate;
-}
-
-@import '../../styles/responsive.scss';
+@import '../../styles/utils.scss';
 
 .placeholder-card {
     position: relative;

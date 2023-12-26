@@ -15,17 +15,16 @@
         }
     
         input {
-            padding: 0.5em 12px;
+            padding: 0.5em 1em;
             border: none;
+            height: 2em;
+            outline: none;
             font-size: var(--f16px);
-
-            &:focus {
-                outline: none;
-            }
         }
     
         button {
-            font-family: 'Rubik', sans-serif;
+            font-family: inherit;
+            height: 2em;
             padding: 0.5em 1em;
             font-weight: 500;
             background: var(--slate200);

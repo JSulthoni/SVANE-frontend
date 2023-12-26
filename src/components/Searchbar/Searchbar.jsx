@@ -48,7 +48,7 @@ const Searchbar = ({searchRef, open}) => {
         const newDebounceDispatch = setTimeout(() => {
 
             // Set the query string only if the condition is met 
-            const condition = searchQuery.length !== 0 || searchQuery !== undefined
+            const condition = searchQuery !== undefined || searchQuery?.length !== 0 
             if (condition) {
                 setQueryString(searchQuery);
             }

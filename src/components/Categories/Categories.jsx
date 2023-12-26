@@ -34,36 +34,36 @@ const Categories = () => {
             <h2>Our categories</h2>
             <div className='grid'>
                 <div className='cell'>
-                    <img src="https://images.pexels.com/photos/18516747/pexels-photo-18516747/free-photo-of-blonde-woman-posing-in-black-outfit.jpeg?auto=compress&cs=tinysrgb&w=1600" alt="" className='image1'/>
-                    <img src="https://images.pexels.com/photos/18516753/pexels-photo-18516753/free-photo-of-blonde-woman-posing-in-black-outfit.jpeg?auto=compress&cs=tinysrgb&w=1600" alt="" className={randomClassName()}/>
+                    <img src="https://images.pexels.com/photos/18516747/pexels-photo-18516747.jpeg?auto=compress&cs=tinysrgb&w=940&fit=crop&dpr=1" alt="trending" loading='lazy' className='image1'/>
+                    <img src="https://images.pexels.com/photos/18516753/pexels-photo-18516753.jpeg?auto=compress&cs=tinysrgb&w=940&fit=crop&dpr=1" alt="trending" loading='lazy' className={randomClassName()}/>
                     <button onClick={() => handleCategory('trending')}>
                         Trending
                     </button>
                 </div>
                 <div className='cell'>
-                    <img src="https://images.pexels.com/photos/1036621/pexels-photo-1036621.jpeg?auto=compress&cs=tinysrgb&w=1600" alt="" className='image1'/>
-                    <img src="https://images.pexels.com/photos/1036623/pexels-photo-1036623.jpeg?auto=compress&cs=tinysrgb&w=1600" alt="" className={randomClassName()}/>
+                    <img src="https://images.pexels.com/photos/1036621/pexels-photo-1036621.jpeg?auto=compress&cs=tinysrgb&w=940&fit=crop&dpr=1" alt="women" loading='lazy' className='image1'/>
+                    <img src="https://images.pexels.com/photos/1036623/pexels-photo-1036623.jpeg?auto=compress&cs=tinysrgb&w=940&fit=crop&dpr=1" alt="women" loading='lazy' className={randomClassName()}/>
                     <button>
                         <Link to="/products/women" className="link">Women</Link>
                     </button>
                 </div>
                 <div className='cell'>
-                    <img src="https://images.pexels.com/photos/1036628/pexels-photo-1036628.jpeg?auto=compress&cs=tinysrgb&w=1600" alt="" className='image1'/>
-                    <img src="https://images.pexels.com/photos/1036627/pexels-photo-1036627.jpeg?auto=compress&cs=tinysrgb&w=1600" alt="" className={randomClassName()}/>
+                    <img src="https://images.pexels.com/photos/1036628/pexels-photo-1036628.jpeg?auto=compress&cs=tinysrgb&w=940&fit=crop&dpr=1" alt="men" loading='lazy' className='image1'/>
+                    <img src="https://images.pexels.com/photos/1036627/pexels-photo-1036627.jpeg?auto=compress&cs=tinysrgb&w=940&fit=crop&dpr=1" alt="men" loading='lazy' className={randomClassName()}/>
                     <button>
                         <Link to="/products/men" className="link">Men</Link>
                     </button>
                 </div>
                 <div className='cell'>
-                    <img src="https://images.pexels.com/photos/5622631/pexels-photo-5622631.jpeg?auto=compress&cs=tinysrgb&w=1600" alt="" className='image1'/>
-                    <img src="https://images.pexels.com/photos/5622637/pexels-photo-5622637.jpeg?auto=compress&cs=tinysrgb&w=1600" alt="" className={randomClassName()}/>
+                    <img src="https://images.pexels.com/photos/5622631/pexels-photo-5622631.jpeg?auto=compress&cs=tinysrgb&w=940&fit=crop&dpr=1" alt="unisex" loading='lazy' className='image1'/>
+                    <img src="https://images.pexels.com/photos/5622637/pexels-photo-5622637.jpeg?auto=compress&cs=tinysrgb&w=940&fit=crop&dpr=1" alt="unisex" loading='lazy' className={randomClassName()}/>
                     <button>
                         <Link to="/products/unisex" className="link">Unisex</Link>
                     </button>
                 </div>
                 <div className='cell'>
-                    <img src="https://images.pexels.com/photos/6974969/pexels-photo-6974969.jpeg?auto=compress&cs=tinysrgb&w=1600" alt="" className='image1'/>
-                    <img src="https://images.pexels.com/photos/6974967/pexels-photo-6974967.jpeg?auto=compress&cs=tinysrgb&w=1600" alt="" className={randomClassName()}/>
+                    <img src="https://images.pexels.com/photos/6974969/pexels-photo-6974969.jpeg?auto=compress&cs=tinysrgb&w=940&fit=crop&dpr=1" alt="featured" loading='lazy' className='image1'/>
+                    <img src="https://images.pexels.com/photos/6974967/pexels-photo-6974967.jpeg?auto=compress&cs=tinysrgb&w=940&fit=crop&dpr=1" alt="featured" loading='lazy' className={randomClassName()}/>
                     <button onClick={() => handleCategory('featured')}>
                         Featured
                     </button>

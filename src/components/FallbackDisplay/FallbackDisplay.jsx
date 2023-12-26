@@ -9,7 +9,7 @@ const FallbackDisplay = ({search, maxPrice, sort}) => {
     const title = ['hoodie', 'shirt','trending', 'featured'];
     const index = Math.floor(Math.random() * title.length);
     const [product, setProduct] = useState(search || null);
-    const [type, setType] = useState(title[index] || null);
+    const [type, setType] = useState(title[index]);
     
     // useEffect to fetch either trending or featured
     useEffect(() => {
@@ -17,8 +17,7 @@ const FallbackDisplay = ({search, maxPrice, sort}) => {
         setProduct(search);
 
         return () => {
-            setType(title[index]);
-            setProduct(search)
+            setProduct(null)
         }
     }, [search]);
 

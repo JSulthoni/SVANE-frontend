@@ -1,14 +1,16 @@
 import { useState, useEffect } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
+import { ErrorBoundary } from 'react-error-boundary';
+import ErrorElement from '../../components/ErrorElement/ErrorElement';
 import List from '../../components/List/List';
 import './Discover.scss'
 
 const headerImage = [
-    "https://images.pexels.com/photos/2672979/pexels-photo-2672979.jpeg?auto=compress&cs=tinysrgb&w=1600&dpr=1",
-    "https://images.pexels.com/photos/3062600/pexels-photo-3062600.jpeg?auto=compress&cs=tinysrgb&w=1600&dpr=1",
-    "https://images.pexels.com/photos/6224374/pexels-photo-6224374.jpeg?auto=compress&cs=tinysrgb&w=1600&dpr=1",
-    "https://images.pexels.com/photos/3571355/pexels-photo-3571355.jpeg?auto=compress&cs=tinysrgb&w=1600&dpr=1",
-    "https://images.pexels.com/photos/12674918/pexels-photo-12674918.jpeg?auto=compress&cs=tinysrgb&w=1600&dpr=1"
+    "https://images.pexels.com/photos/2672979/pexels-photo-2672979.jpeg?auto=compress&cs=tinysrgb&w=1280&dpr=1",
+    "https://images.pexels.com/photos/3062600/pexels-photo-3062600.jpeg?auto=compress&cs=tinysrgb&w=1280&dpr=1",
+    "https://images.pexels.com/photos/6224374/pexels-photo-6224374.jpeg?auto=compress&cs=tinysrgb&w=1280&dpr=1",
+    "https://images.pexels.com/photos/3571355/pexels-photo-3571355.jpeg?auto=compress&cs=tinysrgb&w=1280&dpr=1",
+    "https://images.pexels.com/photos/12674918/pexels-photo-12674918.jpeg?auto=compress&cs=tinysrgb&w=1280&dpr=1"
 ];
 
 const Discover = () => {
@@ -97,7 +99,9 @@ const Discover = () => {
                     src={headerImage[randomImageIndex]}
                     alt="search-page-image"
                 />
+            <ErrorBoundary FallbackComponent={ErrorElement} onReset={() => {}}>
                 <List search={queryParams || 'trending'} maxPrice={maxPrice} sort={sort}/>
+            </ErrorBoundary>
             </div>
         </div>
     );

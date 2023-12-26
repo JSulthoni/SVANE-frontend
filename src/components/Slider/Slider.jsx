@@ -28,7 +28,7 @@ const Slider = () => {
   	return (
 		<div className='slider' id='home'>
 		<div className='slider-wrapper' style={{transform:`translateX(-${currentSlide * 100}vw)`, width: `${images.length}00dvw`}}>
-			{images.map((image, index) => <img key={index} src={image} alt={`slider${index}`} />)}
+			{images.map((image, index) => <img key={index} src={image} loading='lazy' alt={`slider${index}`} />)}
 		</div>
 		<div className='slider-title'>
 			<h1>First love to last sight</h1>

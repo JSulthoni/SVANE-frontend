@@ -1,20 +1,22 @@
-import React, { useEffect } from "react";
+import { lazy, Suspense } from "react";
 import {
 	createBrowserRouter,
 	RouterProvider,
 	Outlet,
 } from "react-router-dom";
-import Home from "./pages/Home/Home";
-import Products from "./pages/Products/Products";
-import Product from "./pages/Product/Product";
-import Success from "./pages/Success/Success";
+import { useSelector } from "react-redux";
 import NavBar from "./components/NavBar/NavBar";
 import Footer from "./components/Footer/Footer";
-import { useSelector } from "react-redux";
-import Discover from "./pages/Discover/Discover";
 import NotFound from "./pages/NotFound/NotFound";
-import About from "./pages/About/About";
+import SuspenseElement from './components/SuspenseElement/SuspenseElement';
+import { ErrorBoundary } from "react-error-boundary";
 import './styles/global.scss';
+const Home = lazy(() => import('./pages/Home/Home'));
+const Products = lazy(() => import('./pages/Products/Products'));
+const Product = lazy(() => import('./pages/Product/Product'));
+const Success = lazy(() => import('./pages/Success/Success'));
+const Discover = lazy(() => import('./pages/Discover/Discover'));
+const About = lazy(() => import('./pages/About/About'));
 
 if (import.meta.env.NODE_ENV === 'production') {
   console.log('Welcome to SVANE')
@@ -42,32 +44,32 @@ const router = createBrowserRouter([
 		element : <Layout />,
 		children : [
 			{
-			path : '/',
-			element : <Home />
+				path : '/',
+				element : <Home />
 			},
 			{
-			path : '/product/:id',
-			element : <Product />
+				path : '/product/:id',
+				element : <Product />
 			},
 			{
-			path : '/products/:id',
-			element : <Products />
+				path : '/products/:id',
+				element : <Products />
 			},
 			{
-			path : '/about/',
-			element : <About />
+				path : '/about/',
+				element : <About />
 			},
 			{
-			path : '/discover',
-			element : <Discover />
+				path : '/discover',
+				element : <Discover />
 			},
 			{
-			path : '/success',
-			element : <Success />
+				path : '/success',
+				element : <Success />
 			},
 			{
-			path : '*',
-			element : <NotFound /> // Fallback page for any non existing route
+				path : '*',
+				element : <NotFound /> // Fallback page for failed route
 			},
 		]
 	}
@@ -77,7 +79,11 @@ const router = createBrowserRouter([
 
 const App = () => {
   return <>
-            <RouterProvider router={router} />
+  		<ErrorBoundary FallbackComponent={NotFound} onReset={() => {}}>
+			<Suspense fallback={<SuspenseElement />}>
+            	<RouterProvider router={router} />
+			</Suspense>
+		</ErrorBoundary>
         </>;
 };
 

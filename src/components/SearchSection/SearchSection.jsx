@@ -58,11 +58,7 @@ const SearchSection = () => {
                     </form>
                 </div>
                 <div className='search-slider' style={{transform:`translateX(-${currentSlide * 100}vw)`, width: `${images.length}00dvw`}}>
-                    <img src={images[0]} alt='slider0' />
-                    <img src={images[1]} alt='slider1' />
-                    <img src={images[2]} alt='slider2' />
-                    <img src={images[3]} alt='slider3' />
-                    <img src={images[4]} alt='slider4' />
+                    {images.map((image, index) => <img key={index} src={image} loading='lazy' alt={`slider${index}`} />)}
                 </div>
                 <div className='search-buttons slider-buttons'>
                     <div aria-label='prev-image' className='slider-button flexc-center' onClick={prevSlide}>

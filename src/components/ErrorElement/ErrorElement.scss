@@ -7,6 +7,7 @@
 	position: relative;
 	
     .error-wrapper {
+		overflow-y: hidden;
 		height: 100%;
 		display: flex;
 		transition: all 1000ms ease;
@@ -15,7 +16,7 @@
             width: 100dvw;
 			height: auto;
 			object-fit: cover;
-            object-position: 50% 40%;
+			transform: translateY(-20%);
       	}
     }
   

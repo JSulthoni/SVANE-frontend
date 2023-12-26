@@ -1,7 +1,6 @@
-import Card from '../Card/Card';
 import useFetch from '../../hooks/useFetch';
 import FallbackDisplay from '../FallbackDisplay/FallbackDisplay';
-import ErrorElement from '../ErrorElement/ErrorElement';
+import Card from '../Card/Card'
 import CardPlaceholder from '../CardPlaceholder/CardPlaceholder';
 import './List.scss';
 
@@ -20,6 +19,10 @@ const List = ({category, maxPrice, sort, search, subCats}) => {
     const { data, loading, error } = useFetch(endpoint);
     const isData = Boolean(data.length);
     
+    if (error) {
+        throw new Error('Something went wrong. We are sorry for the inconvenience');
+    }
+    
     return (
         <>
             { 
@@ -27,18 +30,12 @@ const List = ({category, maxPrice, sort, search, subCats}) => {
                 <div className='list'>
                     {[...Array(10)].map((arr, i) => <CardPlaceholder key={i} />)}
                 </div> 
-            : error ? 
-                <div className='top'>
-                    <ErrorElement maxHeight={50} />
-                </div> 
             : isData ? 
                 <div className='list'>
                     {data.map((item) => (<Card item={item} key={item._id} />))} 
                 </div>
             :
-
-                    <FallbackDisplay search={search} maxPrice={maxPrice} sort={sort}/>
-
+                <FallbackDisplay search={search} maxPrice={maxPrice} sort={sort}/>
             }
         </>
     )
