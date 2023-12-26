@@ -1,6 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=Bai+Jamjuree:wght@400;500;600&family=Inter:wght@100;200;400;500;600&display=swap') async;
 @import './responsive.scss';
 @import './utils.scss';
-
 
 :root {
     // Text color
@@ -54,27 +54,6 @@
     transition: all 250ms ease;
 }
 
-.night {
-    --white: #010519;
-    --slate50: #070a13;
-    --slate200: #f8fafc;
-    --slate400: #f8fafc;
-    --slate600: #e2e8f0;
-    --slate800: #f8fafc;
-    --slate950: #f8fafc;
-    --green50: #010519;
-    --green200: #bbf7d0;
-    --green400: #4ade80;
-    --green600: #16a34a;
-    --green800: #166534;
-    --header: #16a34a;
-    --box-shadow-value: 0px 0px 7px -5px rgba(255, 255, 255, 0.5);
-    --placeholder-color0: #070a13;
-    --placeholder-color100:rgba(0, 0, 0, 0.8);
-    --background-color6: rgba(0, 0, 0, 0.6);
-    --background-color8: rgba(0, 0, 0, 0.8);
-}
-
 .app {
     background-color: var(--white);
 
@@ -85,7 +64,7 @@
 }
 
 html {
-    font-family: 'Bai Jamjuree', sans-serif;
+    font-family: 'Bai Jamjuree', 'Inter', sans-serif;
     font-weight: 400;
     color: var(--slate950);
     scroll-behavior: smooth;
