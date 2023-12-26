@@ -8,12 +8,11 @@ const ErrorElement = ({ error, resetErrorBoundary, maxHeight = 50 }) => {
 	const [currentSlide, setCurrentSlide] = useState(0);
 	
 	const images = [
-		'https://images.pexels.com/photos/19478673/pexels-photo-19478673.jpeg?auto=compress&cs=tinysrgb&w=940&dpr=1',
-		'https://images.pexels.com/photos/17056662/pexels-photo-17056662.jpeg?auto=compress&cs=tinysrgb&w=940&dpr=1',
-		'https://images.pexels.com/photos/9491361/pexels-photo-9491361.jpeg?auto=compress&cs=tinysrgb&w=940&dpr=1',
-        'https://images.pexels.com/photos/16918127/pexels-photo-16918127.jpeg?auto=compress&cs=tinysrgb&w=940&dpr=1',
-        'https://images.pexels.com/photos/6347920/pexels-photo-6347920.jpeg?auto=compress&cs=tinysrgb&w=940&dpr=1',
-        'https://images.pexels.com/photos/842578/pexels-photo-842578.jpeg?auto=compress&cs=tinysrgb&w=940&dpr=1'
+		'https://images.pexels.com/photos/19478673/pexels-photo-19478673.jpeg?auto=compress&cs=tinysrgb&w=1280&dpr=1',
+		'https://images.pexels.com/photos/9491361/pexels-photo-9491361.jpeg?auto=compress&cs=tinysrgb&w=1280&dpr=1',
+        'https://images.pexels.com/photos/16918127/pexels-photo-16918127.jpeg?auto=compress&cs=tinysrgb&w=1280&dpr=1',
+        'https://images.pexels.com/photos/6347920/pexels-photo-6347920.jpeg?auto=compress&cs=tinysrgb&w=1280&dpr=1',
+        'https://images.pexels.com/photos/842578/pexels-photo-842578.jpeg?auto=compress&cs=tinysrgb&w=1280&dpr=1'
 	];
 	
 	// Function to slide the images

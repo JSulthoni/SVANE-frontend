@@ -22,11 +22,11 @@ const SearchSection = () => {
     
     // Slider images and function to slides
     const images = [
-        'https://images.pexels.com/photos/5699177/pexels-photo-5699177.jpeg?auto=compress&cs=tinysrgb&w=1280&dpr=1',
-        'https://images.pexels.com/photos/5710137/pexels-photo-5710137.jpeg?auto=compress&cs=tinysrgb&w=1280&dpr=1',
-        'https://images.pexels.com/photos/6069546/pexels-photo-6069546.jpeg?auto=compress&cs=tinysrgb&w=1280&dpr=1',
-        'https://images.pexels.com/photos/373289/pexels-photo-373289.jpeg?auto=compress&cs=tinysrgb&w=1280&dpr=1',
-        'https://images.pexels.com/photos/5705102/pexels-photo-5705102.jpeg?auto=compress&cs=tinysrgb&w=1280&dpr=1'
+        'https://images.pexels.com/photos/5699177/pexels-photo-5699177.jpeg?auto=compress&cs=tinysrgb&w=1600&dpr=1',
+        'https://images.pexels.com/photos/5710137/pexels-photo-5710137.jpeg?auto=compress&cs=tinysrgb&w=1600&dpr=1',
+        'https://images.pexels.com/photos/6069546/pexels-photo-6069546.jpeg?auto=compress&cs=tinysrgb&w=1600&dpr=1',
+        'https://images.pexels.com/photos/373289/pexels-photo-373289.jpeg?auto=compress&cs=tinysrgb&w=1600&dpr=1',
+        'https://images.pexels.com/photos/5705102/pexels-photo-5705102.jpeg?auto=compress&cs=tinysrgb&w=1600&dpr=1'
     ];
 
     const [currentSlide, setCurrentSlide] = useState(0);

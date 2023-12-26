@@ -6,11 +6,11 @@ import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import './Slider.scss';
 
 const images = [
-	'https://images.pexels.com/photos/3062594/pexels-photo-3062594.jpeg?auto=compress&cs=tinysrgb&w=1280&dpr=1',
-	'https://images.pexels.com/photos/3756158/pexels-photo-3756158.jpeg?auto=compress&cs=tinysrgb&w=1280&dpr=1',
-	'https://images.pexels.com/photos/839011/pexels-photo-839011.jpeg?auto=compress&cs=tinysrgb&w=1280&dpr=1',
-	'https://images.pexels.com/photos/1310501/pexels-photo-1310501.jpeg?auto=compress&cs=tinysrgb&w=1280&dpr=1',
-	'https://images.pexels.com/photos/944761/pexels-photo-944761.jpeg?auto=compress&cs=tinysrgb&w=1280&dpr=1'
+	'https://images.pexels.com/photos/3062594/pexels-photo-3062594.jpeg?auto=compress&cs=tinysrgb&w=1600&dpr=1',
+	'https://images.pexels.com/photos/3756158/pexels-photo-3756158.jpeg?auto=compress&cs=tinysrgb&w=1600&dpr=1',
+	'https://images.pexels.com/photos/839011/pexels-photo-839011.jpeg?auto=compress&cs=tinysrgb&w=1600&dpr=1',
+	'https://images.pexels.com/photos/1310501/pexels-photo-1310501.jpeg?auto=compress&cs=tinysrgb&w=1600&dpr=1',
+	'https://images.pexels.com/photos/944761/pexels-photo-944761.jpeg?auto=compress&cs=tinysrgb&w=1600&dpr=1'
 ];
 
 const Slider = () => {
