@@ -6,12 +6,28 @@ import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import './Footer.scss';
 
 const Footer = () => {
-    const condition = window.innerWidth >= 1200
     const [openState, setOpenState] = useState({
-        categories: condition,
-        link: condition
+        categories: window.innerWidth > 768,
+        link: window.innerWidth > 768
     });
-    
+
+    useEffect(() => {
+        const handleResize = () => {
+            setOpenState({
+                categories: window.innerWidth > 768,
+                link: window.innerWidth > 768,
+            });
+        };
+
+        handleResize(); // Set initial state on mount
+
+        window.addEventListener('resize', handleResize);
+
+        return () => {
+            window.removeEventListener('resize', handleResize);
+        };
+    }, []);
+
     // Handle toggle will only work if window.innerWidth <= 810
     const handleToogle = (type) => {
         if (window.innerWidth >= 810) {
@@ -22,28 +38,6 @@ const Footer = () => {
             setOpenState((prev) => ({ ...prev, [otherType]: false }));
         }
     };
-    
-    // useEffect to set the openList on window resize
-    useEffect(() => {
-        const handleResize = () => {
-            if (condition) {
-                setOpenState({
-                    categories: true,
-                    link: true,
-                  });
-            } else if (!condition) {
-                setOpenState({
-                    categories: false,
-                    link: false,
-                  });
-            }
-        };
-        handleResize();
-        window.addEventListener('resize', handleResize);
-        return () => {
-            window.removeEventListener('resize', handleResize);
-        };
-    }, [condition]);
 
     return (
         <section className='footer' id='footer'>
