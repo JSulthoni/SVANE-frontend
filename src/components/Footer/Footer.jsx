@@ -6,9 +6,10 @@ import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import './Footer.scss';
 
 const Footer = () => {
+    const condition = window.innerWidth >= 1200
     const [openState, setOpenState] = useState({
-        categories: window.innerWidth >= 810,
-        link: window.innerWidth >= 810
+        categories: condition,
+        link: condition
     });
     
     // Handle toggle will only work if window.innerWidth <= 810
@@ -25,12 +26,12 @@ const Footer = () => {
     // useEffect to set the openList on window resize
     useEffect(() => {
         const handleResize = () => {
-            if (window.innerWidth >= 810) {
+            if (condition) {
                 setOpenState({
                     categories: true,
                     link: true,
                   });
-            } else if (window.innerWidth <= 810) {
+            } else if (!condition) {
                 setOpenState({
                     categories: false,
                     link: false,
@@ -42,7 +43,7 @@ const Footer = () => {
         return () => {
             window.removeEventListener('resize', handleResize);
         };
-    }, []);
+    }, [condition]);
 
     return (
         <section className='footer' id='footer'>
