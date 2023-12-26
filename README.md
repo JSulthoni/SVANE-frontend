@@ -3,10 +3,10 @@
 Welcome to the SVANE frontend repository, SVANE is a fullstack MERN online shop project 🚀✨.
 
 ## Project Overview
-SVANE is a M.E.R.N online shop application designed for high performance and responsive UI, ensuring website's functionality to various screen sizes.
+SVANE is a Full Stack M.E.R.N online shop application designed for high performance and responsive UI, ensuring website's functionality to various screen sizes.
 
 ## Key Objectives
-* Create a web application with green web vitals and high SEO score.
+* Create a web application with green web vitals and > 90 SEO score.
 * Minimize data transfer size with transformation and lazy-load, and client request with debouncing mechanism to lower user network cost.
 * Provide great user experience (Unlighthouse & web vitals scoring) with responsive UI and ease-of-use design.
 * Implementing unified source of data in client side by using Redux to speed up performance, maintenance, and bug tracing.
