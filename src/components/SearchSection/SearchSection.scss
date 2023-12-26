@@ -100,16 +100,11 @@
                 color: var(--slate400);
                 border: 1px solid var(--header);
                 font-size: var(--f16px);
-                background-color: var(--background-color8);
-
-                &:active {
-                    color: var(--slate950);
-                    outline: none;
-                }
+                background-color: var(--white);
+                outline: none;
         
                 &:focus {
                     color: var(--slate950);
-                    outline: none;
                 }
             }
         }

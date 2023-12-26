@@ -20,7 +20,6 @@
     --red600: #dc2626;
     --header: #010519;
 
-
     // Font size
     --f10px : 10px;
     --f11px : 11px;
@@ -44,8 +43,8 @@
     // Background color
     --placeholder-color0: #f8fafc;
     --placeholder-color100:#e2e8f0;
-    --background-color6: rgba(255, 255, 255, 0.6);
-    --background-color8: rgba(255, 255, 255, 0.8);
+    --background-color6: rgba(240, 240, 240, 0.6);
+    --background-color8: rgba(240, 240, 240, 0.8);
 }
 
 *, *::before, *::after {
@@ -69,10 +68,7 @@
     --green600: #16a34a;
     --green800: #166534;
     --header: #16a34a;
-
     --box-shadow-value: 0px 0px 7px -5px rgba(255, 255, 255, 0.5);
-
-
     --placeholder-color0: #070a13;
     --placeholder-color100:rgba(0, 0, 0, 0.8);
     --background-color6: rgba(0, 0, 0, 0.6);

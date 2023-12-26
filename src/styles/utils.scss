@@ -1,5 +1,22 @@
 @import './responsive.scss';
 
+//  Animation
+
+@keyframes placeholder {
+    0% {
+        background-color: var(--placeholder-color0);
+    }
+    
+    100% {
+        background-color: var(--placeholder-color100);
+    }
+}
+
+.placeholder-animation {
+    animation: placeholder 1500ms linear infinite alternate;
+}
+
+
 .flexc-center {
     display: flex;
     flex-direction: column;
@@ -243,5 +260,41 @@
         border: none;
         color: var(--slate950);
         background-color: var(--background-color6);
+    }
+}
+
+.slider-navigate {
+    width: 100%;
+    position: absolute;
+    z-index: 2;
+    bottom: 10%;
+    display: flex;
+    justify-content: center;
+
+    > * {
+        text-decoration: none;
+        letter-spacing: 0.025em;
+    }
+
+    .slider-down {
+        padding: 5px 10px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 0px;
+        background-color: var(--background-color6);
+        
+        > * {
+            font-size: var(--f24px);
+            margin: 0 auto;
+            color: var(--slate950);
+        }
+
+        > *:nth-child(2) {
+            font-size: calc(2 * var(--f24px));
+            color: var(--slate950);
+            height: 0.5em;
+            width: 0.5em;
+        }
     }
 }

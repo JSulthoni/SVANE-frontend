@@ -1,6 +1,6 @@
 import { SIGNIN_FAILURE, SIGNIN_START, SIGNIN_SUCCESS, SIGNOUT } from "../redux/authenticationSlice";
 import { TOGGLE_SIGN } from "../redux/navigationSlice";
-import { makeAuth, makeRequest } from "./makeAPI";
+import { makeAuth } from "./makeAPI";
 import { GET_BAG } from "./makeBagThunk";
 import { RESET_CART, RESET_WISH } from "../redux/bagSlice";
 

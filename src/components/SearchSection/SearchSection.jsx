@@ -22,11 +22,11 @@ const SearchSection = () => {
     
     // Slider images and function to slides
     const images = [
-        'https://images.pexels.com/photos/5699177/pexels-photo-5699177.jpeg?auto=compress&cs=tinysrgb&w=1600&dpr=1',
-        'https://images.pexels.com/photos/5710137/pexels-photo-5710137.jpeg?auto=compress&cs=tinysrgb&w=1600&dpr=1',
-        'https://images.pexels.com/photos/6069546/pexels-photo-6069546.jpeg?auto=compress&cs=tinysrgb&w=1600&dpr=1',
-        'https://images.pexels.com/photos/373289/pexels-photo-373289.jpeg?auto=compress&cs=tinysrgb&w=1600&dpr=1',
-        'https://images.pexels.com/photos/5705102/pexels-photo-5705102.jpeg?auto=compress&cs=tinysrgb&w=1600&dpr=1'
+        'https://images.pexels.com/photos/5699177/pexels-photo-5699177.jpeg?auto=compress&cs=tinysrgb&w=1280&dpr=1',
+        'https://images.pexels.com/photos/5710137/pexels-photo-5710137.jpeg?auto=compress&cs=tinysrgb&w=1280&dpr=1',
+        'https://images.pexels.com/photos/6069546/pexels-photo-6069546.jpeg?auto=compress&cs=tinysrgb&w=1280&dpr=1',
+        'https://images.pexels.com/photos/373289/pexels-photo-373289.jpeg?auto=compress&cs=tinysrgb&w=1280&dpr=1',
+        'https://images.pexels.com/photos/5705102/pexels-photo-5705102.jpeg?auto=compress&cs=tinysrgb&w=1280&dpr=1'
     ];
 
     const [currentSlide, setCurrentSlide] = useState(0);
@@ -58,11 +58,7 @@ const SearchSection = () => {
                     </form>
                 </div>
                 <div className='search-slider' style={{transform:`translateX(-${currentSlide * 100}vw)`, width: `${images.length}00dvw`}}>
-                    <img src={images[0]} alt='slider0' />
-                    <img src={images[1]} alt='slider1' />
-                    <img src={images[2]} alt='slider2' />
-                    <img src={images[3]} alt='slider3' />
-                    <img src={images[4]} alt='slider4' />
+                    {images.map((image, index) => <img key={index} src={image} loading='lazy' alt={`slider${index}`} />)}
                 </div>
                 <div className='search-buttons slider-buttons'>
                     <div aria-label='prev-image' className='slider-button flexc-center' onClick={prevSlide}>

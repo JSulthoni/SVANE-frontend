@@ -40,8 +40,6 @@ const Products = () => {
         window.scrollTo(0, 0)
     }, [])
 
-
-
     return (
         <div className='products'>
             <div className='left'>
@@ -80,18 +78,18 @@ const Products = () => {
                     { category === 'men' ? 
                     <img
                         className="cat-image"
-                        src="https://images.pexels.com/photos/5102907/pexels-photo-5102907.jpeg?auto=compress&cs=tinysrgb&w=1600"
+                        src="https://images.pexels.com/photos/5102907/pexels-photo-5102907.jpeg?auto=compress&cs=tinysrgb&w=1280&dpr=1"
                         alt=""
                     /> : 
                     category === 'women' ? 
                     <img
                         className="cat-image"
-                        src="https://images.pexels.com/photos/5119207/pexels-photo-5119207.jpeg?auto=compress&cs=tinysrgb&w=1600"
+                        src="https://images.pexels.com/photos/5119207/pexels-photo-5119207.jpeg?auto=compress&cs=tinysrgb&w=1280&dpr=1"
                         alt=""
                     /> : 
                     <img
                         className="cat-image"
-                        src="https://images.pexels.com/photos/5120190/pexels-photo-5120190.jpeg?auto=compress&cs=tinysrgb&w=1600"
+                        src="https://images.pexels.com/photos/5120190/pexels-photo-5120190.jpeg?auto=compress&cs=tinysrgb&w=1280&dpr=1"
                         alt=""
                     /> }
                 <List category={category} maxPrice={maxPrice} sort={sort} subCats={subCats}/>

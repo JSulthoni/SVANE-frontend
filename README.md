@@ -39,7 +39,10 @@ Back-End:
 ## Language
 * Javascript
 * HTML
-* SCSS
+* CSS
+
+## Note
+- Images are free image hosted by Pexels.
 
 ## License
 [MIT](https://choosealicense.com/licenses/mit/)

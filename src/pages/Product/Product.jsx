@@ -105,11 +105,11 @@ const Product = () => {
             <>
                 <div className='left'>
                     <div className='images'>
-                        <img src={`${data?.image1}?auto=compress&cs=tinysrgb&w=640&dpr=1` || 'https://placehold.co/400'} alt='' onClick={() => setMainImg('image1')}/>
-                        <img src={`${data?.image2}?auto=compress&cs=tinysrgb&w=640&dpr=1` || 'https://placehold.co/400'} alt='' onClick={() => setMainImg('image2')}/>
+                        <img src={`${data?.image1}?auto=compress&cs=tinysrgb&w=360&&dpr=1` || 'https://placehold.co/400'} alt='' onClick={() => setMainImg('image1')}/>
+                        <img src={`${data?.image2}?auto=compress&cs=tinysrgb&w=360&&dpr=1` || 'https://placehold.co/400'} alt='' onClick={() => setMainImg('image2')}/>
                     </div>
                     <div className='mainImage'>
-                        <img src={data?.[mainImg] + '?auto=compress&cs=tinysrgb&w=1600&dpr=1' || 'https://placehold.co/400'} alt=''/>
+                        <img src={data?.[mainImg] + '?auto=compress&cs=tinysrgb&w=1280&dpr=1' || 'https://placehold.co/400'} alt=''/>
                     </div>
                 </div>
                 <div className='right'>

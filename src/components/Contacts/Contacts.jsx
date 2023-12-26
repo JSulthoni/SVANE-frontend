@@ -11,10 +11,10 @@ const Contacts = () => {
         <section className='contacts flexr-center' id='contacts'>
             <div className='wrapper flexr-c-between'>
                 <span>FALL IN LOVE WITH <b>SVANE</b></span>
-                <form className='mail'>
+                <div className='flexr-c-between'>
                     <input type='email' placeholder='example@email.com' />
-                    <button>SUBSCRIBE</button>
-                </form>
+                    <button className="flexc-center">SUBSCRIBE</button>
+                </div>
                 <div className='icons flexr-c-start'>
                     <InstagramIcon />
                     <TwitterIcon />
