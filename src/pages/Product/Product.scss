@@ -51,8 +51,6 @@
                 object-fit: cover;
             }
 
-
-
             @include sm {
                 display: none;
             }
@@ -118,14 +116,22 @@
   
         .buy-button {
             width: 250px;
-            gap: 3em;
+            gap: 1em;
             padding-inline: 2em;
             font-weight: 500;
             font-size: var(--f16px);
             justify-content: flex-start !important;
 
             &:first-of-type {
-                gap: 5em;
+                gap: 3em;
+            }
+
+            @include xxl {
+                gap: 3em;
+
+                &:first-of-type {
+                    gap: 5em;
+                }
             }
         }
   

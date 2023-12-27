@@ -19,6 +19,7 @@ const bagConfig = {
     key: 'bag',
     version: 1,
     storage,
+    blacklist: []
 };
 
 const navigationConfig = {
@@ -32,14 +33,13 @@ const authConfig = {
     key: 'authentication',
     version: 1,
     storage,
-    blacklist: []
 }
 
 const notifConfig = {
     key: 'notification',
     version: 1,
     storage,
-    blacklist: []
+    whitelist: []
 }
 
 const bagReducer = persistReducer(bagConfig, bagSlice);
