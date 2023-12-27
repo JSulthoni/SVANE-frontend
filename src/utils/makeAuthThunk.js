@@ -46,13 +46,26 @@ export const SIGNOUT_USER = () => {
         try {
             await makeAuth.get('/user/signout');
             dispatch(SIGNOUT());
+
+            // Clear user's bag in redux after request is success
             dispatch(RESET_CART());
             dispatch(RESET_WISH());
-
-            // Closing the sign in panel after succesful request
-            dispatch(TOGGLE_SIGN({payload: false}));
         } catch (error) {
             dispatch(SIGNIN_FAILURE(error.message));
+        }
+    }
+};
+
+// Refresh user function
+export const REFRESH_USER = () => {
+    return async (dispatch) => {
+        dispatch(SIGNIN_START());
+        try {
+            const res = await makeAuth.get('/user/refresh');
+            console.log(res.data);
+        } catch (error) {
+            // Failed refresh will just sign user out wihout logs anything for better UX.
+            dispatch(SIGNOUT());
         }
     }
 };

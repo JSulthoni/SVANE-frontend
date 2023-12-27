@@ -4,13 +4,15 @@ import {
 	RouterProvider,
 	Outlet,
 } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import NavBar from "./components/NavBar/NavBar";
 import Footer from "./components/Footer/Footer";
 import NotFound from "./pages/NotFound/NotFound";
 import SuspenseElement from './components/SuspenseElement/SuspenseElement';
 import { ErrorBoundary } from "react-error-boundary";
 import './styles/global.scss';
+import { useEffect } from "react";
+import { REFRESH_USER, SIGNOUT_USER } from "./utils/makeAuthThunk";
 const Home = lazy(() => import('./pages/Home/Home'));
 const Products = lazy(() => import('./pages/Products/Products'));
 const Product = lazy(() => import('./pages/Product/Product'));
@@ -26,6 +28,17 @@ if (import.meta.env.NODE_ENV === 'production') {
 // Page layout
 const Layout = () => {
 const nightmode = useSelector((state) => state.navigation.nightmode);
+const dispatch = useDispatch()
+
+useEffect(() => {
+	let mounted = true
+	if (mounted) {
+		dispatch(REFRESH_USER());
+	}
+	return () => {
+		mounted = false
+	}
+}, [])
 
 return (
 	<div className={`app ${nightmode ? 'night' : ''}`}>
