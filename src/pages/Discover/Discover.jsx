@@ -55,11 +55,11 @@ const Discover = () => {
     }, [])
 
     return (
-        <div className='search'>
+        <div className='discover'>
             <div className='left'>
-                <div className='search-filter'>
+                <div className='discover-filter'>
                         <h3>Search product name</h3>
-                    <form autoComplete='off' onSubmit={handleSubmit} className='search-input search-bar'>
+                    <form autoComplete='off' onSubmit={handleSubmit} className='discover-input discover-bar'>
                         <input 
                             name='search'
                             id='search'
@@ -71,21 +71,21 @@ const Discover = () => {
                         <button disabled={isButtonDisabled}>Search</button>
                     </form>
                 </div>
-                <div className='search-filter'>
+                <div className='discover-filter'>
                     <h3>Filter by price</h3>
-                    <div className='search-input'>
+                    <div className='discover-input'>
                         <span>0</span>
                         <input type='range' min={0} max={199} onChange={(e) => setMaxPrice(e.target.value)}/>
                         <span>{maxPrice}</span>
                     </div>
                 </div>
-                <div className='search-filter'>
+                <div className='discover-filter'>
                     <h3>Sort by</h3>
-                    <div className='search-input'>
+                    <div className='discover-input'>
                         <input type='radio' id='asc' value='asc' name='price' onChange={(e) => setSort('asc')}/>
                         <label htmlFor='asc'>Price (Lowest first)</label> 
                     </div>
-                    <div className='search-input'>
+                    <div className='discover-input'>
                         <input type='radio' id='desc' value='desc' name='price' onChange={(e) => setSort('desc')}/>
                         <label htmlFor='desc'>Price (Highest first)</label> 
                     </div>
@@ -93,7 +93,7 @@ const Discover = () => {
             </div>
             <div className='right'>
                 <img
-                    className="search-image"
+                    className='discover-image'
                     src={headerImage[randomImageIndex]}
                     alt="search-page-image"
                 />

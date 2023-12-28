@@ -28,7 +28,7 @@
         background-color: var(--background-color8);
 
         @include xs {
-            top: 55px;
+            top: 60px;
             display: grid;
             grid-template-columns: 1fr 2fr;
             grid-template-rows: 68px 100px;

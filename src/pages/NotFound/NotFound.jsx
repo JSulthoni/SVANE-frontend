@@ -11,6 +11,11 @@ const NotFound = ({ error, resetErrorBoundary }) => {
         }
     }
 
+    // Scroll window to top of page on first mount
+    useEffect(() => {
+        window.scrollTo(0, 0)
+    }, [])
+
     return (
         <div className='notfound flexc-center'>
             <div className='notfound-wrapper flexc-center'>

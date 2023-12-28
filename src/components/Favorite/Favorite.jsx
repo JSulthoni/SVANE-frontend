@@ -46,32 +46,36 @@ const Favorite = ({wishRef, open}) => {
                 return (
                     <div className='panel-item' key={product._id}>
                         <img src={`${product.image1}?auto=compress&cs=tinysrgb&w=360&dpr=1`} alt=''/>
-                        <div className='panel-details'>
-                            <h4>{product.title}</h4>
-                            <p>{product.description.substring(0,100) + '...'}</p>
+                        <div className="favorite-info flexr-c-start">
+                            <div className='panel-details favorite-details'>
+                                <h4>{product.title}</h4>
+                                <p>{product.description.substring(0,120) + '...'}</p>
+                            </div>
+                            <div className="favorite-buttons flexr-c-between">
+                                    <button className='panel-button button-green' onClick={() => handlePayment(product)}>
+                                    <LocalMallIcon/>
+                                    </button>
+                                    <button className='panel-button button-green' onClick={() => {
+                                        if (!isLoggedIn) {
+                                            dispatch(TOGGLE_SIGN(true));
+                                            return;
+                                        };
+                                        dispatch(ADD_TO_CART({
+                                            product : {
+                                                _id : product._id,
+                                                title : product.title,
+                                                description : product?.description,
+                                                price : product.price,
+                                                image1 : product.image1,
+                                            },
+                                            quantity: 1
+                                        }));
+                                    }}>
+                                    <AddShoppingCartIcon/>
+                                </button>
+                                    <DeleteOutlinedIcon className='panel-delete' onClick={() => dispatch(REMOVE_WISH(product._id))}/>
+                            </div>
                         </div>
-                        <button className='panel-button button-green' onClick={() => handlePayment(product)}>
-                        <LocalMallIcon/>
-                        </button>
-                        <button className='panel-button button-green' onClick={() => {
-                            if (!isLoggedIn) {
-                                dispatch(TOGGLE_SIGN(true));
-                                return;
-                            };
-                            dispatch(ADD_TO_CART({
-                                product : {
-                                    _id : product._id,
-                                    title : product.title,
-                                    description : product?.description,
-                                    price : product.price,
-                                    image1 : product.image1,
-                                },
-                                quantity: 1
-                            }));
-                        }}>
-                        <AddShoppingCartIcon/>
-                    </button>
-                        <DeleteOutlinedIcon className='panel-delete' onClick={() => dispatch(REMOVE_WISH(product._id))}/>
                     </div>
                 )
             })}

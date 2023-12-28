@@ -13,6 +13,7 @@ const Success = () => {
 
     // Redirect user to homepage if user is not having a checkout session
     useEffect(() => {
+        window.scrollTo(0, 0)
         if (session_id) {
             dispatch(TOGGLE_WISHLIST(false));
             dispatch(TOGGLE_CART(false));

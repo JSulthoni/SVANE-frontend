@@ -8,7 +8,7 @@
     padding: 0;
     z-index: 9;
     width: 100%;
-    height: max-content;
+    height: 60px;
     color: var(--slate950);
     -webkit-box-shadow: var(--box-shadow-value);
     box-shadow: var(--box-shadow-value);
@@ -62,16 +62,6 @@
                 place-self: initial;
             }
 
-            .link img {
-                width: calc(2 * var(--f16px));
-                aspect-ratio: 1 / 1;
-                display: none;
-
-                @media screen and (max-width: 320px) {
-                    display: initial;
-                }
-            }
-
             .link h1 {
                 color: var(--green600);
                 font-weight: 600;
@@ -80,10 +70,6 @@
 
                 @include sm {
                     font-size: calc(2 * var(--f16px));
-                }
-
-                @media screen and (max-width: 320px) {
-                    display: none;
                 }
             }
         }

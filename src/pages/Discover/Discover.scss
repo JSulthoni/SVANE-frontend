@@ -1,6 +1,6 @@
 @import '../../styles/responsive.scss';
 
-.search {
+.discover {
     padding: 30px 50px;
     display: flex;
     gap: 20px;
@@ -28,7 +28,7 @@
         background-color: var(--background-color8);
 
         @include xs {
-            top: 55px;
+            top: 60px;
             display: grid;
             grid-template-columns: 1fr 1fr;
             grid-template-rows: 68px 100px;
@@ -43,7 +43,7 @@
             }
         }
     
-        .search-filter {
+        .discover-filter {
             margin-bottom: 30px;
 
             @include xs {
@@ -57,12 +57,12 @@
                 font-size: var(--f18px);
             }
 
-            .search-bar {
+            .discover-bar {
                 border: 1px solid var(--green600);
                 padding: 1px;
             }
     
-            .search-input {
+            .discover-input {
                 margin-bottom: 10px;
                 display: flex;
                 align-items: center;
@@ -131,7 +131,7 @@
     .right {
         flex: 3;
     
-        .search-image {
+        .discover-image {
             width: 100%;
             height: 300px;
             object-fit: cover;

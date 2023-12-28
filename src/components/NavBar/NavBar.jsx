@@ -27,7 +27,6 @@ import Searchbar from '../Searchbar/Searchbar';
 import SignIn from '../SignIn/SignIn';
 import useLoggedIn from '../../hooks/useLoggedIn';
 import usePanels from '../../hooks/usePanels';
-import icon from '../../assets/favicon.png'
 
 const NavBar = () => {
     const isLoggedIn = useLoggedIn();
@@ -130,7 +129,6 @@ const NavBar = () => {
                 </div>
                 <div className='center'>
                     <Link className='link flexr-c-start' to='/'>
-                        <img src={icon} alt='svane-logo' aria-label='svane-logo' loading='lazy'/>
                         <h1>SVANE</h1>
                     </Link>
                 </div>
