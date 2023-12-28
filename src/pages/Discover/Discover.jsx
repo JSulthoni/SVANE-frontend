@@ -1,7 +1,5 @@
 import { useState, useEffect } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
-import { ErrorBoundary } from 'react-error-boundary';
-import ErrorElement from '../../components/ErrorElement/ErrorElement';
 import List from '../../components/List/List';
 import './Discover.scss'
 
@@ -99,9 +97,7 @@ const Discover = () => {
                     src={headerImage[randomImageIndex]}
                     alt="search-page-image"
                 />
-            <ErrorBoundary FallbackComponent={ErrorElement} onReset={() => {}}>
                 <List search={queryParams || 'trending'} maxPrice={maxPrice} sort={sort}/>
-            </ErrorBoundary>
             </div>
         </div>
     );

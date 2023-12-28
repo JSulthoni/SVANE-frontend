@@ -2,12 +2,13 @@
 
 .navbar {
     -webkit-position: sticky;
-    top: 0;
     position: sticky;
+    top: 0;
     inset: 0 0 auto;
-    z-index: 5;
-    height: max-content;
     padding: 0;
+    z-index: 9;
+    width: 100%;
+    height: max-content;
     color: var(--slate950);
     -webkit-box-shadow: var(--box-shadow-value);
     box-shadow: var(--box-shadow-value);
@@ -19,7 +20,6 @@
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(min(30vw), 1fr));
     
-
         @include sm {
             grid-template-columns: 1fr 4fr;
         }
@@ -62,15 +62,28 @@
                 place-self: initial;
             }
 
-            .link {
+            .link img {
+                width: calc(2 * var(--f16px));
+                aspect-ratio: 1 / 1;
+                display: none;
+
+                @media screen and (max-width: 320px) {
+                    display: initial;
+                }
+            }
+
+            .link h1 {
                 color: var(--green600);
                 font-weight: 600;
                 font-size: calc(2.5 * var(--f16px));
                 letter-spacing: 0.125em;
-                margin: 0 1em;
 
                 @include sm {
-                    margin: 0 auto;
+                    font-size: calc(2 * var(--f16px));
+                }
+
+                @media screen and (max-width: 320px) {
+                    display: none;
                 }
             }
         }
@@ -80,8 +93,8 @@
             gap: 1.5em;
             width: max-content;
 
-            @include md {
-                gap: 1em;
+            @include xs {
+                gap: 0;
             }
 
             .link {
@@ -106,14 +119,17 @@
                     overflow-x: visible;
                     display: flex;
                     place-items: center;
-                    z-index: 1001; 
+                    z-index: 1001;
                 }
                 
                 .icon-login {
-                    gap: 10px;
+                    gap: 5px;
                     color: var(--green600);
                     font-size: var(--f18px);
                     z-index: 1001;
+                    @include xs {
+                        margin-left: 5px;
+                    } 
                 }
 
                 .icon-menu {    

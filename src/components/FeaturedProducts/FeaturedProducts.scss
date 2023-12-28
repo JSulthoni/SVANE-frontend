@@ -71,12 +71,12 @@
         gap: 10px;
 
         // Scroll behavior
-        overflow-x: scroll;
-        overscroll-behavior-x: contain;
         scroll-margin: 1em;
         scroll-snap-type: x mandatory;
         scrollbar-width: none;  /* Firefox */
-        
+        overflow-x: scroll;
+        overscroll-behavior-x: contain;
+
         &::-webkit-scrollbar {
             display: none;
         }
@@ -90,15 +90,13 @@
             grid-template-columns: 1fr 1fr;
             grid-auto-flow: row;
             gap: 10px;
-            overflow-x: hidden;
-            overscroll-behavior-x: initial;
             scroll-margin: 0;
             scroll-snap-type: initial;
-            scrollbar-width: none;  /* Firefox */
+            overflow-x: hidden;
+            overscroll-behavior-x: initial;
 
             &> *:last-child {
-                grid-column: auto / span 2;
-
+                display: none;
             }
         }
 

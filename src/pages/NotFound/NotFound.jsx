@@ -7,7 +7,7 @@ const NotFound = ({ error, resetErrorBoundary }) => {
         if (error) {
             resetErrorBoundary();
         } else {
-            navigate('/')
+            navigate('/');
         }
     }
 

@@ -1,4 +1,5 @@
-import { useCallback, useEffect, useRef, memo } from 'react';
+import './NavBar.scss';
+import { useCallback, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux';
 import { HashLink } from 'react-router-hash-link';
@@ -9,6 +10,7 @@ import {
     TOGGLE_MENU, 
     TOGGLE_SEARCH, 
     TOGGLE_SIGN} from '../../redux/navigationSlice';
+import { RESET_NOTIFICATION } from '../../redux/notificationSlice';
 import MenuIcon from '@mui/icons-material/Menu';
 import FavoriteBorderOutlinedIcon from '@mui/icons-material/FavoriteBorderOutlined'
 import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined'
@@ -24,9 +26,8 @@ import Menu from '../Menu/Menu';
 import Searchbar from '../Searchbar/Searchbar';
 import SignIn from '../SignIn/SignIn';
 import useLoggedIn from '../../hooks/useLoggedIn';
-import './NavBar.scss';
-import { RESET_NOTIFICATION } from '../../redux/notificationSlice';
 import usePanels from '../../hooks/usePanels';
+import icon from '../../assets/favicon.png'
 
 const NavBar = () => {
     const isLoggedIn = useLoggedIn();
@@ -128,7 +129,10 @@ const NavBar = () => {
                     </div>
                 </div>
                 <div className='center'>
-                    <Link className='link' to='/'>SVANE</Link>
+                    <Link className='link flexr-c-start' to='/'>
+                        <img src={icon} alt='svane-logo' aria-label='svane-logo' loading='lazy'/>
+                        <h1>SVANE</h1>
+                    </Link>
                 </div>
                 <div className='right flexr-c-start'>
                     <div className='item flexr-c-start'>

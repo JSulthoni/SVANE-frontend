@@ -33,6 +33,7 @@ const authConfig = {
     key: 'authentication',
     version: 1,
     storage,
+    whitelist: []
 }
 
 const notifConfig = {

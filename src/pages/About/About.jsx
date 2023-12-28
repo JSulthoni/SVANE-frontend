@@ -1,4 +1,5 @@
-import icon from '../../favicon.png'
+import { useEffect, useState } from 'react';
+import icon from '../../assets/favicon.png'
 import LocalMallIcon from '@mui/icons-material/LocalMall';
 import FavoriteBorderOutlinedIcon from '@mui/icons-material/FavoriteBorderOutlined'
 import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined'
@@ -50,8 +51,7 @@ const About = () => {
                             { openState ? <KeyboardArrowUpIcon/> : <KeyboardArrowDownIcon/> }
                         </span>
                     </div>
-                    <ul className={`${openState ? 'active' : 'inactive'}`}></ul>
-                    <ul>
+                    <ul className={`${openState ? 'active' : 'inactive'}`}>
                         <li><b>SVANE</b> is intended as an online shop for fashion products.</li>
                         <li>User can create account and sign by clicking<span><AccountBoxSharpIcon/></span>in to gain access to cart and checkout.</li>
                         <li>Each signed user of <b>SVANE</b> has their own wishlist<span><FavoriteBorderOutlinedIcon/></span>and cart <span><ShoppingCartOutlinedIcon/></span>.</li>

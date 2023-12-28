@@ -9,7 +9,7 @@ import './Searchbar.scss';
 
 const Searchbar = ({searchRef, open}) => {
     const [searchQuery, setSearchQuery] = useState(undefined);
-    const [queryString, setQueryString] = useState(undefined)
+    const [queryString, setQueryString] = useState(undefined);
     const navigate = useNavigate();
 
     // Fetching data based on search argument

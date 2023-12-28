@@ -1,15 +1,14 @@
 import { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import List from '../../components/List/List';
 import useFetch from '../../hooks/useFetch';
 import './Products.scss';
-import ErrorElement from '../../components/ErrorElement/ErrorElement';
 
 
 const Products = () => {
-
     // Getting id from url
     const category = useParams().id;
+    const navigate = useNavigate();
 
     // State for search parameters
     const [maxPrice, setMaxPrice] = useState(199);
@@ -19,6 +18,7 @@ const Products = () => {
     // Fetching data from api
     const { data, loading, error } = useFetch(`/category?title=${category || ''}`); // Getting the catefories based on category
     const [ subcategory ] = data;
+    error && navigate('*');
 
     
     // Function to filter and sort the data
