@@ -53,6 +53,10 @@
                 max-height: 500px;
                 width: 100%;
                 object-fit: cover;
+
+                &:last-of-type {
+                    object-position: 50% 40%;
+                }
             }
         }
 

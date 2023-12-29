@@ -82,14 +82,14 @@ const About = () => {
                 </article>
                 </div>
                 <div className='about-item flexc-center'>
-                <img src='https://images.pexels.com/photos/1018911/pexels-photo-1018911.jpeg?auto=compress&cs=tinysrgb&w=940&dpr=1' alt='about image' loading='lazy' />
+                <img src='https://images.pexels.com/photos/9255735/pexels-photo-9255735.jpeg?auto=compress&cs=tinysrgb&w=940&dpr=1' alt='about image' loading='lazy' />
                 </div>
 
 
                 </article>
                 
                 <div className='flexc-center'>
-                    <p>More about <span className='logo'>SVANE</span></p>
+                    <p>More about <span className='logo'>SVANE</span> :</p>
                     <div className='about-buttons flexr-center'>
                         <button className='about-button button-green'><a href='https://github.com/JSulthoni' target='_blank'>Author's Profile</a></button>
                         <button className='about-button button-green'><a href='https://github.com/JSulthoni/SVANE-frontend' target='_blank'>Github Code</a></button>
