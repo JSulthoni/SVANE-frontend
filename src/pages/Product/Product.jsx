@@ -1,8 +1,8 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import LocalMallIcon from '@mui/icons-material/LocalMall';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { ADD_TO_CART, ADD_TO_WISH } from '../../redux/bagSlice';
 import { TOGGLE_SIGN } from '../../redux/navigationSlice';
@@ -11,9 +11,9 @@ import { STRIPE_CHECKOUT } from '../../utils/makeStripeThunk';
 import useFetch from '../../hooks/useFetch';
 import useLoggedIn from '../../hooks/useLoggedIn';
 import './Product.scss';
-import ErrorElement from '../../components/ErrorElement/ErrorElement';
 
 const Product = () => {
+    const navigate = useNavigate();
     const dispatch = useDispatch();
     const isLoggedIn = useLoggedIn();
     const [mainImg, setMainImg] = useState('image1');
@@ -22,6 +22,8 @@ const Product = () => {
     // Fetching single product data by id
     const id = useParams().id;
     const { data, loading, error } = useFetch(`/products/get/${id}?populate=*`);
+    error && navigate('*');
+    
     // Button control switch
     const buttonControl = (type) => {
         switch (type) {
@@ -54,7 +56,6 @@ const Product = () => {
                 break;
         }
     };
-    
 
     // Add to cart function
     const handleCart = () => {
@@ -87,12 +88,15 @@ const Product = () => {
             option: 'direct'   
         }))
     };
+
+    // Scroll window to top of page on first mount
+    useEffect(() => {
+        window.scrollTo(0, 0)
+    }, [])
     
     return (
         <div className='product'>
-            { error ? 
-                <ErrorElement maxHeight={100} />
-            : loading ? 
+            { loading ? 
             <>
                 <div className='left'>
                     <p>Loading product...</p>

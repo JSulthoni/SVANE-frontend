@@ -1,4 +1,5 @@
 import { useNavigate } from 'react-router-dom';
+import { useEffect } from 'react';
 import './NotFound.scss';
 
 const NotFound = ({ error, resetErrorBoundary }) => {
@@ -7,9 +8,14 @@ const NotFound = ({ error, resetErrorBoundary }) => {
         if (error) {
             resetErrorBoundary();
         } else {
-            navigate('/')
+            navigate('/');
         }
     }
+
+    // Scroll window to top of page on first mount
+    useEffect(() => {
+        window.scrollTo(0, 0)
+    }, [])
 
     return (
         <div className='notfound flexc-center'>

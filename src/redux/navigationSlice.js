@@ -6,7 +6,7 @@ const initialState = {
     cart: false,
     menu: false,
     sign: false,
-    nightmode: false
+    nightmode: true
 };
 
 export const navigationSlice = createSlice({

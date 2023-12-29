@@ -12,7 +12,7 @@ import SuspenseElement from './components/SuspenseElement/SuspenseElement';
 import { ErrorBoundary } from "react-error-boundary";
 import './styles/global.scss';
 import { useEffect } from "react";
-import { REFRESH_USER, SIGNOUT_USER } from "./utils/makeAuthThunk";
+import { REFRESH_USER } from "./utils/makeAuthThunk";
 const Home = lazy(() => import('./pages/Home/Home'));
 const Products = lazy(() => import('./pages/Products/Products'));
 const Product = lazy(() => import('./pages/Product/Product'));
@@ -28,22 +28,21 @@ if (import.meta.env.NODE_ENV === 'production') {
 // Page layout
 const Layout = () => {
 const nightmode = useSelector((state) => state.navigation.nightmode);
-const dispatch = useDispatch()
+const dispatch = useDispatch();
 
 useEffect(() => {
-	let mounted = true
-	if (mounted) {
-		dispatch(REFRESH_USER());
-	}
-	return () => {
-		mounted = false
-	}
+	dispatch(REFRESH_USER());
+	return () => {}
 }, [])
 
 return (
 	<div className={`app ${nightmode ? 'night' : ''}`}>
 		<NavBar />
-		<Outlet />
+			<ErrorBoundary FallbackComponent={NotFound} onReset={() => {}}>
+				<Suspense fallback={<SuspenseElement />}>
+					<Outlet />
+				</Suspense>
+			</ErrorBoundary>
 		<Footer />
 	</div>
 )
@@ -92,11 +91,7 @@ const router = createBrowserRouter([
 
 const App = () => {
   return <>
-  		<ErrorBoundary FallbackComponent={NotFound} onReset={() => {}}>
-			<Suspense fallback={<SuspenseElement />}>
-            	<RouterProvider router={router} />
-			</Suspense>
-		</ErrorBoundary>
+            <RouterProvider router={router} />
         </>;
 };
 

@@ -48,6 +48,12 @@
         max-height: 85dvh;
         overflow-y: scroll;
         overscroll-behavior: contain;
+        -webkit-overflow-scrolling: contain;
+        -ms-overflow-style: none;  /* IE and Edge */
+        scrollbar-width: none;  /* Firefox */
+        &::-webkit-scrollbar {
+            display: none;
+        }
         
         .searchbar-item {
             text-decoration: none;

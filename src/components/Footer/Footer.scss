@@ -1,18 +1,18 @@
 @import '../../styles/responsive.scss';
 
 .footer {
-    margin: 100px 200px;
-    margin-bottom: 0;
+    padding-inline: 200px;
+    padding-top: 100px;
+    border-top: 1px solid var(--header);
 
     @include lg {
         min-height: fit-content;
-        margin: 100px 100px;
-        margin-bottom: 0;
+        padding-inline: 100px;
     }
 
     @include sm {
-        margin: 50px 50px;
-        margin-bottom: 0px;
+        padding-inline: 50px;
+        padding-top: 50px;
     }
 
     .top {
@@ -66,6 +66,7 @@
             .footer-list {
                 gap: 10px;
                 text-align: justify;
+                position: relative;
             }
 
             .footer-divider {

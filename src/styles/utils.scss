@@ -92,6 +92,7 @@
     visibility: visible;
     transform: translateY(0);
     margin-bottom: 10px;
+    transition: all 250ms ease;
 }
 
 .inactive {
@@ -101,6 +102,7 @@
     visibility: hidden;
     transform: translateY(-20px);
     margin-bottom: 0px;
+    transition: all 250ms ease;
 }
 
 .button-green {

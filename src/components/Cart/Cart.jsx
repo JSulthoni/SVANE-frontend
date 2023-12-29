@@ -1,25 +1,25 @@
+import './Cart.scss';
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from 'react-redux';
 import DeleteOutlinedIcon from "@mui/icons-material/DeleteOutlined";
 import useLoggedIn from "../../hooks/useLoggedIn";
 import { DECREMENT_ITEM_IN_CART, INCREMENT_ITEM_IN_CART, REMOVE_ITEM, RESET_CART } from '../../redux/bagSlice';
 import { STRIPE_CHECKOUT } from '../../utils/makeStripeThunk';
-import './Cart.scss';
 import { UPDATE_BAG } from "../../utils/makeBagThunk";
 
 
 const Cart = ({cartRef, open}) => {
-    const { cart, wishlist } = useSelector((state) => state.bag);
     const dispatch = useDispatch();
-    const isLoggedIn = useLoggedIn();
-
+    
     // Calculating total price in cart
     const totalPrice = () => {
         let total = 0
         cart.forEach((item) => (total += item.quantity * item.product.price))
         return total.toFixed(2)
     };
-
+    
+    const isLoggedIn = useLoggedIn();
+    const { cart, wishlist } = useSelector((state) => state.bag);
     // This is a chain of debounching mechanism is intended to make the UPDATE_BAG dispatch execute after
     // timer expires. This is intended to lower request traffic and because wishlist and cart is a panel
     // that follows user anywhere.
@@ -30,27 +30,27 @@ const Cart = ({cartRef, open}) => {
             clearTimeout(debounceTimer)
         }
         const newDebounceDispatch = setTimeout(() => {
-            const debouncedCart = cart.map((item) => ({ _id: item.product._id, quantity: item.quantity })) || [];
-            const debouncedWishlist = wishlist.map((item) => ({ _id: item.product._id })) || [];
-            
             // dispatch UPDATE_BAG with the specified condition 
-            const condition = isLoggedIn && debouncedCart !== undefined && debouncedWishlist !== undefined
+            const condition = isLoggedIn && cart !== undefined && wishlist !== undefined
             if (condition) {
-                dispatch(UPDATE_BAG({ cart: debouncedCart, wishlist: debouncedWishlist }));
+                const payloadCart = cart.map((item) => ({ _id: item.product._id, quantity: item.quantity })) || [];
+                const payloadWishlist = wishlist.map((item) => ({ _id: item.product._id })) || [];
+                dispatch(UPDATE_BAG({ cart: payloadCart, wishlist: payloadWishlist }));
             }
         }, 750) // Timer for debounce is adjusted at 750ms
 
         setDebounceTimer(newDebounceDispatch);
-    };
 
+        return newDebounceDispatch;
+    };
     
     // This useEffect is to execute the debounce mechanism
     useEffect(() => {
-        debouncedDispatch();
+        const newDebounceTimer = debouncedDispatch();
 
         return () => {
-            if (debounceTimer) {
-                clearTimeout(debounceTimer);
+            if (newDebounceTimer) {
+                clearTimeout(newDebounceTimer);
             }
         }
         // The dependency array includes cart and wishlist which to execute calculateDebouncedValues if

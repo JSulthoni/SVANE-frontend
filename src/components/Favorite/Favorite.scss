@@ -1,2 +1,33 @@
 @import '../../styles/responsive.scss';
 @import '../../styles/utils.scss';
+
+.favorite-info {
+    gap: 20px;
+    height: 100px;
+
+    .favorite-details {
+        justify-content: flex-start !important;
+    }
+
+    @media screen and (max-width: 375px) {
+        gap: 0;
+        flex-direction: column !important; 
+        align-items: flex-start !important; 
+    } 
+}
+
+.favorite-buttons {
+    gap: 20px;
+
+    .panel-delete {
+        @media screen and (max-width: 375px) {
+            margin-bottom: -10px; 
+        } 
+    }
+    .panel-button {
+        @media screen and (max-width: 375px) {
+            height: 30px;
+            margin-top: 10px; 
+        } 
+    }
+}

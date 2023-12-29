@@ -71,10 +71,10 @@ const Footer = () => {
                 </div>
                 <div className='footer-item'>
                     <div className='footer-title flexr-c-between'>
-                        <h3>About</h3>
+                        <h3>The Store</h3>
                     </div>
                     <div className='footer-list flexc-s-start'>
-                        <p>At <b>SVANE</b>, we've reimagined the way you shop online. We understand the thrill of discovering fantastic products from around the world and the convenience of having them delivered to your doorstep. That's why we've designed a platform that connects you to every major fashion store across the globe from different places and buy them all in one go.</p>
+                        <p>At <b>SVANE</b>, we've reimagined the way you shop online. We understand the thrill of discovering fantastic products from around the world and the convenience of having them delivered to your doorstep. That's why we've designed a platform that connects you to our collection across the globe and buy them all in one go.</p>
                     </div>
                 </div>
                 <div className='footer-item'>

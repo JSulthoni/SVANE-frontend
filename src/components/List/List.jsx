@@ -2,9 +2,13 @@ import useFetch from '../../hooks/useFetch';
 import FallbackDisplay from '../FallbackDisplay/FallbackDisplay';
 import Card from '../Card/Card'
 import CardPlaceholder from '../CardPlaceholder/CardPlaceholder';
+import ErrorElement from '../ErrorElement/ErrorElement';
 import './List.scss';
+import { useNavigate } from 'react-router-dom';
+import { Suspense } from 'react';
 
 const List = ({category, maxPrice, sort, search, subCats}) => {
+    const navigate = useNavigate();
     
     // Construct the API endpoint based on the presence of category and subCats or search
     let endpoint;
@@ -18,11 +22,8 @@ const List = ({category, maxPrice, sort, search, subCats}) => {
 
     const { data, loading, error } = useFetch(endpoint);
     const isData = Boolean(data.length);
-    
-    if (error) {
-        throw new Error('Something went wrong. We are sorry for the inconvenience');
-    }
-    
+    error && navigate('*');
+
     return (
         <>
             { 
@@ -32,7 +33,9 @@ const List = ({category, maxPrice, sort, search, subCats}) => {
                 </div> 
             : isData ? 
                 <div className='list'>
-                    {data.map((item) => (<Card item={item} key={item._id} />))} 
+                    <Suspense fallback={<CardPlaceholder/>}>
+                            {data.map((item) => (<Card item={item} key={item._id} />))} 
+                    </Suspense>
                 </div>
             :
                 <FallbackDisplay search={search} maxPrice={maxPrice} sort={sort}/>

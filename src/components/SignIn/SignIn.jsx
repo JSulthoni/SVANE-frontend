@@ -1,8 +1,7 @@
-import { memo, useEffect, useState } from 'react';
+import { memo, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { TOGGLE_CART, TOGGLE_SIGN, TOGGLE_WISHLIST } from '../../redux/navigationSlice';
 import { CREATE_USER, SIGNOUT_USER, SIGN_USER } from '../../utils/makeAuthThunk';
-import { GET_BAG } from '../../utils/makeBagThunk';
 import useLoggedIn from '../../hooks/useLoggedIn';
 import './SignIn.scss'
 
@@ -66,19 +65,6 @@ const SignIn = ({open}) => {
                 break;
         }
     };
-
-
-    // This condition is to get user's bag only and after user is signed in
-    // This is intended to run only once after user is signed in
-    useEffect(() => {
-        let mounted = true
-            if (mounted && isLoggedIn) {
-                dispatch(GET_BAG());
-            } 
-        return () => {
-            mounted = false
-        }
-    }, [isLoggedIn]);
 
     return (
         <div className={`sign flexc-center ${open ? 'active' : 'inactive'}`}>

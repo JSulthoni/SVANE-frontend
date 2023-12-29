@@ -12,7 +12,7 @@ export const GET_BAG = () => {
             // Setting redux bag with data from response
             dispatch(SET_BAG(res.data));
         } catch (error) {
-            dispatch(SET_NOTIFICATION('SOMETHING WENT WRONG'));
+            dispatch(SET_NOTIFICATION('Something went wrong, please try again later'));
             dispatch(SIGNOUT_USER());
         }
     }
@@ -24,10 +24,10 @@ export const UPDATE_BAG = ({ cart, wishlist }) => {
         try {
             // Making request to update user's bag with the payload
             const res = await makeAuth.put('/bag/put', { cart, wishlist });
-            // Setting redux bag with data from response
-            dispatch(SET_BAG(res.data));
+
+            dispatch(SET_NOTIFICATION(res.data));
         } catch (error) {
-            dispatch(SET_NOTIFICATION('SOMETHING WENT WRONG. PLEASE TRY AGAIN LATER'));
+            dispatch(SET_NOTIFICATION('Something went wrong, please try again later'));
         }
     }
 };
