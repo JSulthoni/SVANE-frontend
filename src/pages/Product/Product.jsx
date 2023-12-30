@@ -137,7 +137,7 @@ const Product = () => {
                     <div className='info'>
                         <span>Vendor: SVANE</span>
                         <span>Product Type: Fashion</span>
-                        <span className='tag'>Tag: {data?.type?.map((item) => <span key={item}>{item} </span>)}</span>
+                        <span className='tag'>Tag: {data?.type?.map((item) => <span key={item}>{item}, </span>)}</span>
                         <hr />
                         <span>DESCRIPTION</span>
                         <hr />

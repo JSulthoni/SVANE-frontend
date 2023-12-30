@@ -114,15 +114,18 @@
 
     .search-slider {
         margin-top: 150px;
+        height: 55vh;
         height: 55dvh;
 		display: flex;
 		transition: all 1000ms ease;
         
         @include xs {
+            height: 60vh;
             height: 60dvh;
         }
         
       	img {
+            width: 100vw;
 			width: 100dvw;
 			object-fit: cover;
       	}

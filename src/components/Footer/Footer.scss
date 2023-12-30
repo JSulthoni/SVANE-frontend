@@ -3,7 +3,7 @@
 .footer {
     padding-inline: 200px;
     padding-top: 100px;
-    border-top: 1px solid var(--header);
+    border-top: 1px solid var(--green600);
 
     @include lg {
         min-height: fit-content;
