@@ -62,10 +62,17 @@ export const REFRESH_USER = () => {
         dispatch(SIGNIN_START());
         try {
             const res = await makeAuth.get('/user/refresh');
-            dispatch(SIGNIN_SUCCESS(res.data)); // Initialize user session 
 
-            // Getting user's bag after request is success
-            dispatch(GET_BAG());
+            if (res.status === 204) {
+                // No Content, The backend didn't return any data
+                dispatch(SIGNOUT());
+            } else {
+                // Initialize user session
+                dispatch(SIGNIN_SUCCESS(res.data));
+
+                // Getting user's bag after the request is successful
+                dispatch(GET_BAG());
+            }
         } catch (error) {
             // Failed refresh will just sign user out wihout logs anything for better UX.
             dispatch(SIGNOUT());
