@@ -4,12 +4,14 @@ import LocalMallIcon from '@mui/icons-material/LocalMall';
 import { useDispatch, useSelector } from 'react-redux';
 import useLoggedIn from '../../hooks/useLoggedIn';
 import { ADD_TO_CART, REMOVE_WISH, RESET_WISH } from '../../redux/bagSlice';
-import { STRIPE_CHECKOUT } from '../../utils/makeStripeThunk';
 import { TOGGLE_SIGN } from '../../redux/navigationSlice';
 import './Favorite.scss';
+import { SET_CHECKOUT, SET_OPTION } from "../../redux/checkoutSlice";
+import { useNavigate } from "react-router-dom";
 
 const Favorite = ({wishRef, open}) => {
     const isLoggedIn = useLoggedIn();
+    const navigate = useNavigate();
     const dispatch = useDispatch();
     const { wishlist } = useSelector((state) => state.bag);
     
@@ -19,8 +21,8 @@ const Favorite = ({wishRef, open}) => {
             dispatch(TOGGLE_SIGN({payload: true}));
             return;
         }
-        dispatch(STRIPE_CHECKOUT({
-            cart: [
+        dispatch(SET_CHECKOUT({
+            payload: [
                 {
                     product: {
                         _id : product._id,
@@ -31,9 +33,10 @@ const Favorite = ({wishRef, open}) => {
                     },
                     quantity : 1
                 }    
-            ],
-            option: 'wishlist'   
-        }))
+            ],  
+        }));
+        dispatch(SET_OPTION('wishlist'));
+        navigate('/checkout');
     };
 
     return (

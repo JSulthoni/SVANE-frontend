@@ -18,6 +18,7 @@ const Products = lazy(() => import('./pages/Products/Products'));
 const Product = lazy(() => import('./pages/Product/Product'));
 const Success = lazy(() => import('./pages/Success/Success'));
 const Discover = lazy(() => import('./pages/Discover/Discover'));
+const Checkout = lazy(() => import('./pages/Checkout/Checkout'));
 const About = lazy(() => import('./pages/About/About'));
 
 if (import.meta.env.NODE_ENV === 'production') {
@@ -74,6 +75,10 @@ const router = createBrowserRouter([
 			{
 				path : '/discover',
 				element : <Discover />
+			},
+			{
+				path : '/checkout',
+				element : <Checkout />
 			},
 			{
 				path : '/success',

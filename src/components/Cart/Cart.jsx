@@ -1,21 +1,23 @@
 import './Cart.scss';
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import DeleteOutlinedIcon from "@mui/icons-material/DeleteOutlined";
 import useLoggedIn from "../../hooks/useLoggedIn";
 import { DECREMENT_ITEM_IN_CART, INCREMENT_ITEM_IN_CART, REMOVE_ITEM, RESET_CART } from '../../redux/bagSlice';
-import { STRIPE_CHECKOUT } from '../../utils/makeStripeThunk';
 import { UPDATE_BAG } from "../../utils/makeBagThunk";
+import { SET_CHECKOUT, SET_OPTION } from '../../redux/checkoutSlice';
 
 
 const Cart = ({cartRef, open}) => {
     const dispatch = useDispatch();
+    const navigate = useNavigate();
     
     // Calculating total price in cart
     const totalPrice = () => {
-        let total = 0
-        cart.forEach((item) => (total += item.quantity * item.product.price))
-        return total.toFixed(2)
+        let total = 0;
+        cart.forEach((item) => (total += item.quantity * item.product.price));
+        return total.toFixed(2);
     };
     
     const isLoggedIn = useLoggedIn();
@@ -57,6 +59,12 @@ const Cart = ({cartRef, open}) => {
         // either of the value changed
     }, [cart, wishlist]);
 
+    const handlePayment = () => {
+        dispatch(SET_CHECKOUT({ payload: cart }));
+        dispatch(SET_OPTION('cart'));
+        navigate('/checkout');
+    }
+
     return (
         <div ref={cartRef} className={`panel ${open ? 'active' : 'inactive'}`}>
             <h3>{cart.length ? 'Products in your cart' : 'Your cart is empty'}</h3>
@@ -86,7 +94,7 @@ const Cart = ({cartRef, open}) => {
                 <span>SUBTOTAL</span>
                 <span>${totalPrice()}</span>
             </div>
-            <button className='panel-button button-green' onClick={() => dispatch(STRIPE_CHECKOUT({ cart, option: 'cart' }))}>PROCEED TO CHECKOUT</button>
+            <button className='panel-button button-green' onClick={() => handlePayment()}>PROCEED TO CHECKOUT</button>
             <span className='panel-reset' onClick={() => dispatch(RESET_CART())}>Empty Cart</span>
             </div>}
         </div>

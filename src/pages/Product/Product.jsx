@@ -7,7 +7,7 @@ import { useDispatch } from 'react-redux';
 import { ADD_TO_CART, ADD_TO_WISH } from '../../redux/bagSlice';
 import { TOGGLE_SIGN } from '../../redux/navigationSlice';
 import { SET_NOTIFICATION } from '../../redux/notificationSlice';
-import { STRIPE_CHECKOUT } from '../../utils/makeStripeThunk';
+import { SET_CHECKOUT, SET_OPTION } from '../../redux/checkoutSlice';
 import useFetch from '../../hooks/useFetch';
 import useLoggedIn from '../../hooks/useLoggedIn';
 import './Product.scss';
@@ -72,8 +72,8 @@ const Product = () => {
             dispatch(TOGGLE_SIGN({payload: true}));
             return;
         }
-        dispatch(STRIPE_CHECKOUT({
-            cart: [
+        dispatch(SET_CHECKOUT({
+            payload: [
                 {
                     product: {
                         _id : data._id,
@@ -85,8 +85,9 @@ const Product = () => {
                     quantity
                 }    
             ],
-            option: 'direct'   
-        }))
+        }));
+        dispatch(SET_OPTION('direct'));
+        navigate('/checkout');
     };
 
     // Scroll window to top of page on first mount

@@ -13,6 +13,7 @@ const SignIn = ({open}) => {
     
     // Getting state of user from redux
     const { user, loading, error } = useSelector((state) => state.authentication);
+    console.log(user);
     const isLoggedIn = useLoggedIn();
 
     const [credentials, setCredentials] = useState({
@@ -72,7 +73,7 @@ const SignIn = ({open}) => {
             <div className='sign-panel flexc-c-start'>
                 <div className='sign-header flexc-s-between'>
                     <h3>WELCOME</h3>
-                    <h4>{user.email}</h4>
+                    <h4>{user}</h4>
                 </div>
                 <div className='sign-info flexc-s-between'>
                     <div onClick={() => handleClick('cart')}>
