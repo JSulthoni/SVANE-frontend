@@ -1,15 +1,17 @@
-import React, { useEffect } from 'react';
-import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
-import './Checkout.scss'
+import { useEffect } from 'react';
+import useLoggedIn from '../../hooks/useLoggedIn';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { RESET_CHECKOUT } from '../../redux/checkoutSlice';
 import { STRIPE_CHECKOUT } from '../../utils/makeCheckoutThunk';
+import stripeicon from '../../assets/stripeicon.svg'
+import './Checkout.scss'
 
 
 const Checkout = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
+    const isLoggedin = useLoggedIn();
     const { payload, option } = useSelector((state) => state.checkout);
 
     // Calculating total price in checkout
@@ -21,9 +23,9 @@ const Checkout = () => {
 
     // Scroll window to top of page on first mount
     useEffect(() => {
-        (!payload || !option) && navigate('*');
+        (!isLoggedin || !payload || !option) && navigate('/');
         window.scrollTo(0, 0);
-    }, []);
+    }, [isLoggedin, payload, option]);
 
     const handleCancel = () => {
         dispatch(RESET_CHECKOUT());
@@ -71,12 +73,18 @@ const Checkout = () => {
                         <div className='checkout-total flexr-c-between'>
                             <span>Total ($)</span><span>: {totalPrice()}</span>
                         </div>
-                            <span>Payment Method :</span>
-                        <div className='flexr-c-between'>
+                            <span>Select payment method :</span>
+                        <div className='flexr-c-between checkout-button'>
                             <p>STRIPE</p>
                             <button 
                                 onClick={() => handlePayment('stripe')}
-                                className='button-green'><AddShoppingCartIcon /></button>
+                                className='flexc-center checkout-icon'>
+                                    <img
+                                        className='checkout-icon'
+                                        src={stripeicon} 
+                                        loading='lazy' 
+                                        alt='stripe purchase button' />
+                                </button>
                         </div>
                         <div className='flexr-c-between'>
                             <button 

@@ -123,15 +123,33 @@
         .checkout-total {
             font-weight: 500;
             color: var(--green600);
+            border-bottom: 1px solid var(--header);
+
             span {
                 margin-bottom: 1em;
             }
-            border-bottom: 1px solid var(--header);
+            
         } 
 
 
         .checkout-payment {
             gap: 1em;
+
+            .checkout-button {
+                box-shadow: var(--box-shadow-value);
+                border: 1px solid var(--header);
+                cursor: pointer;
+                padding-inline: 1em;
+            }
+            .checkout-icon {
+                border: none;
+                background-color: transparent;
+
+                img {
+                    height: 60px;
+                    width: auto;
+                }
+            }
 
             & > div:last-child {
                 margin-top: 20px;
