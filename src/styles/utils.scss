@@ -87,6 +87,13 @@
     align-items: center;
 }
 
+.flexr-s-start {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: stretch;
+}
+
 .active {
     opacity: 1;
     visibility: visible;

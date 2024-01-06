@@ -24,8 +24,8 @@ const Success = () => {
     },[]);
 
     return (
-        <section className='success flex-center'>
-            <div className='success-wrapper flex-center'>
+        <section className='success flexc-center'>
+            <div className='success-wrapper flexc-center'>
                 <h2>SUCCESS</h2>
                 <p>Your order with ID:</p>
                 <h4>{session_id}</h4>

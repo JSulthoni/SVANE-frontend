@@ -5,16 +5,15 @@ const BACKEND_URL = import.meta.env.VITE_BACKEND_URL
 // Stripe thunk to make checkout request to server
 // Option is an option where the purchase is coming from
 // By default option is direct
-export const STRIPE_CHECKOUT = ({ cart, option = 'direct' }) => {
+export const STRIPE_CHECKOUT = (payload, option) => {
     return async (dispatch) => {
 
         // Variable to validate cart format. This to only make request if format is valid
-        const isValidCartPayload = Array.isArray(cart) && cart.every(item => item.product && item.quantity);
+        const isValidCartPayload = Array.isArray(payload) && payload.every(item => item.product && item.quantity);
         try {
             if (isValidCartPayload) {
-                console.log(option)
                 // The request payload is an object with key of 'cart' and value of array of object
-                const res = await makeAuth.post(`${BACKEND_URL}/stripe/create`, { cart, option });
+                const res = await makeAuth.post(`${BACKEND_URL}/stripe/create`, { payload, option });
 
                 // User is redirected to this URL if request is fulfilled
                 window.location.assign(res.data.url);
